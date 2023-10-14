@@ -14,12 +14,18 @@ namespace Wpf.NotificationCenter
     {
         #region Events
 
+        /// <summary>
+        ///     Occurs when a property value changes.
+        /// </summary>
         public event PropertyChangedEventHandler? PropertyChanged;
 
         #endregion
 
         #region Fields
 
+        /// <summary>
+        ///     The notification type property
+        /// </summary>
         public static readonly DependencyProperty NotificationTypeProperty = DependencyProperty.Register(
             nameof(NotificationType),
             typeof(NotificationType),
@@ -27,6 +33,9 @@ namespace Wpf.NotificationCenter
             new PropertyMetadata(default(NotificationType))
         );
 
+        /// <summary>
+        ///     The title property
+        /// </summary>
         public static readonly DependencyProperty TitleProperty = DependencyProperty.Register(
             nameof(Title),
             typeof(string),
@@ -34,6 +43,9 @@ namespace Wpf.NotificationCenter
             new PropertyMetadata(string.Empty)
         );
 
+        /// <summary>
+        ///     The text property
+        /// </summary>
         public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
             nameof(Text),
             typeof(string),
@@ -41,6 +53,9 @@ namespace Wpf.NotificationCenter
             new PropertyMetadata(string.Empty)
         );
 
+        /// <summary>
+        ///     The unread property
+        /// </summary>
         public static readonly DependencyProperty UnreadProperty = DependencyProperty.Register(
             nameof(Unread),
             typeof(bool),
@@ -52,37 +67,52 @@ namespace Wpf.NotificationCenter
 
         #region Properties
 
+        /// <summary>
+        ///     Gets the icon brush.
+        /// </summary>
+        /// <value>The icon brush.</value>
         public Brush IconBrush => ConvertTypeToBrush(NotificationType);
 
-        public virtual SolidColorBrush ConvertTypeToBrush(NotificationType type) => type switch
-        {
-            NotificationType.Information => Brushes.Blue,
-            NotificationType.Error => Brushes.Red,
-            NotificationType.Warning => Brushes.DarkGoldenrod,
-            NotificationType.Success => Brushes.MediumSeaGreen,
-            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
-        };
-
+        /// <summary>
+        ///     Gets or sets the type of the notification.
+        /// </summary>
+        /// <value>The type of the notification.</value>
         public NotificationType NotificationType
         {
             get => (NotificationType) GetValue(NotificationTypeProperty);
             set => SetValue(NotificationTypeProperty, value);
         }
 
+        /// <summary>
+        ///     Gets or sets the text.
+        /// </summary>
+        /// <value>The text.</value>
         public string? Text
         {
             get => GetValue(TextProperty)?.ToString();
             set => SetValue(TextProperty, value);
         }
 
+        /// <summary>
+        ///     Gets or sets the title.
+        /// </summary>
+        /// <value>The title.</value>
         public string? Title
         {
             get => GetValue(TitleProperty)?.ToString();
             set => SetValue(TitleProperty, value);
         }
 
+        /// <summary>
+        ///     Gets the title weight.
+        /// </summary>
+        /// <value>The title weight.</value>
         public FontWeight TitleWeight => Unread ? FontWeights.Bold : FontWeights.Medium;
 
+        /// <summary>
+        ///     Gets or sets a value indicating whether this <see cref="Notification" /> is unread.
+        /// </summary>
+        /// <value><c>true</c> if unread; otherwise, <c>false</c>.</value>
         public bool Unread
         {
             get => (bool) GetValue(UnreadProperty);
@@ -99,11 +129,28 @@ namespace Wpf.NotificationCenter
 
         static Notification() => DefaultStyleKeyProperty.OverrideMetadata(typeof(Notification), new FrameworkPropertyMetadata(typeof(Notification)));
 
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Notification" /> class.
+        /// </summary>
         public Notification()
         {
             InitializeComponent();
             DataContext = this;
         }
+
+        /// <summary>
+        ///     Converts the type to brush.
+        /// </summary>
+        /// <param name="type">The type.</param>
+        /// <returns>Converts the type to brush.</returns>
+        public virtual SolidColorBrush ConvertTypeToBrush(NotificationType type) => type switch
+        {
+            NotificationType.Information => Brushes.Blue,
+            NotificationType.Error => Brushes.Red,
+            NotificationType.Warning => Brushes.DarkGoldenrod,
+            NotificationType.Success => Brushes.MediumSeaGreen,
+            _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
+        };
 
         /// <inheritdoc />
         protected override void OnExpanded()
@@ -112,9 +159,21 @@ namespace Wpf.NotificationCenter
             base.OnExpanded();
         }
 
+        /// <summary>
+        ///     Called when [property changed].
+        /// </summary>
+        /// <param name="propertyName">Name of the property.</param>
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
+        /// <summary>
+        ///     Sets the field.
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="field">The field.</param>
+        /// <param name="value">The value.</param>
+        /// <param name="propertyName">Name of the property.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
         {
             if (EqualityComparer<T>.Default.Equals(field, value))

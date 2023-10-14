@@ -5,20 +5,27 @@ using System.Runtime.CompilerServices;
 
 namespace Wpf.NotificationCenter
 {
+    /// <summary>
+    ///     Class ObservableObjectBase.
+    ///     Implements the <see cref="ObservableObject" />
+    ///     Implements the <see cref="IDisposable" />
+    /// </summary>
+    /// <inheritDoc cref="ObservableObject" />
+    /// <inheritDoc cref="IDisposable" />
+    /// <seealso cref="ObservableObject" />
+    /// <seealso cref="IDisposable" />
     public abstract class ObservableObjectBase : ObservableObject, IDisposable
     {
-        #region IDisposable
-
+        /// <summary>
+        ///     Releases unmanaged and - optionally - managed resources.
+        /// </summary>
+        /// <param name="disposing">
+        ///     <c>true</c> to release both managed and unmanaged resources; <c>false</c> to release only
+        ///     unmanaged resources.
+        /// </param>
         protected virtual void Dispose(bool disposing)
         {
             if (disposing) { }
-        }
-
-        /// <inheritdoc />
-        public void Dispose()
-        {
-            Dispose(true);
-            GC.SuppressFinalize(this);
         }
 
         /// <summary>
@@ -43,6 +50,16 @@ namespace Wpf.NotificationCenter
 
             return result;
         }
+
+        #region IDisposable
+
+        /// <inheritdoc />
+        public void Dispose()
+        {
+            Dispose(true);
+            GC.SuppressFinalize(this);
+        }
+
         #endregion
     }
 }
