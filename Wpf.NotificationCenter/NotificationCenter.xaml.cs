@@ -16,7 +16,7 @@ namespace Wpf.NotificationCenter
     /// <summary>
     ///     Interaction logic for NotificationCenter.xaml
     /// </summary>
-    /// <inheritdoc cref="System.Windows.Controls.Primitives.Selector" />
+    /// <inheritdoc cref="HeaderedContentControl" />
     /// <inheritdoc cref="INotifyPropertyChanged" />
     [TemplatePart(Name = "PART_ContentPresenter", Type = typeof(ContentPresenter))]
     public partial class NotificationCenter : INotifyPropertyChanged
@@ -122,6 +122,8 @@ namespace Wpf.NotificationCenter
             new PropertyMetadata(default(byte), Refresh)
         );
 
+        private readonly SolidColorBrush defaultColor = Brushes.Black;
+
         #endregion
 
         #region Properties
@@ -188,7 +190,7 @@ namespace Wpf.NotificationCenter
         /// <value>The new color of the alert.</value>
         public SolidColorBrush NewAlertColor
         {
-            get => (SolidColorBrush) GetValue(NewAlertColorProperty);
+            get => (SolidColorBrush) (GetValue(NewAlertColorProperty) ?? defaultColor);
             set
             {
                 SetValue(NewAlertColorProperty, value);
@@ -197,7 +199,7 @@ namespace Wpf.NotificationCenter
         }
 
         /// <summary>
-        ///     Creates new alerticon.
+        ///     The icon used when a new alert is detected.
         /// </summary>
         /// <value>The new alert icon.</value>
         public PackIconKind NewAlertIcon
@@ -207,13 +209,7 @@ namespace Wpf.NotificationCenter
         }
 
         /// <summary>
-        ///     Creates new alertvisibility.
-        /// </summary>
-        /// <value>The new alert visibility.</value>
-        public Visibility NewAlertVisibility => NewAlert ? Visibility.Visible : Visibility.Collapsed;
-
-        /// <summary>
-        ///     Creates new notificationcount.
+        ///     Gets new notification count.
         /// </summary>
         /// <value>The new notification count.</value>
         public int NewNotificationCount => Notifications.Count(x => x.Unread);
@@ -224,7 +220,7 @@ namespace Wpf.NotificationCenter
         /// <value>The color of the no alert.</value>
         public SolidColorBrush NoAlertColor
         {
-            get => (SolidColorBrush) GetValue(NoAlertColorProperty);
+            get => (SolidColorBrush) (GetValue(NoAlertColorProperty) ?? defaultColor);
             set
             {
                 SetValue(NoAlertColorProperty, value);
@@ -287,7 +283,7 @@ namespace Wpf.NotificationCenter
         #endregion
 
         static NotificationCenter() =>
-            DefaultStyleKeyProperty.OverrideMetadata(typeof(NotificationCenter), new FrameworkPropertyMetadata(typeof(NotificationCenter)));
+            DefaultStyleKeyProperty?.OverrideMetadata(typeof(NotificationCenter), new FrameworkPropertyMetadata(typeof(NotificationCenter)));
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="NotificationCenter" /> class.
@@ -296,8 +292,8 @@ namespace Wpf.NotificationCenter
         {
             InitializeComponent();
             DataContext = this;
-            Notifications.CollectionChanged += (sender, args) => Refresh();
-            DisplayNotes.CollectionChanged += (sender, args) => OnPropertyChanged(nameof(DisplayNotes));
+            Notifications.CollectionChanged += (_, _) => Refresh();
+            DisplayNotes.CollectionChanged += (_, _) => OnPropertyChanged(nameof(DisplayNotes));
         }
 
         /// <summary>
@@ -307,51 +303,53 @@ namespace Wpf.NotificationCenter
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        internal void CreateNotification(Notification notification)
+        internal void CreateNotificationAlert(Notification notification)
         {
-            notification.Expanded += (sender, args) => Refresh();
+            notification.Expanded += Refresh;
             Notifications.Add(notification);
 
-            var newNote = new Notification
+            if (MaxNotifications > 0 && Notifications.Count > MaxNotifications && Notifications.Any(x => !x.Unread))
             {
-                Text = notification.Text,
-                NotificationType = notification.NotificationType,
-                Background = Brushes.Wheat,
-                IsExpanded = true,
-                MinWidth = ActualWidth / 4
-            };
-
-            DisplayNotes.Add(newNote);
-
-            var timer = new DispatcherTimer(TimeSpan.FromSeconds(5),
-                DispatcherPriority.Render,
-                (sender, args) =>
-                {
-                    if (sender is DispatcherTimer timer)
-                    {
-                        timer.Stop();
-                    }
-
-                    DisplayNotes.Remove(newNote);
-                    OnPropertyChanged(nameof(DisplayNotes));
-                },
-                Dispatcher.CurrentDispatcher
-            );
-
-            timer.Start();
-
-            if (MaxNotifications > 0 && Notifications.Count > MaxNotifications)
-            {
-                Notifications.RemoveAt(0);
+                var removeNote = Notifications.First(x => !x.Unread);
+                Notifications.Remove(removeNote);
             }
 
             Refresh();
         }
 
-        internal void Refresh()
+        internal void CreateNotificationPopup(Notification notification)
         {
-            OnPropertyChanged(nameof(NotificationPopup));
+            var newNote = new Notification(notification)
+            {
+                MinWidth = ActualWidth / 4
+            };
 
+            DisplayNotes.Add(newNote);
+
+            var timer = new DispatcherTimer(notification.DisplayTime,
+                DispatcherPriority.Render,
+                TimerCallback,
+                Dispatcher.CurrentDispatcher
+            );
+
+            newNote.OnClicked += TimerCallback;
+
+            timer.Start();
+
+            void TimerCallback(object? sender, EventArgs? args)
+            {
+                if (sender is DispatcherTimer t)
+                {
+                    t.Stop();
+                }
+
+                DisplayNotes.Remove(newNote);
+                OnPropertyChanged(nameof(DisplayNotes));
+            }
+        }
+
+        internal void Refresh(object? sender = null, EventArgs? args = null)
+        {
             OnPropertyChanged(nameof(Notifications));
             OnPropertyChanged(nameof(DisplayNotes));
 
@@ -359,7 +357,6 @@ namespace Wpf.NotificationCenter
             OnPropertyChanged(nameof(DataVisibility));
 
             OnPropertyChanged(nameof(NewAlert));
-            OnPropertyChanged(nameof(NewAlertVisibility));
             OnPropertyChanged(nameof(AlertIcon));
             OnPropertyChanged(nameof(AlertColor));
             OnPropertyChanged(nameof(NewNotificationCount));

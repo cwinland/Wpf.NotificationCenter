@@ -16,8 +16,8 @@
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition></RowDefinition>
-            <RowDefinition></RowDefinition>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <notificationCenter:NotificationCenter x:Name="NotificationCenter"
                                                VerticalAlignment="Stretch"

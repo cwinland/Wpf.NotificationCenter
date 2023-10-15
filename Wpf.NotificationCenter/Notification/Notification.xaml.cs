@@ -1,8 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Input;
 using System.Windows.Media;
 
 namespace Wpf.NotificationCenter
@@ -10,13 +10,18 @@ namespace Wpf.NotificationCenter
     /// <summary>
     ///     Interaction logic for Notification.xaml
     /// </summary>
+    /// <inheritdoc cref="System.Windows.Controls.Expander" />
+    /// <inheritdoc cref="INotifyPropertyChanged" />
     public partial class Notification : INotifyPropertyChanged
     {
         #region Events
 
         /// <summary>
-        ///     Occurs when a property value changes.
+        ///     Occurs when [on clicked].
         /// </summary>
+        public event EventHandler? OnClicked;
+
+        /// <inheritdoc />
         public event PropertyChangedEventHandler? PropertyChanged;
 
         #endregion
@@ -68,6 +73,12 @@ namespace Wpf.NotificationCenter
         #region Properties
 
         /// <summary>
+        ///     Gets or sets the display time.
+        /// </summary>
+        /// <value>The display time.</value>
+        public TimeSpan DisplayTime { get; set; } = TimeSpan.FromSeconds(5);
+
+        /// <summary>
         ///     Gets the icon brush.
         /// </summary>
         /// <value>The icon brush.</value>
@@ -90,7 +101,7 @@ namespace Wpf.NotificationCenter
         public string? Text
         {
             get => GetValue(TextProperty)?.ToString();
-            set => SetValue(TextProperty, value);
+            set => SetValue(TextProperty, value ?? string.Empty);
         }
 
         /// <summary>
@@ -100,7 +111,7 @@ namespace Wpf.NotificationCenter
         public string? Title
         {
             get => GetValue(TitleProperty)?.ToString();
-            set => SetValue(TitleProperty, value);
+            set => SetValue(TitleProperty, value ?? string.Empty);
         }
 
         /// <summary>
@@ -127,7 +138,7 @@ namespace Wpf.NotificationCenter
 
         #endregion
 
-        static Notification() => DefaultStyleKeyProperty.OverrideMetadata(typeof(Notification), new FrameworkPropertyMetadata(typeof(Notification)));
+        static Notification() => DefaultStyleKeyProperty?.OverrideMetadata(typeof(Notification), new FrameworkPropertyMetadata(typeof(Notification)));
 
         /// <summary>
         ///     Initializes a new instance of the <see cref="Notification" /> class.
@@ -136,6 +147,19 @@ namespace Wpf.NotificationCenter
         {
             InitializeComponent();
             DataContext = this;
+        }
+
+        /// <summary>
+        ///     Initializes a new instance of the <see cref="Notification" /> class.
+        /// </summary>
+        /// <param name="notification">The notification.</param>
+        public Notification(Notification notification) : this()
+        {
+            Title = notification.Title;
+            Text = notification.Text;
+            NotificationType = notification.NotificationType;
+            Background = Brushes.Wheat;
+            IsExpanded = true;
         }
 
         /// <summary>
@@ -166,24 +190,6 @@ namespace Wpf.NotificationCenter
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        /// <summary>
-        ///     Sets the field.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="field">The field.</param>
-        /// <param name="value">The value.</param>
-        /// <param name="propertyName">Name of the property.</param>
-        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
-        protected bool SetField<T>(ref T field, T value, [CallerMemberName] string? propertyName = null)
-        {
-            if (EqualityComparer<T>.Default.Equals(field, value))
-            {
-                return false;
-            }
-
-            field = value;
-            OnPropertyChanged(propertyName);
-            return true;
-        }
+        private void Notification_OnMouseDown(object sender, MouseButtonEventArgs e) => OnClicked?.Invoke(sender, e);
     }
 }

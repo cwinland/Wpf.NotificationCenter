@@ -27,23 +27,6 @@ namespace Wpf.NotificationCenter
         public NotificationPopup() => InitializeComponent();
 
         /// <summary>
-        ///     Adds the notification.
-        /// </summary>
-        /// <param name="notification">The notification.</param>
-        public void AddNotification(Notification notification)
-        {
-            MyGrid.Children.Add(notification);
-            MyGrid.InvalidateVisual();
-            OnPropertyChanged(nameof(MyGrid));
-
-            var timer = new DispatcherTimer(TimeSpan.FromSeconds(5),
-                DispatcherPriority.Render,
-                (sender, args) => { MyGrid.Children.Remove(notification); },
-                Dispatcher.CurrentDispatcher
-            );
-        }
-
-        /// <summary>
         ///     Called when [property changed].
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>

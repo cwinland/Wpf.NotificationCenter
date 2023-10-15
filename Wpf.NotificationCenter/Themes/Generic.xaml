@@ -45,48 +45,11 @@
                                     <Label Content="{Binding NewNotificationCount, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
                                 </StackPanel>
                             </Button>
-                            <Popup Grid.Row="1"
-                                       StaysOpen="False"
-                                       Placement="Bottom"
-                                       IsOpen="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
-                                <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" BorderThickness="1">
-                                    <Grid
-                                        Visibility="{Binding NotificationsVisibility, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
-                                        <Grid.RowDefinitions>
-                                            <RowDefinition Height="Auto" />
-                                            <RowDefinition Height="*" />
-                                        </Grid.RowDefinitions>
-                                        <Grid.Style>
-                                            <Style TargetType="Grid">
-                                                <Setter Property="Background" Value="Wheat" />
-                                            </Style>
-                                        </Grid.Style>
-                                        <!-- Notification Popup Header -->
-                                        <Grid Grid.Row="0" HorizontalAlignment="Stretch" Margin="2 0"
-                                                    Visibility="{Binding DataVisibility, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                                                    >
-                                            <Label FontWeight="Bold" Grid.Row="0" Content="Notifications" HorizontalAlignment="Center"
-                                                   />
-                                            <Button BorderBrush="Transparent"
-                                                    BorderThickness="0"
-                                                    Background="Transparent"
-                                                    HorizontalAlignment="Right"
-                                                    ToolTip="Clear All Notifications"
-                                                    Command="{Binding DeleteAllNotificationsCommand, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                                                    >
-                                                <materialDesign:PackIcon Kind="ClearOutline" Foreground="Red" />
-                                            </Button>
-                                        </Grid>
-                                        <!-- No Notifications Popup Text -->
-                                        <Label Grid.Row="1" Content="No Notifications"
-                                               Visibility="{Binding NoDataVisibility, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
-                                        <!-- Notifications Popup Text -->
-                                        <ItemsControl Grid.Row="1"
-                                                      ItemsSource="{Binding Notifications, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                                        />
-                                    </Grid>
-                                </Border>
-                            </Popup>
+                            <local:NotificationPopup
+                                Grid.Row="1"
+                                StaysOpen="False"
+                                Placement="Bottom"
+                                IsOpen="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
                         </Grid>
                     </Grid>
                 </DataTemplate>
@@ -111,7 +74,7 @@
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="3*" />
-                                <ColumnDefinition Width="1*" />
+                                <ColumnDefinition Width="1*" /> <!-- Portion of screen for notification -->
                             </Grid.ColumnDefinitions>
                             <ContentControl Grid.Row="0" Grid.ColumnSpan="2"
                                         Content="{TemplateBinding HeaderedContentControl.Header}"

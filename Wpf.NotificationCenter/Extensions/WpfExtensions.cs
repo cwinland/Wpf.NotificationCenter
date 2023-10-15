@@ -11,17 +11,6 @@ namespace Wpf.NotificationCenter.Extensions
     public static class WpfExtensions
     {
         /// <summary>
-        ///     Finds the child.
-        /// </summary>
-        /// <typeparam name="T"></typeparam>
-        /// <param name="control">The control.</param>
-        /// <param name="parent">The parent.</param>
-        /// <param name="childName">Name of the child.</param>
-        /// <returns>Finds the child.</returns>
-        public static T? FindChild<T>(this ContentControl control, DependencyObject? parent = null, string childName = "")
-            where T : DependencyObject => FindChild<T>(parent, childName);
-
-        /// <summary>
         ///     Finds a Child of a given item in the visual tree.
         /// </summary>
         /// <typeparam name="T">The type of the queried item.</typeparam>
@@ -32,10 +21,11 @@ namespace Wpf.NotificationCenter.Extensions
         ///     If not matching item can be found,
         ///     a null parent is being returned.
         /// </returns>
-        public static T? FindChild<T>(this DependencyObject? parent, string childName = "") where T : DependencyObject
+        public static T? FindChild<T>(this DependencyObject? parent, string? childName = "") where T : DependencyObject
         {
             // Confirm parent and childName are valid.
             parent ??= Application.Current.MainWindow;
+
             T foundChild = null;
             IEnumerable<DependencyObject> children = LogicalTreeHelper.GetChildren(parent).OfType<DependencyObject>();
 
