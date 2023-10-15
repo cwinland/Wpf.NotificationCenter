@@ -166,7 +166,7 @@ namespace Wpf.NotificationCenter
         ///     Gets or sets the display notes.
         /// </summary>
         /// <value>The display notes.</value>
-        public ObservableCollection<Notification> DisplayNotes { get; set; } = new();
+        public ObservableCollection<Notification.Notification> DisplayNotes { get; set; } = new();
 
         /// <summary>
         ///     Gets or sets the maximum notifications.
@@ -248,7 +248,7 @@ namespace Wpf.NotificationCenter
         ///     Gets the notifications.
         /// </summary>
         /// <value>The notifications.</value>
-        public ObservableCollection<Notification> Notifications { get; } = new();
+        public ObservableCollection<Notification.Notification> Notifications { get; } = new();
 
         /// <summary>
         ///     Gets or sets the notifications visibility.
@@ -303,7 +303,7 @@ namespace Wpf.NotificationCenter
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        internal void CreateNotificationAlert(Notification notification)
+        internal void CreateNotificationAlert(Notification.Notification notification)
         {
             notification.Expanded += Refresh;
             Notifications.Add(notification);
@@ -317,9 +317,9 @@ namespace Wpf.NotificationCenter
             Refresh();
         }
 
-        internal void CreateNotificationPopup(Notification notification)
+        internal void CreateNotificationPopup(Notification.Notification notification)
         {
-            var newNote = new Notification(notification)
+            var newNote = new Notification.Notification(notification)
             {
                 MinWidth = ActualWidth / 4
             };
@@ -362,7 +362,7 @@ namespace Wpf.NotificationCenter
             OnPropertyChanged(nameof(NewNotificationCount));
         }
 
-        internal void RemoveNotification(Notification notification)
+        internal void RemoveNotification(Notification.Notification notification)
         {
             DisplayNotes.Remove(notification);
             Notifications.Remove(notification);

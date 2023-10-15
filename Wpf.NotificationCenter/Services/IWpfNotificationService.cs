@@ -14,7 +14,7 @@
         /// <param name="notificationCenterName">Name of the notification center.</param>
         /// <param name="alertType"></param>
         /// <returns>Creates.</returns>
-        Notification Create(string title, string text, NotificationType notificationType = NotificationType.Information,
+        Notification.Notification Create(string title, string text, NotificationType notificationType = NotificationType.Information,
             string? notificationCenterName = null, AlertType alertType = AlertType.All);
     }
 }

@@ -22,7 +22,7 @@ namespace Wpf.NotificationCenter.Services
         /// </summary>
         /// <param name="notification">The notification.</param>
         /// <param name="notificationCenterName">Name of the notification center.</param>
-        public void Close(Notification notification, string? notificationCenterName = null) =>
+        public void Close(Notification.Notification notification, string? notificationCenterName = null) =>
             GetNotificationCenter(notificationCenterName).RemoveNotification(notification);
 
         private static NotificationCenter GetNotificationCenter(string? notificationCenterName = null) =>
@@ -43,10 +43,10 @@ namespace Wpf.NotificationCenter.Services
         /// <param name="notificationCenterName">Name of the notification center.</param>
         /// <param name="alertType"></param>
         /// <returns>Creates.</returns>
-        public Notification Create(string title, string text, NotificationType notificationType = NotificationType.Information,
+        public Notification.Notification Create(string title, string text, NotificationType notificationType = NotificationType.Information,
             string? notificationCenterName = null, AlertType alertType = AlertType.All)
         {
-            var notification = new Notification {Title = title, Text = text, NotificationType = notificationType};
+            var notification = new Notification.Notification {Title = title, Text = text, NotificationType = notificationType};
             var center = GetNotificationCenter(notificationCenterName);
 
             if (alertType != AlertType.NotificationPopup)

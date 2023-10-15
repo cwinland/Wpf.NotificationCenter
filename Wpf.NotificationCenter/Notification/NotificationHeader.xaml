@@ -1,10 +1,11 @@
-﻿<UserControl x:Class="Wpf.NotificationCenter.NotificationHeader"
+﻿<UserControl x:Class="Wpf.NotificationCenter.Notification.NotificationHeader"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wpf.NotificationCenter"
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <StackPanel Orientation="Horizontal" ToolTip="{Binding NotificationType}">
@@ -12,8 +13,8 @@
             VerticalAlignment="Center"
             Kind="BellAlert" />
         <Label MaxWidth="{Binding AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
-            <TextBlock FontWeight="{Binding TitleWeight, RelativeSource={RelativeSource AncestorType={x:Type local:Notification}}}"
-                       TextWrapping="Wrap" Text="{Binding Title, RelativeSource={RelativeSource AncestorType={x:Type local:Notification}}}" />
+            <TextBlock FontWeight="{Binding TitleWeight, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
+                       TextWrapping="Wrap" Text="{Binding Title, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}" />
         </Label>
     </StackPanel>
 </UserControl>

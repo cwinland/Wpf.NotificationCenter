@@ -5,7 +5,7 @@ using System.Windows;
 using System.Windows.Input;
 using System.Windows.Media;
 
-namespace Wpf.NotificationCenter
+namespace Wpf.NotificationCenter.Notification
 {
     /// <summary>
     ///     Interaction logic for Notification.xaml

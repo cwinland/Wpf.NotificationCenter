@@ -2,7 +2,8 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Wpf.NotificationCenter"
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-                    xmlns:converters="clr-namespace:Wpf.NotificationCenter.Converters">
+                    xmlns:converters="clr-namespace:Wpf.NotificationCenter.Converters"
+                    xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification">
     <Style x:Key="BoldTextBlock" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Margin" Value="5" />
@@ -85,19 +86,15 @@
                                             VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                             VerticalContentAlignment="Stretch" />
                             <ItemsControl Grid.Row="1" Grid.Column="1"
-                                          ItemsSource="{Binding DisplayNotes, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                            >
-                            </ItemsControl>
+                                          ItemsSource="{Binding DisplayNotes, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
                         </Grid>
                     </Border>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
-    <Style TargetType="{x:Type HeaderedContentControl}" BasedOn="{StaticResource HeaderedStyle}">
-    </Style>
-    <Style TargetType="{x:Type local:NotificationCenter}" BasedOn="{StaticResource HeaderedStyle}">
-    </Style>
+    <Style TargetType="{x:Type HeaderedContentControl}" BasedOn="{StaticResource HeaderedStyle}" />
+    <Style TargetType="{x:Type local:NotificationCenter}" BasedOn="{StaticResource HeaderedStyle}" />
     <Duration x:Key="ExpandDuration">0:0:0.250</Duration>
     <Duration x:Key="CollapseDuration">0:0:0.200</Duration>
 
@@ -150,7 +147,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Padding="{Binding Path=(materialDesign:ExpanderAssist.HorizontalHeaderPadding), RelativeSource={RelativeSource AncestorType=local:Notification, AncestorLevel=1}}"
+                    <Border Padding="{Binding Path=(materialDesign:ExpanderAssist.HorizontalHeaderPadding), RelativeSource={RelativeSource AncestorType=notification:Notification, AncestorLevel=1}}"
                             HorizontalAlignment="Stretch"
                             Background="{TemplateBinding Background}">
                         <Grid HorizontalAlignment="Stretch">
@@ -176,7 +173,7 @@
                                 <ToggleButton.Style>
                                     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignExpanderToggleButton}">
                                         <Style.Triggers>
-                                            <DataTrigger Binding="{Binding ExpandDirection, RelativeSource={RelativeSource AncestorType=local:Notification, AncestorLevel=1}}" Value="Up">
+                                            <DataTrigger Binding="{Binding ExpandDirection, RelativeSource={RelativeSource AncestorType=notification:Notification, AncestorLevel=1}}" Value="Up">
                                                 <Setter Property="RenderTransform">
                                                     <Setter.Value>
                                                         <RotateTransform Angle="180" />
@@ -200,7 +197,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Padding="{Binding Path=(materialDesign:ExpanderAssist.VerticalHeaderPadding), RelativeSource={RelativeSource AncestorType=local:Notification, AncestorLevel=1}}" Background="{TemplateBinding Background}">
+                    <Border Padding="{Binding Path=(materialDesign:ExpanderAssist.VerticalHeaderPadding), RelativeSource={RelativeSource AncestorType=notification:Notification, AncestorLevel=1}}" Background="{TemplateBinding Background}">
                         <Grid>
                             <Grid.RowDefinitions>
                                 <RowDefinition Height="Auto" />
@@ -218,7 +215,7 @@
                                     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignExpanderToggleButton}">
                                         <Style.Triggers>
 
-                                            <DataTrigger Binding="{Binding ExpandDirection, RelativeSource={RelativeSource AncestorType=local:Notification, AncestorLevel=1}}" Value="Left">
+                                            <DataTrigger Binding="{Binding ExpandDirection, RelativeSource={RelativeSource AncestorType=notification:Notification, AncestorLevel=1}}" Value="Left">
                                                 <Setter Property="RenderTransform">
                                                     <Setter.Value>
                                                         <RotateTransform Angle="90" />
@@ -226,7 +223,7 @@
                                                 </Setter>
                                             </DataTrigger>
 
-                                            <DataTrigger Binding="{Binding ExpandDirection, RelativeSource={RelativeSource AncestorType=local:Notification, AncestorLevel=1}}" Value="Right">
+                                            <DataTrigger Binding="{Binding ExpandDirection, RelativeSource={RelativeSource AncestorType=notification:Notification, AncestorLevel=1}}" Value="Right">
                                                 <Setter Property="RenderTransform">
                                                     <Setter.Value>
                                                         <RotateTransform Angle="-90" />
@@ -253,18 +250,18 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type local:Notification}">
+    <Style TargetType="{x:Type notification:Notification}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:Notification}">
+                <ControlTemplate TargetType="{x:Type notification:Notification}">
                     <ControlTemplate.Resources>
                         <converters:ExpanderRotateAngleConverter x:Key="ExpanderRotateAngleConverter" />
                         <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                            <Setter Property="Foreground" Value="{Binding IconBrush, RelativeSource={RelativeSource AncestorType={x:Type local:Notification}}}" />
+                            <Setter Property="Foreground" Value="{Binding IconBrush, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}" />
                         </Style>
                     </ControlTemplate.Resources>
                     <Border 
@@ -379,7 +376,7 @@
                                 <Border.LayoutTransform>
                                     <TransformGroup>
                                         <ScaleTransform x:Name="ContentSiteScaleTransform" />
-                                        <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=local:Notification}, Converter={StaticResource ExpanderRotateAngleConverter}}" />
+                                        <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=notification:Notification}, Converter={StaticResource ExpanderRotateAngleConverter}}" />
                                     </TransformGroup>
                                 </Border.LayoutTransform>
 
@@ -388,7 +385,7 @@
                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                                     <Grid.LayoutTransform>
-                                        <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=local:Notification}, Converter={StaticResource ExpanderRotateAngleConverter}, ConverterParameter=-1}" />
+                                        <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=notification:Notification}, Converter={StaticResource ExpanderRotateAngleConverter}, ConverterParameter=-1}" />
                                     </Grid.LayoutTransform>
 
                                     <ContentPresenter Name="PART_Content"
