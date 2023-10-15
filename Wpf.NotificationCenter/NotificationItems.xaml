@@ -19,7 +19,7 @@
                                     <ColumnDefinition Width="Auto" />
                                 </Grid.ColumnDefinitions>
                                 <ContentPresenter Grid.Column="0" />
-                                <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" Margin="0 20 0 0">
+                                <Button Grid.Column="1" Background="Transparent" BorderBrush="Transparent" VerticalAlignment="Top" Margin="0 10 0 0">
                                     <materialDesign:PackIcon  Kind="RemoveBold" Foreground="Red"  />
                                 </Button>
                             </Grid>

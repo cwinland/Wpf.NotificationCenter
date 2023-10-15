@@ -43,16 +43,6 @@ namespace Wpf.NotificationCenter
         );
 
         /// <summary>
-        ///     Creates new alertproperty.
-        /// </summary>
-        public static readonly DependencyProperty NewAlertProperty = DependencyProperty.Register(
-            nameof(NewAlert),
-            typeof(bool),
-            typeof(NotificationCenter),
-            new PropertyMetadata(default(bool), Refresh)
-        );
-
-        /// <summary>
         ///     Creates new alertcolorproperty.
         /// </summary>
         public static readonly DependencyProperty NewAlertColorProperty = DependencyProperty.Register(
@@ -129,18 +119,6 @@ namespace Wpf.NotificationCenter
         #region Properties
 
         /// <summary>
-        ///     Gets the color of the alert.
-        /// </summary>
-        /// <value>The color of the alert.</value>
-        public SolidColorBrush AlertColor => NewAlert ? NewAlertColor : NoAlertColor;
-
-        /// <summary>
-        ///     Gets the alert icon.
-        /// </summary>
-        /// <value>The alert icon.</value>
-        public PackIconKind AlertIcon => NewAlert ? NewAlertIcon : NoAlertIcon;
-
-        /// <summary>
         ///     Gets or sets the maximum width of the alert.
         /// </summary>
         /// <value>The maximum width of the alert.</value>
@@ -185,7 +163,7 @@ namespace Wpf.NotificationCenter
         public bool NewAlert => NewNotificationCount > 0;
 
         /// <summary>
-        ///     Creates new alertcolor.
+        ///     The color used when a new alert is detected.
         /// </summary>
         /// <value>The new color of the alert.</value>
         public SolidColorBrush NewAlertColor
@@ -305,6 +283,8 @@ namespace Wpf.NotificationCenter
 
         internal void CreateNotificationAlert(Notification.Notification notification)
         {
+            notification.IsExpanded = false;
+            notification.ShowExpander = true;
             notification.Expanded += Refresh;
             Notifications.Add(notification);
 
@@ -321,7 +301,9 @@ namespace Wpf.NotificationCenter
         {
             var newNote = new Notification.Notification(notification)
             {
-                MinWidth = ActualWidth / 4
+                MinWidth = ActualWidth / 4,
+                ShowExpander = false,
+                IsExpanded = true
             };
 
             DisplayNotes.Add(newNote);
@@ -346,6 +328,8 @@ namespace Wpf.NotificationCenter
                 DisplayNotes.Remove(newNote);
                 OnPropertyChanged(nameof(DisplayNotes));
             }
+
+            Refresh();
         }
 
         internal void Refresh(object? sender = null, EventArgs? args = null)
@@ -356,10 +340,8 @@ namespace Wpf.NotificationCenter
             OnPropertyChanged(nameof(NoDataVisibility));
             OnPropertyChanged(nameof(DataVisibility));
 
-            OnPropertyChanged(nameof(NewAlert));
-            OnPropertyChanged(nameof(AlertIcon));
-            OnPropertyChanged(nameof(AlertColor));
             OnPropertyChanged(nameof(NewNotificationCount));
+            OnPropertyChanged(nameof(NewAlert));
         }
 
         internal void RemoveNotification(Notification.Notification notification)

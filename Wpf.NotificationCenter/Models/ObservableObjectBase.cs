@@ -3,7 +3,7 @@ using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Runtime.CompilerServices;
 
-namespace Wpf.NotificationCenter
+namespace Wpf.NotificationCenter.Models
 {
     /// <summary>
     ///     Class ObservableObjectBase.

@@ -8,7 +8,4 @@
              d:DesignHeight="450" d:DesignWidth="800"
              d:DataContext="{d:DesignInstance Type=local:NotificationCenter}"
              >
-    <HeaderedContentControl.Content>
-        <ContentControl Grid.Column="0" Grid.ColumnSpan="1" x:Name="ContentElement" Content="{Binding Content}" />
-    </HeaderedContentControl.Content>
 </HeaderedContentControl>

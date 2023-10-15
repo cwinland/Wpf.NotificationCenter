@@ -1,4 +1,4 @@
-﻿namespace Wpf.NotificationCenter
+﻿namespace Wpf.NotificationCenter.Enums
 {
     /// <summary>
     ///     Enum NotificationType

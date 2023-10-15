@@ -1,4 +1,6 @@
-﻿namespace Wpf.NotificationCenter.Services
+﻿using Wpf.NotificationCenter.Enums;
+
+namespace Wpf.NotificationCenter.Services
 {
     /// <summary>
     ///     Interface IWpfNotificationService

@@ -3,7 +3,8 @@
                     xmlns:local="clr-namespace:Wpf.NotificationCenter"
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                     xmlns:converters="clr-namespace:Wpf.NotificationCenter.Converters"
-                    xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification">
+                    xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification"
+                    xmlns:enums="clr-namespace:Wpf.NotificationCenter.Enums">
     <Style x:Key="BoldTextBlock" TargetType="TextBlock">
         <Setter Property="FontWeight" Value="Bold" />
         <Setter Property="Margin" Value="5" />
@@ -40,9 +41,24 @@
                             <Button Grid.Row="0"
                                             Command="{Binding ToggleCommand, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
                                 <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon Kind="{Binding AlertIcon, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                                                                 VerticalAlignment="Center"
-                                                                 Foreground="{Binding AlertColor, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                    <materialDesign:PackIcon VerticalAlignment="Center">
+                                        <materialDesign:PackIcon.Style>
+                                            <Style TargetType="materialDesign:PackIcon">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding NewAlert, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                                                                 Value="True">
+                                                        <Setter Property="Foreground" Value="{Binding NewAlertColor, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                                        <Setter Property="Kind" Value="{Binding NewAlertIcon, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                                    </DataTrigger>
+                                                    <DataTrigger Binding="{Binding NewAlert, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                                                                 Value="False">
+                                                        <Setter Property="Foreground" Value="{Binding NoAlertColor, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                                        <Setter Property="Kind" Value="{Binding NoAlertIcon, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </materialDesign:PackIcon.Style>
+                                    </materialDesign:PackIcon>
                                     <Label Content="{Binding NewNotificationCount, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
                                 </StackPanel>
                             </Button>
@@ -105,7 +121,7 @@
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
-                    <Border Background="Transparent">
+                    <Border Background="Transparent" Visibility="{Binding ExpanderVisibility, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}">
                         <VisualStateManager.VisualStateGroups>
                             <VisualStateGroup x:Name="CheckStates">
                                 <VisualState x:Name="Checked">
@@ -261,7 +277,24 @@
                     <ControlTemplate.Resources>
                         <converters:ExpanderRotateAngleConverter x:Key="ExpanderRotateAngleConverter" />
                         <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                            <Setter Property="Foreground" Value="{Binding IconBrush, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}" />
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
+                                             Value="{x:Static enums:NotificationType.Warning}">
+                                    <Setter Property="Foreground" Value="DarkGoldenrod" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
+                                             Value="{x:Static enums:NotificationType.Error}">
+                                    <Setter Property="Foreground" Value="Red" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
+                                             Value="{x:Static enums:NotificationType.Information}">
+                                    <Setter Property="Foreground" Value="Blue" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
+                                             Value="{x:Static enums:NotificationType.Success}">
+                                    <Setter Property="Foreground" Value="MediumSeaGreen" />
+                                </DataTrigger>
+                            </Style.Triggers>
                         </Style>
                     </ControlTemplate.Resources>
                     <Border 
