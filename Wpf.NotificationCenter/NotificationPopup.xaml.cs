@@ -1,7 +1,5 @@
-﻿using System;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Windows.Threading;
 
 namespace Wpf.NotificationCenter
 {
@@ -14,6 +12,7 @@ namespace Wpf.NotificationCenter
     {
         #region Events
 
+        /// <inheritdoc />
         /// <summary>
         ///     Occurs when a property value changes.
         /// </summary>

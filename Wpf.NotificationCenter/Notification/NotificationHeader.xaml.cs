@@ -7,9 +7,6 @@ namespace Wpf.NotificationCenter.Notification
     /// </summary>
     public partial class NotificationHeader : UserControl
     {
-        public NotificationHeader()
-        {
-            InitializeComponent();
-        }
+        public NotificationHeader() => InitializeComponent();
     }
 }

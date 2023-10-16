@@ -1,16 +1,15 @@
 ﻿<Expander x:Class="Wpf.NotificationCenter.Notification.Notification"
-           xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-           xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-           xmlns:local="clr-namespace:Wpf.NotificationCenter"
-           xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification"
-           mc:Ignorable="d" 
-           d:DataContext="{d:DesignInstance Type=local:Notification}"
+          xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+          xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+          xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+          xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+          xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification"
+          mc:Ignorable="d" 
+           d:DataContext="{d:DesignInstance Type=notification:Notification}"
            MouseDown="Notification_OnMouseDown"
            d:DesignHeight="450" d:DesignWidth="800">
     <Expander.Header>
-       <notification:NotificationHeader />
+        <notification:NotificationHeader />
     </Expander.Header>
     <Expander.Content>
         <notification:NotificationContent />

@@ -38,8 +38,7 @@
                         Background="Transparent"
                         HorizontalAlignment="Right"
                         ToolTip="Clear All Notifications"
-                        Command="{Binding DeleteAllNotificationsCommand, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                >
+                        Command="{Binding DeleteAllNotificationsCommand, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
                             <materialDesign:PackIcon Kind="ClearOutline" Foreground="Red" />
                         </Button>
                     </Grid>

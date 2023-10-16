@@ -125,7 +125,10 @@ namespace Wpf.NotificationCenter
         public double AlertMaxWidth
         {
             get => (double) GetValue(AlertMaxWidthProperty);
-            set => SetValue(AlertMaxWidthProperty, value);
+            set
+            {
+                SetValue(AlertMaxWidthProperty, value);
+            }
         }
 
         /// <summary>
@@ -286,6 +289,7 @@ namespace Wpf.NotificationCenter
             notification.IsExpanded = false;
             notification.ShowExpander = true;
             notification.Expanded += Refresh;
+
             Notifications.Add(notification);
 
             if (MaxNotifications > 0 && Notifications.Count > MaxNotifications && Notifications.Any(x => !x.Unread))
@@ -325,8 +329,8 @@ namespace Wpf.NotificationCenter
                     t.Stop();
                 }
 
-                DisplayNotes.Remove(newNote);
-                OnPropertyChanged(nameof(DisplayNotes));
+                //DisplayNotes.Remove(newNote);
+                //OnPropertyChanged(nameof(DisplayNotes));
             }
 
             Refresh();
