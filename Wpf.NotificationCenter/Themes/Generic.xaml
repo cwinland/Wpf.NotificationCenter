@@ -15,102 +15,6 @@
         <Setter Property="Margin" Value="5" />
         <Setter Property="HorizontalAlignment" Value="Left" />
     </Style>
-    <Style x:Key="HeaderedStyle" TargetType="{x:Type HeaderedContentControl}">
-        <Setter Property="Margin" Value="3" />
-        <Setter Property="VerticalAlignment" Value="Stretch" />
-        <Setter Property="VerticalContentAlignment" Value="Stretch" />
-        <Setter Property="BorderBrush" Value="{DynamicResource HeaderBorderBrush}" />
-        <Setter Property="BorderThickness" Value="0 0 0 1" />
-        <Setter Property="HeaderTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <DataTemplate.Resources>
-                        <Style TargetType="TextBlock" BasedOn="{StaticResource BoldTextBlock}" />
-                    </DataTemplate.Resources>
-                    <Grid>
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="*" />
-                            <ColumnDefinition Width="Auto" MinWidth="32" />
-                        </Grid.ColumnDefinitions>
-                        <ContentControl Grid.Column="0" Content="{Binding }" FontWeight="Bold" FontSize="14" />
-                        <Grid Grid.Column="1">
-                            <Grid.RowDefinitions>
-                                <RowDefinition MinHeight="32" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
-                            <Button Grid.Row="0"
-                                            Command="{Binding ToggleCommand, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
-                                <StackPanel Orientation="Horizontal">
-                                    <materialDesign:PackIcon VerticalAlignment="Center">
-                                        <materialDesign:PackIcon.Style>
-                                            <Style TargetType="materialDesign:PackIcon">
-                                                <Style.Triggers>
-                                                    <DataTrigger Binding="{Binding NewAlert, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                                                                 Value="True">
-                                                        <Setter Property="Foreground" Value="{Binding NewAlertColor, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
-                                                        <Setter Property="Kind" Value="{Binding NewAlertIcon, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
-                                                    </DataTrigger>
-                                                    <DataTrigger Binding="{Binding NewAlert, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                                                                 Value="False">
-                                                        <Setter Property="Foreground" Value="{Binding NoAlertColor, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
-                                                        <Setter Property="Kind" Value="{Binding NoAlertIcon, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
-                                                    </DataTrigger>
-                                                </Style.Triggers>
-                                            </Style>
-                                        </materialDesign:PackIcon.Style>
-                                    </materialDesign:PackIcon>
-                                    <Label Content="{Binding NewNotificationCount, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
-                                </StackPanel>
-                            </Button>
-                            <local:NotificationPopup
-                                Grid.Row="1"
-                                StaysOpen="False"
-                                Placement="Bottom"
-                                IsOpen="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
-                        </Grid>
-                    </Grid>
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type HeaderedContentControl}">
-                    <ControlTemplate.Resources>
-                        <Style TargetType="Border">
-                            <Setter Property="BorderBrush"
-                                    Value="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type HeaderedContentControl}}}" />
-                            <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType={x:Type HeaderedContentControl}}}" />
-                        </Style>
-                    </ControlTemplate.Resources>
-                    <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type HeaderedContentControl}}}"
-                            BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType={x:Type HeaderedContentControl}}}">
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition Height="*" />
-                            </Grid.RowDefinitions>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="3*" />
-                                <ColumnDefinition Width="1*" /> <!-- Portion of screen for notification -->
-                            </Grid.ColumnDefinitions>
-                            <ContentControl Grid.Row="0" Grid.ColumnSpan="2"
-                                        Content="{TemplateBinding HeaderedContentControl.Header}"
-                                        ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}" />
-                            <ContentControl Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
-                                            Content="{TemplateBinding HeaderedContentControl.Content}"
-                                            ContentTemplate="{TemplateBinding HeaderedContentControl.ContentTemplate}"
-                                            VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                            VerticalContentAlignment="Stretch" />
-                            <ItemsControl Grid.Row="1" Grid.Column="1"
-                                          ItemsSource="{Binding DisplayNotes, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
-                        </Grid>
-                    </Border>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
-    </Style>
-    <Style TargetType="{x:Type HeaderedContentControl}" BasedOn="{StaticResource HeaderedStyle}" />
-    <Style TargetType="{x:Type local:NotificationCenter}" BasedOn="{StaticResource HeaderedStyle}" />
     <Duration x:Key="ExpandDuration">0:0:0.250</Duration>
     <Duration x:Key="CollapseDuration">0:0:0.200</Duration>
 
@@ -265,131 +169,123 @@
             </Setter.Value>
         </Setter>
     </Style>
-
-    <Style TargetType="{x:Type notification:Notification}">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
-        <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
-        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type notification:Notification}">
-                    <ControlTemplate.Resources>
-                        <converters:ExpanderRotateAngleConverter x:Key="ExpanderRotateAngleConverter" />
-                        <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                            <Style.Triggers>
-                                <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
+    <ControlTemplate x:Key="NotificationControlTemplate" TargetType="{x:Type notification:Notification}">
+        <ControlTemplate.Resources>
+            <converters:ExpanderRotateAngleConverter x:Key="ExpanderRotateAngleConverter" />
+            <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
                                              Value="{x:Static enums:NotificationType.Warning}">
-                                    <Setter Property="Foreground" Value="DarkGoldenrod" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
+                        <Setter Property="Foreground" Value="DarkGoldenrod" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
                                              Value="{x:Static enums:NotificationType.Error}">
-                                    <Setter Property="Foreground" Value="Red" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
+                        <Setter Property="Foreground" Value="Red" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
                                              Value="{x:Static enums:NotificationType.Information}">
-                                    <Setter Property="Foreground" Value="Blue" />
-                                </DataTrigger>
-                                <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
+                        <Setter Property="Foreground" Value="Blue" />
+                    </DataTrigger>
+                    <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
                                              Value="{x:Static enums:NotificationType.Success}">
-                                    <Setter Property="Foreground" Value="MediumSeaGreen" />
-                                </DataTrigger>
-                            </Style.Triggers>
-                        </Style>
-                    </ControlTemplate.Resources>
-                    <Border 
+                        <Setter Property="Foreground" Value="MediumSeaGreen" />
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </ControlTemplate.Resources>
+        <Border 
                   Margin="1 1 1 0"
                   BorderBrush="{TemplateBinding BorderBrush}" 
                   BorderThickness="{TemplateBinding BorderThickness}">
-                        <VisualStateManager.VisualStateGroups>
-                            <VisualStateGroup x:Name="ExpansionStates">
-                                <VisualStateGroup.Transitions>
-                                    <VisualTransition To="Expanded">
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="ContentPanel"
+            <VisualStateManager.VisualStateGroups>
+                <VisualStateGroup x:Name="ExpansionStates">
+                    <VisualStateGroup.Transitions>
+                        <VisualTransition To="Expanded">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ContentPanel"
                                        Storyboard.TargetProperty="Opacity"
                                        From="0"
                                        To="1"
                                        Duration="{DynamicResource ExpandDuration}" />
-                                            <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform"
+                                <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform"
                                        Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
                                        From="0"
                                        To="1"
                                        Duration="{DynamicResource ExpandDuration}">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseInOut" />
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
+                                    <DoubleAnimation.EasingFunction>
+                                        <CubicEase EasingMode="EaseInOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                      Storyboard.TargetProperty="Visibility"
                                                      Duration="0:0:0">
-                                                <DiscreteObjectKeyFrame KeyTime="0%" Value="{x:Static Visibility.Visible}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                    <VisualTransition To="Collapsed">
-                                        <Storyboard>
-                                            <DoubleAnimation Storyboard.TargetName="ContentPanel"
+                                    <DiscreteObjectKeyFrame KeyTime="0%" Value="{x:Static Visibility.Visible}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualTransition>
+                        <VisualTransition To="Collapsed">
+                            <Storyboard>
+                                <DoubleAnimation Storyboard.TargetName="ContentPanel"
                                        Storyboard.TargetProperty="Opacity"
                                        From="1"
                                        To="0"
                                        Duration="{DynamicResource CollapseDuration}" />
-                                            <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform"
+                                <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform"
                                        Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
                                        From="1"
                                        To="0"
                                        Duration="{DynamicResource CollapseDuration}">
-                                                <DoubleAnimation.EasingFunction>
-                                                    <CubicEase EasingMode="EaseInOut" />
-                                                </DoubleAnimation.EasingFunction>
-                                            </DoubleAnimation>
-                                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
+                                    <DoubleAnimation.EasingFunction>
+                                        <CubicEase EasingMode="EaseInOut" />
+                                    </DoubleAnimation.EasingFunction>
+                                </DoubleAnimation>
+                                <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                      Storyboard.TargetProperty="Visibility"
                                                      Duration="{DynamicResource CollapseDuration}">
-                                                <DiscreteObjectKeyFrame KeyTime="100%" Value="{x:Static Visibility.Collapsed}" />
-                                            </ObjectAnimationUsingKeyFrames>
-                                        </Storyboard>
-                                    </VisualTransition>
-                                </VisualStateGroup.Transitions>
-                                <VisualState x:Name="Expanded">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="ContentPanel"
+                                    <DiscreteObjectKeyFrame KeyTime="100%" Value="{x:Static Visibility.Collapsed}" />
+                                </ObjectAnimationUsingKeyFrames>
+                            </Storyboard>
+                        </VisualTransition>
+                    </VisualStateGroup.Transitions>
+                    <VisualState x:Name="Expanded">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="ContentPanel"
                                      Storyboard.TargetProperty="Opacity"
                                      To="1"
                                      Duration="0" />
-                                        <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform"
+                            <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform"
                                      Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
                                      To="1"
                                      Duration="0" />
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                    Storyboard.TargetProperty="Visibility"
                                                    Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="0%" Value="{x:Static Visibility.Visible}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                                <VisualState x:Name="Collapsed">
-                                    <Storyboard>
-                                        <DoubleAnimation Storyboard.TargetName="ContentPanel"
+                                <DiscreteObjectKeyFrame KeyTime="0%" Value="{x:Static Visibility.Visible}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                    <VisualState x:Name="Collapsed">
+                        <Storyboard>
+                            <DoubleAnimation Storyboard.TargetName="ContentPanel"
                                      Storyboard.TargetProperty="Opacity"
                                      To="0"
                                      Duration="0" />
-                                        <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform"
+                            <DoubleAnimation Storyboard.TargetName="ContentSiteScaleTransform"
                                      Storyboard.TargetProperty="(ScaleTransform.ScaleY)"
                                      To="0"
                                      Duration="0" />
-                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
+                            <ObjectAnimationUsingKeyFrames Storyboard.TargetName="PART_Content"
                                                    Storyboard.TargetProperty="Visibility"
                                                    Duration="0">
-                                            <DiscreteObjectKeyFrame KeyTime="100%" Value="{x:Static Visibility.Collapsed}" />
-                                        </ObjectAnimationUsingKeyFrames>
-                                    </Storyboard>
-                                </VisualState>
-                            </VisualStateGroup>
-                        </VisualStateManager.VisualStateGroups>
-                        <DockPanel Background="{TemplateBinding Background}"
+                                <DiscreteObjectKeyFrame KeyTime="100%" Value="{x:Static Visibility.Collapsed}" />
+                            </ObjectAnimationUsingKeyFrames>
+                        </Storyboard>
+                    </VisualState>
+                </VisualStateGroup>
+            </VisualStateManager.VisualStateGroups>
+            <DockPanel Background="{TemplateBinding Background}"
                        >
-                            <ToggleButton Name="HeaderSite"
+                <ToggleButton Name="HeaderSite"
                                               Background="{TemplateBinding materialDesign:ExpanderAssist.HeaderBackground}"
                                               BorderThickness="0"
                                               Content="{TemplateBinding Header}"
@@ -405,60 +301,170 @@
                                               Opacity="0.87"
                                               TextElement.FontSize="{TemplateBinding materialDesign:ExpanderAssist.HeaderFontSize}" />
 
-                            <Border Name="ContentSite" Margin="2 0" BorderThickness="0 1 0 0" BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
-                                <Border.LayoutTransform>
-                                    <TransformGroup>
-                                        <ScaleTransform x:Name="ContentSiteScaleTransform" />
-                                        <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=notification:Notification}, Converter={StaticResource ExpanderRotateAngleConverter}}" />
-                                    </TransformGroup>
-                                </Border.LayoutTransform>
+                <Border Name="ContentSite" Margin="2 0" BorderThickness="0 1 0 0" BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
+                    <Border.LayoutTransform>
+                        <TransformGroup>
+                            <ScaleTransform x:Name="ContentSiteScaleTransform" />
+                            <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=notification:Notification}, Converter={StaticResource ExpanderRotateAngleConverter}}" />
+                        </TransformGroup>
+                    </Border.LayoutTransform>
 
-                                <Grid Name="ContentPanel"
+                    <Grid Name="ContentPanel"
                                       Margin="0 0 0 0"
                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
-                                    <Grid.LayoutTransform>
-                                        <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=notification:Notification}, Converter={StaticResource ExpanderRotateAngleConverter}, ConverterParameter=-1}" />
-                                    </Grid.LayoutTransform>
+                        <Grid.LayoutTransform>
+                            <RotateTransform Angle="{Binding Path=ExpandDirection, RelativeSource={RelativeSource AncestorType=notification:Notification}, Converter={StaticResource ExpanderRotateAngleConverter}, ConverterParameter=-1}" />
+                        </Grid.LayoutTransform>
 
-                                    <ContentPresenter Name="PART_Content"
+                        <ContentPresenter Name="PART_Content"
                                     ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                     ContentTemplate="{TemplateBinding ContentTemplate}"
                                     ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
                                     Focusable="False"
                                     Visibility="Collapsed" />
 
-                                </Grid>
-                            </Border>
-                        </DockPanel>
-                    </Border>
-                    <ControlTemplate.Triggers>
+                    </Grid>
+                </Border>
+            </DockPanel>
+        </Border>
+        <ControlTemplate.Triggers>
+            <Trigger Property="ExpandDirection" Value="Right">
+                <Setter TargetName="HeaderSite" Property="DockPanel.Dock" Value="Left" />
+                <Setter TargetName="HeaderSite" Property="Style" Value="{StaticResource MaterialDesignVerticalHeaderStyle}" />
+            </Trigger>
 
-                        <Trigger Property="ExpandDirection" Value="Right">
-                            <Setter TargetName="HeaderSite" Property="DockPanel.Dock" Value="Left" />
-                            <Setter TargetName="HeaderSite" Property="Style" Value="{StaticResource MaterialDesignVerticalHeaderStyle}" />
-                        </Trigger>
+            <Trigger Property="ExpandDirection" Value="Left">
+                <Setter TargetName="HeaderSite" Property="DockPanel.Dock" Value="Right" />
+                <Setter TargetName="HeaderSite" Property="Style" Value="{StaticResource MaterialDesignVerticalHeaderStyle}" />
+            </Trigger>
 
-                        <Trigger Property="ExpandDirection" Value="Left">
-                            <Setter TargetName="HeaderSite" Property="DockPanel.Dock" Value="Right" />
-                            <Setter TargetName="HeaderSite" Property="Style" Value="{StaticResource MaterialDesignVerticalHeaderStyle}" />
-                        </Trigger>
+            <Trigger Property="ExpandDirection" Value="Up">
+                <Setter TargetName="HeaderSite" Property="DockPanel.Dock" Value="Bottom" />
+                <Setter TargetName="HeaderSite" Property="Style" Value="{StaticResource MaterialDesignHorizontalHeaderStyle}" />
+            </Trigger>
 
-                        <Trigger Property="ExpandDirection" Value="Up">
-                            <Setter TargetName="HeaderSite" Property="DockPanel.Dock" Value="Bottom" />
-                            <Setter TargetName="HeaderSite" Property="Style" Value="{StaticResource MaterialDesignHorizontalHeaderStyle}" />
-                        </Trigger>
+            <Trigger Property="ExpandDirection" Value="Down">
+                <Setter TargetName="HeaderSite" Property="DockPanel.Dock" Value="Top" />
+                <Setter TargetName="HeaderSite" Property="Style" Value="{StaticResource MaterialDesignHorizontalHeaderStyle}" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
 
-                        <Trigger Property="ExpandDirection" Value="Down">
-                            <Setter TargetName="HeaderSite" Property="DockPanel.Dock" Value="Top" />
-                            <Setter TargetName="HeaderSite" Property="Style" Value="{StaticResource MaterialDesignHorizontalHeaderStyle}" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+    <Style x:Key="NotificationStyle" TargetType="{x:Type notification:Notification}">
+        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="Template" Value="{DynamicResource NotificationControlTemplate}" />
         <Setter Property="VerticalContentAlignment" Value="Top" />
         <Setter Property="materialDesign:ExpanderAssist.HeaderBackground" Value="Transparent" />
         <Setter Property="materialDesign:ExpanderAssist.HorizontalHeaderPadding" Value="10 2 0 2" />
     </Style>
+
+    <Style TargetType="{x:Type local:NotificationCenter}">
+        <Setter Property="Margin" Value="3" />
+        <Setter Property="VerticalAlignment" Value="Stretch" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="BorderThickness" Value="0 0 0 1" />
+        <Setter Property="HeaderTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <DataTemplate.Resources>
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource BoldTextBlock}" />
+                    </DataTemplate.Resources>
+                    <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                            BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="Auto" MinWidth="32" />
+                            </Grid.ColumnDefinitions>
+                            <ContentControl Grid.Column="0" Content="{Binding }" FontWeight="Bold" FontSize="14" />
+                            <Grid Grid.Column="1">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition MinHeight="32" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Button Grid.Row="0"
+                                            Command="{Binding ToggleCommand, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
+                                    <StackPanel Orientation="Horizontal">
+                                        <materialDesign:PackIcon VerticalAlignment="Center">
+                                            <materialDesign:PackIcon.Style>
+                                                <Style TargetType="materialDesign:PackIcon">
+                                                    <Style.Triggers>
+                                                        <DataTrigger Binding="{Binding NewAlert, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                                                                 Value="True">
+                                                            <Setter Property="Foreground" Value="{Binding NewAlertColor, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                                            <Setter Property="Kind" Value="{Binding NewAlertIcon, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                                        </DataTrigger>
+                                                        <DataTrigger Binding="{Binding NewAlert, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                                                                 Value="False">
+                                                            <Setter Property="Foreground" Value="{Binding NoAlertColor, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                                            <Setter Property="Kind" Value="{Binding NoAlertIcon, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                                        </DataTrigger>
+                                                    </Style.Triggers>
+                                                </Style>
+                                            </materialDesign:PackIcon.Style>
+                                        </materialDesign:PackIcon>
+                                        <Label Content="{Binding NewNotificationCount, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                    </StackPanel>
+                                </Button>
+                                <!-- Alert Center Popup -->
+                                <local:NotificationPopup
+                                Grid.Row="1"
+                                StaysOpen="False"
+                                Placement="Bottom"
+                                IsOpen="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                            </Grid>
+                        </Grid>
+                    </Border>
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type local:NotificationCenter}">
+                    <ControlTemplate.Resources>
+                        <Style TargetType="Border">
+                            <Setter Property="BorderBrush"
+                                    Value="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                            <Setter Property="BorderThickness" Value="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                        </Style>
+                    </ControlTemplate.Resources>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="3*" />
+                            <ColumnDefinition Width="1*" />
+                            <!-- Portion of screen for notification -->
+                        </Grid.ColumnDefinitions>
+                        <ContentControl Grid.Row="0" Grid.ColumnSpan="2"
+                                    Content="{TemplateBinding HeaderedContentControl.Header}"
+                                    ContentTemplate="{TemplateBinding HeaderedContentControl.HeaderTemplate}" />
+                        <ContentControl Grid.Column="0" Grid.Row="1" Grid.ColumnSpan="2"
+                                        Content="{TemplateBinding HeaderedContentControl.Content}"
+                                        ContentTemplate="{TemplateBinding HeaderedContentControl.ContentTemplate}"
+                                        VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                        VerticalContentAlignment="Stretch" />
+                        <!-- Toasts -->
+                        <ItemsControl Grid.Row="1" Grid.Column="1"
+                                      ItemsSource="{Binding DisplayNotes, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
+                            <ItemsControl.ItemContainerStyle>
+                                <Style TargetType="notification:Notification" BasedOn="{StaticResource NotificationStyle}">
+                                    <Setter Property="BorderThickness" Value="1" />
+                                    <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                </Style>
+                            </ItemsControl.ItemContainerStyle>
+                        </ItemsControl>
+                    </Grid>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style TargetType="{x:Type notification:Notification}" BasedOn="{StaticResource NotificationStyle}" />
 </ResourceDictionary>

@@ -80,7 +80,7 @@ namespace Wpf.NotificationCenter.Notification
         );
 
         #endregion
-
+        
         #region Properties
 
         /// <summary>

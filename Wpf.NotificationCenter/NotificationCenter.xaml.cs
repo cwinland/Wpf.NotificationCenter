@@ -329,8 +329,8 @@ namespace Wpf.NotificationCenter
                     t.Stop();
                 }
 
-                //DisplayNotes.Remove(newNote);
-                //OnPropertyChanged(nameof(DisplayNotes));
+                DisplayNotes.Remove(newNote);
+                OnPropertyChanged(nameof(DisplayNotes));
             }
 
             Refresh();
