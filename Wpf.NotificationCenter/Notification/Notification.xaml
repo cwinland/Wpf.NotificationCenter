@@ -4,6 +4,7 @@
           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
           xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification"
+          xmlns:system="clr-namespace:System;assembly=System.Runtime"
           mc:Ignorable="d" 
            d:DataContext="{d:DesignInstance Type=notification:Notification}"
            MouseDown="Notification_OnMouseDown"
@@ -27,6 +28,8 @@
     <Expander.Content>
         <Button Grid.Column="0" IsHitTestVisible="{Binding IsClickable}"
                 Background="Transparent"
+                Height="Auto"
+                MaxHeight="{x:Static system:Double.PositiveInfinity}"
                 Command="{Binding ExpandCommand}"
                 ToolTip="{Binding TextTooltip, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
                 CommandParameter="{Binding ElementName=TextContent }"

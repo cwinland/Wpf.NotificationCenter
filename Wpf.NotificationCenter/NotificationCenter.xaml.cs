@@ -351,6 +351,7 @@ namespace Wpf.NotificationCenter
             notification.Expanded += Refresh;
             notification.IsClickable = true;
             notification.AlertMaxHeight = AlertMaxHeight;
+            notification.SetTextTrimming(TextTrimming.WordEllipsis);
             notification.RemoveNotificationCommand = new RelayCommand<Notification.Notification>(RemoveNotification);
 
             Notifications.Add(notification);
@@ -373,6 +374,8 @@ namespace Wpf.NotificationCenter
                 IsExpanded = true,
                 AlertMaxHeight = double.PositiveInfinity
             };
+
+            newNote.SetTextTrimming(TextTrimming.None);
 
             DisplayNotes.Add(newNote);
 

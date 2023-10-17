@@ -4,9 +4,22 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wpf.NotificationCenter"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" d:DataContext="{d:DesignInstance Type=local:NotificationCenter}"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
+             xmlns:behaviors="clr-namespace:Wpf.NotificationCenter.Behaviors"
+             d:DataContext="{d:DesignInstance Type=local:NotificationCenter}"
        mc:Ignorable="d" AllowsTransparency="True" PopupAnimation="Slide"
              d:DesignHeight="450" d:DesignWidth="800">
+    <Popup.Resources>
+        <CollectionViewSource x:Key="DataSource"
+                              Source="{Binding Notifications, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                              behaviors:CollectionViewSourceBehavior.IsAscending="{Binding IsItemsAscending, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}} }"
+        >
+            <CollectionViewSource.SortDescriptions>
+                <componentModel:SortDescription PropertyName="CreatedOn" Direction="Descending"/>
+            </CollectionViewSource.SortDescriptions>
+        </CollectionViewSource>
+    </Popup.Resources>
     <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" BorderThickness="1" Margin="4 0 0 4">
         <Border.Effect>
             <DropShadowEffect BlurRadius="15" Opacity="0.8" ShadowDepth="10" Direction="-90" RenderingBias="Quality"></DropShadowEffect>
@@ -21,17 +34,17 @@
                     <Setter Property="Background" Value="Wheat" />
                 </Style>
             </Grid.Style>
-            <!-- No Notifications Popup Text -->
+            <!-- No Notification Center Popup Text -->
             <Label Grid.Row="1" Content="No Notifications"
                Visibility="{Binding NoDataVisibility, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
-            <!-- Notifications Popup Text -->
+            <!-- Notification Center Popup Text -->
             <ContentControl Grid.Row="1" Visibility="{Binding DataVisibility, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
-                <Grid>
+                <Grid Margin="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
-                    <!-- Notification Popup Header -->
+                    <!-- Notification Center Popup Header -->
                     <Border Grid.Row="0"
                             BorderThickness="0 0 0 1"
                             BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
@@ -48,8 +61,8 @@
                             </Button>
                         </Grid>
                     </Border>
-                    <!-- Notification Popup Items -->
-                    <local:NotificationItems Grid.Row="1" />
+                    <!-- Notification Center Popup Items -->
+                    <ItemsControl Grid.Row="1" ItemsSource="{Binding Source={StaticResource DataSource}}" Margin="0" Foreground="Black" />
                 </Grid>
             </ContentControl>
         </Grid>

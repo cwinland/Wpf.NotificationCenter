@@ -275,6 +275,7 @@ namespace Wpf.NotificationCenter.Notification
         /// <param name="notification">The notification.</param>
         public Notification(Notification notification) : this()
         {
+            Unread = true;
             Title = notification.Title;
             Text = notification.Text;
             NotificationType = notification.NotificationType;
