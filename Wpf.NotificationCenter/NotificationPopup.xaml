@@ -4,10 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Wpf.NotificationCenter"
-             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-             mc:Ignorable="d"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" d:DataContext="{d:DesignInstance Type=local:NotificationCenter}"
+       mc:Ignorable="d" AllowsTransparency="True" PopupAnimation="Slide"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" BorderThickness="1">
+    <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" BorderThickness="1" Margin="4 0 0 4">
+        <Border.Effect>
+            <DropShadowEffect BlurRadius="15" Opacity="0.8" ShadowDepth="10" Direction="-90" RenderingBias="Quality"></DropShadowEffect>
+        </Border.Effect>
         <Grid Visibility="{Binding NotificationsVisibility, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />

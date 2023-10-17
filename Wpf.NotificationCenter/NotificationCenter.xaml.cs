@@ -296,7 +296,16 @@ namespace Wpf.NotificationCenter
         ///     Gets the toggle command.
         /// </summary>
         /// <value>The toggle command.</value>
-        public ICommand ToggleCommand => new RelayCommand(() => NotificationsVisible = !NotificationsVisible);
+        public ICommand ToggleCommand => new RelayCommand(() =>
+            {
+                foreach (var notification in Notifications)
+                {
+                    notification.IsExpanded = false;
+                }
+
+                NotificationsVisible = !NotificationsVisible;
+            }
+        );
 
         #endregion
 

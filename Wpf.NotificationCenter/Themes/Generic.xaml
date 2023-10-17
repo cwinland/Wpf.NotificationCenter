@@ -4,7 +4,8 @@
                     xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                     xmlns:converters="clr-namespace:Wpf.NotificationCenter.Converters"
                     xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification"
-                    xmlns:enums="clr-namespace:Wpf.NotificationCenter.Enums">
+                    xmlns:enums="clr-namespace:Wpf.NotificationCenter.Enums"
+                    xmlns:sys="clr-namespace:System;assembly=System.Runtime">
     <Style x:Key="TextBlockStyle" TargetType="TextBlock">
         <Setter Property="Margin" Value="5" />
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -15,12 +16,20 @@
     <Style x:Key="MediumTextBlock" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
         <Setter Property="FontWeight" Value="Medium" />
     </Style>
+
     <Duration x:Key="ExpandDuration">0:0:0.250</Duration>
-    <Duration x:Key="CollapseDuration">0:0:0.200</Duration>
+    <Duration x:Key="CollapseDuration">0:0:0.100</Duration>
 
     <KeyTime x:Key="ExpandKeyTime">0:0:0.250</KeyTime>
-    <KeyTime x:Key="CollapseKeyTime">0:0:0.200</KeyTime>
+    <KeyTime x:Key="CollapseKeyTime">0:0:0.100</KeyTime>
 
+    <Style x:Key="BorderDropShadowStyle" TargetType="Border">
+        <Setter Property="Effect">
+            <Setter.Value>
+                <DropShadowEffect BlurRadius="15" Opacity="0.8" ShadowDepth="10" Direction="-90" RenderingBias="Quality" />
+            </Setter.Value>
+        </Setter>
+    </Style>
     <Style x:Key="MaterialDesignExpanderToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="Template">
             <Setter.Value>
@@ -450,25 +459,46 @@
                                         VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                         VerticalContentAlignment="Stretch" />
                         <!-- Toasts -->
-                        <ItemsControl Grid.Row="1" Grid.Column="1"
-                                      ItemsSource="{Binding DisplayNotes, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
-                            <ItemsControl.ItemContainerStyle>
-                                <Style TargetType="notification:Notification" BasedOn="{StaticResource NotificationStyle}">
-                                    <Setter Property="BorderThickness" Value="1" />
-                                    <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                        <Border Grid.Row="1" Grid.Column="1"
+                                Margin="4 0 0 4"
+                                >
+                            <Border.Style>
+                                <Style TargetType="Border" BasedOn="{StaticResource BorderDropShadowStyle}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding DisplayNotes.Count, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" Value="0">
+                                            <Setter Property="Visibility" Value="Collapsed" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
                                 </Style>
-                            </ItemsControl.ItemContainerStyle>
-                        </ItemsControl>
+                            </Border.Style>
+                            <ItemsControl Grid.Row="1" Grid.Column="1"
+                                          ItemsSource="{Binding DisplayNotes, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
+                                <ItemsControl.Resources>
+                                    <Style TargetType="{x:Type notification:Notification}" BasedOn="{StaticResource NotificationStyle}">
+                                        <Setter Property="TextBlock.MaxHeight" Value="{x:Static sys:Double.PositiveInfinity}" />
+                                    </Style>
+                                </ItemsControl.Resources>
+                            </ItemsControl>
+                        </Border>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
     </Style>
 
+    <Style x:Key="HeaderTextStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+        <Setter Property="FontWeight" Value="{Binding TitleWeight, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}" />
+        <Setter Property="TextWrapping" Value="Wrap" />
+    </Style>
+
+    <Style x:Key="CreatedOnStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+        <Setter Property="Margin" Value="-5 0" />
+        <Setter Property="FontSize" Value="8" />
+        <Setter Property="TextTrimming" Value="CharacterEllipsis" />
+        <Setter Property="Text" Value="{Binding CreatedOn, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}, StringFormat='Created: {0}'}" />
+    </Style>
+
     <Style TargetType="{x:Type notification:Notification}" BasedOn="{StaticResource NotificationStyle}">
-        <Style.Triggers>
-            <DataTrigger Binding="{Binding TextTrimming, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification} }}" Value="NoWrap"></DataTrigger>
-        </Style.Triggers>
         <Setter Property="TextBlock.MaxHeight" Value="{Binding AlertMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
     </Style>
 </ResourceDictionary>
