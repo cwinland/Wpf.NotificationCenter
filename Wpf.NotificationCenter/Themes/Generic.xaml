@@ -421,10 +421,9 @@
                                 </Button>
                                 <!-- Alert Center Popup -->
                                 <local:NotificationPopup
-                                Grid.Row="1"
-                                StaysOpen="True"
-                                Placement="Bottom"
-                                IsOpen="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                    StaysOpen="False"
+                                    Placement="Bottom"
+                                    IsOpen="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
                             </Grid>
                         </Grid>
                     </Border>

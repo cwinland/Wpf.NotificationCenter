@@ -7,6 +7,7 @@ namespace Wpf.NotificationCenter.Services
     /// </summary>
     public interface IWpfNotificationService
     {
+        void Close(Notification.Notification notification, string? notificationCenterName = null);
         /// <summary>
         ///     Creates the specified title.
         /// </summary>
@@ -18,5 +19,11 @@ namespace Wpf.NotificationCenter.Services
         /// <returns>Creates.</returns>
         Notification.Notification Create(string title, string text, NotificationType notificationType = NotificationType.Information,
             string? notificationCenterName = null, AlertType alertType = AlertType.All);
+
+        Notification.Notification Error(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
+        Notification.Notification Warning(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
+        Notification.Notification Information(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
+        Notification.Notification Success(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
+
     }
 }

@@ -13,19 +13,6 @@ namespace Wpf.NotificationCenter.Services
     /// <seealso cref="Wpf.NotificationCenter.Services.IWpfNotificationService" />
     public class WpfNotificationService : IWpfNotificationService
     {
-        /// <summary>
-        ///     Initializes a new instance of the <see cref="WpfNotificationService" /> class.
-        /// </summary>
-        public WpfNotificationService() { }
-
-        /// <summary>
-        ///     Closes the specified notification.
-        /// </summary>
-        /// <param name="notification">The notification.</param>
-        /// <param name="notificationCenterName">Name of the notification center.</param>
-        public void Close(Notification.Notification notification, string? notificationCenterName = null) =>
-            GetNotificationCenter(notificationCenterName).RemoveNotification(notification);
-
         private static NotificationCenter GetNotificationCenter(string? notificationCenterName = null) =>
             Application.Current?.MainWindow?.FindChild<NotificationCenter>(notificationCenterName) ??
             throw NotFound(notificationCenterName);
@@ -35,15 +22,11 @@ namespace Wpf.NotificationCenter.Services
         #region IWpfNotificationService
 
         /// <inheritdoc />
-        /// <summary>
-        ///     Creates the specified title.
-        /// </summary>
-        /// <param name="title">The title.</param>
-        /// <param name="text">The text.</param>
-        /// <param name="notificationType"></param>
-        /// <param name="notificationCenterName">Name of the notification center.</param>
-        /// <param name="alertType"></param>
-        /// <returns>Creates.</returns>
+        public void Close(Notification.Notification notification, string? notificationCenterName = null) =>
+            GetNotificationCenter(notificationCenterName).RemoveNotification(notification);
+
+
+        /// <inheritdoc />
         public Notification.Notification Create(string title, string text, NotificationType notificationType = NotificationType.Information,
             string? notificationCenterName = null, AlertType alertType = AlertType.All)
         {
@@ -62,6 +45,23 @@ namespace Wpf.NotificationCenter.Services
 
             return notification;
         }
+
+        /// <inheritdoc />
+        public Notification.Notification
+            Error(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All) =>
+            Create(title, text, NotificationType.Error, notificationCenterName, alertType);
+
+        /// <inheritdoc />
+        public Notification.Notification Information(string title, string text, string? notificationCenterName = null,
+            AlertType alertType = AlertType.All) => Create(title, text, NotificationType.Information, notificationCenterName, alertType);
+
+        /// <inheritdoc />
+        public Notification.Notification Success(string title, string text, string? notificationCenterName = null,
+            AlertType alertType = AlertType.All) => Create(title, text, NotificationType.Success, notificationCenterName, alertType);
+
+        /// <inheritdoc />
+        public Notification.Notification Warning(string title, string text, string? notificationCenterName = null,
+            AlertType alertType = AlertType.All) => Create(title, text, NotificationType.Warning, notificationCenterName, alertType);
 
         #endregion
     }
