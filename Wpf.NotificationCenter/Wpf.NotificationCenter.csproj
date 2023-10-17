@@ -5,7 +5,27 @@
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
+    <Authors>Chris Winland</Authors>
+    <Company>Microsoft Corporation</Company>
+    <Description>Quickly send alerts and toast notifications. This package consists of toast messages and a notification center to see previous notifications. Optionally, send toasts, alerts in the notification center, or both.</Description>
+    <Copyright>copyright(c) 2023</Copyright>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+    <RepositoryUrl>https://github.com/cwinland/Wpf.NotificationCenter</RepositoryUrl>
+    <PackageTags>alerts;toast;notifications;customizable;wpf</PackageTags>
+    <PackageLicenseFile>license.txt</PackageLicenseFile>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\..\CertificateManager\README.md">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Include="..\license.txt">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CommunityToolkit.Mvvm" Version="8.2.1" />
