@@ -89,6 +89,10 @@ namespace Wpf.NotificationCenter.Notification
 
         #region Properties
 
+        /// <summary>
+        ///     Gets the created on.
+        /// </summary>
+        /// <value>The created on.</value>
         public DateTime CreatedOn { get; } = DateTime.Now;
 
         /// <summary>
@@ -97,6 +101,10 @@ namespace Wpf.NotificationCenter.Notification
         /// <value>The display time.</value>
         public TimeSpan DisplayTime { get; set; } = TimeSpan.FromSeconds(5);
 
+        /// <summary>
+        ///     Gets the expand command.
+        /// </summary>
+        /// <value>The expand command.</value>
         public ICommand ExpandCommand =>
             new RelayCommand(() =>
                 {
@@ -117,6 +125,10 @@ namespace Wpf.NotificationCenter.Notification
         /// <value>The expander visibility.</value>
         public Visibility ExpanderVisibility => ShowExpander ? Visibility.Visible : Visibility.Collapsed;
 
+        /// <summary>
+        ///     Gets or sets a value indicating whether this instance is clickable.
+        /// </summary>
+        /// <value><c>true</c> if this instance is clickable; otherwise, <c>false</c>.</value>
         public bool IsClickable
         {
             get => isClickable;
@@ -162,11 +174,19 @@ namespace Wpf.NotificationCenter.Notification
             set => SetValue(TextProperty, value ?? string.Empty);
         }
 
+        /// <summary>
+        ///     Gets the text tooltip.
+        /// </summary>
+        /// <value>The text tooltip.</value>
         public string TextTooltip =>
             IsClickable
                 ? (TextTrimming == TextTrimming.None ? "Click to shrink text." : "Click to expand text.") + TextContent?.Text
                 : TextContent?.Text ?? string.Empty;
 
+        /// <summary>
+        ///     Gets or sets the text trimming.
+        /// </summary>
+        /// <value>The text trimming.</value>
         public TextTrimming TextTrimming
         {
             get => textTrimming;

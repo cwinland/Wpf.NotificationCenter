@@ -469,6 +469,6 @@
         <Style.Triggers>
             <DataTrigger Binding="{Binding TextTrimming, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification} }}" Value="NoWrap"></DataTrigger>
         </Style.Triggers>
-        <Setter Property="TextBlock.MaxHeight" Value="150" />
+        <Setter Property="TextBlock.MaxHeight" Value="{Binding AlertMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
     </Style>
 </ResourceDictionary>

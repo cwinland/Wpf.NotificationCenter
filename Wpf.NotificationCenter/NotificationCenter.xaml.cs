@@ -83,13 +83,23 @@ namespace Wpf.NotificationCenter
         );
 
         /// <summary>
-        ///     Creates new alerticonproperty.
+        ///     The icon used for indication of new alerts
         /// </summary>
         public static readonly DependencyProperty NewAlertIconProperty = DependencyProperty.Register(
             nameof(NewAlertIcon),
             typeof(PackIconKind),
             typeof(NotificationCenter),
             new PropertyMetadata(PackIconKind.BellAlert, Refresh)
+        );
+
+        /// <summary>
+        ///     The alert maximum height property
+        /// </summary>
+        public static readonly DependencyProperty AlertMaxHeightProperty = DependencyProperty.Register(
+            nameof(AlertMaxHeight),
+            typeof(double),
+            typeof(NotificationCenter),
+            new PropertyMetadata(150d)
         );
 
         /// <summary>
@@ -112,11 +122,31 @@ namespace Wpf.NotificationCenter
             new PropertyMetadata(default(byte), Refresh)
         );
 
+        /// <summary>
+        ///     The is items ascending property
+        /// </summary>
+        public static readonly DependencyProperty IsItemsAscendingProperty = DependencyProperty.Register(
+            nameof(IsItemsAscending),
+            typeof(bool),
+            typeof(NotificationCenter),
+            new PropertyMetadata(false)
+        );
+
         private readonly SolidColorBrush defaultColor = Brushes.Black;
 
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     Gets or sets the maximum height of the alert.
+        /// </summary>
+        /// <value>The maximum height of the alert.</value>
+        public double AlertMaxHeight
+        {
+            get => (double) GetValue(AlertMaxHeightProperty);
+            set => SetValue(AlertMaxHeightProperty, value);
+        }
 
         /// <summary>
         ///     Gets or sets the maximum width of the alert.
@@ -145,6 +175,16 @@ namespace Wpf.NotificationCenter
         /// </summary>
         /// <value>The display notes.</value>
         public ObservableCollection<Notification.Notification> DisplayNotes { get; set; } = new();
+
+        /// <summary>
+        ///     Gets or sets a value indicating whether this instance is items ascending.
+        /// </summary>
+        /// <value><c>true</c> if this instance is items ascending; otherwise, <c>false</c>.</value>
+        public bool IsItemsAscending
+        {
+            get => (bool) GetValue(IsItemsAscendingProperty);
+            set => SetValue(IsItemsAscendingProperty, value);
+        }
 
         /// <summary>
         ///     Gets or sets the maximum notifications.
@@ -274,18 +314,6 @@ namespace Wpf.NotificationCenter
             DisplayNotes.CollectionChanged += (_, _) => OnPropertyChanged(nameof(DisplayNotes));
         }
 
-        public static readonly DependencyProperty IsItemsAscendingProperty = DependencyProperty.Register(
-            nameof(IsItemsAscending),
-            typeof(bool),
-            typeof(NotificationCenter),
-            new PropertyMetadata(false)
-        );
-
-        public bool IsItemsAscending
-        {
-            get => (bool) GetValue(IsItemsAscendingProperty);
-            set => SetValue(IsItemsAscendingProperty, value);
-        }
         /// <summary>
         ///     Called when [property changed].
         /// </summary>
