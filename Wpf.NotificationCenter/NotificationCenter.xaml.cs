@@ -132,11 +132,24 @@ namespace Wpf.NotificationCenter
             new PropertyMetadata(false)
         );
 
+        public static readonly DependencyProperty AlertButtonBackgroundProperty = DependencyProperty.Register(
+            nameof(AlertButtonBackground),
+            typeof(SolidColorBrush),
+            typeof(NotificationCenter),
+            new PropertyMetadata(Brushes.Transparent)
+        );
+
         private readonly SolidColorBrush defaultColor = Brushes.Black;
 
         #endregion
 
         #region Properties
+
+        public SolidColorBrush AlertButtonBackground
+        {
+            get => (SolidColorBrush) GetValue(AlertButtonBackgroundProperty);
+            set => SetValue(AlertButtonBackgroundProperty, value);
+        }
 
         /// <summary>
         ///     Gets or sets the maximum height of the alert.
@@ -301,6 +314,7 @@ namespace Wpf.NotificationCenter
                 foreach (var notification in Notifications)
                 {
                     notification.IsExpanded = false;
+                    notification.SetTextTrimming(TextTrimming.WordEllipsis);
                 }
 
                 NotificationsVisible = !NotificationsVisible;
@@ -336,6 +350,9 @@ namespace Wpf.NotificationCenter
             notification.ShowExpander = true;
             notification.Expanded += Refresh;
             notification.IsClickable = true;
+            notification.AlertMaxHeight = AlertMaxHeight;
+            notification.RemoveNotificationCommand = new RelayCommand<Notification.Notification>(RemoveNotification);
+
             Notifications.Add(notification);
 
             if (MaxNotifications > 0 && Notifications.Count > MaxNotifications && Notifications.Any(x => !x.Unread))
@@ -353,7 +370,8 @@ namespace Wpf.NotificationCenter
             {
                 MinWidth = ActualWidth / 4,
                 ShowExpander = false,
-                IsExpanded = true
+                IsExpanded = true,
+                AlertMaxHeight = double.PositiveInfinity
             };
 
             DisplayNotes.Add(newNote);
@@ -394,8 +412,13 @@ namespace Wpf.NotificationCenter
             OnPropertyChanged(nameof(NewAlert));
         }
 
-        internal void RemoveNotification(Notification.Notification notification)
+        internal void RemoveNotification(Notification.Notification? notification)
         {
+            if (notification == null)
+            {
+                return;
+            }
+
             DisplayNotes.Remove(notification);
             Notifications.Remove(notification);
             Refresh();

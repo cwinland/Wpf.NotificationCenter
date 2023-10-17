@@ -8,6 +8,19 @@
            d:DataContext="{d:DesignInstance Type=notification:Notification}"
            MouseDown="Notification_OnMouseDown"
            d:DesignHeight="450" d:DesignWidth="800">
+    <Expander.Resources>
+        <Style x:Key="ContentTextStyle" TargetType="{x:Type TextBlock}">
+            <Setter Property="HorizontalAlignment" Value="Left" />
+            <Setter Property="Margin" Value="0" />
+            <Setter Property="Padding" Value="0" />
+            <Setter Property="MaxHeight" Value="{Binding AlertMaxHeight}" />
+            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
+            <Setter Property="IsHitTestVisible" Value="True" />
+            <Setter Property="TextTrimming" Value="{Binding TextTrimming}" />
+            <Setter Property="ToolTip" Value="{Binding TextTooltip, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}" />
+            <Setter Property="Text" Value="{Binding Text, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}" />
+        </Style>
+    </Expander.Resources>
     <Expander.Header>
         <notification:NotificationHeader />
     </Expander.Header>
@@ -19,11 +32,8 @@
                 CommandParameter="{Binding ElementName=TextContent }"
                 BorderThickness="0">
             <TextBlock x:Name="TextContent"
-                       TextWrapping="WrapWithOverflow" IsHitTestVisible="True"
-                       TextTrimming="{Binding TextTrimming}"
-                       ToolTip="{Binding TextTooltip, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
-                       Text="{Binding Text, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}" />
+                       Style="{StaticResource ContentTextStyle}"
+                       />
         </Button>
-
     </Expander.Content>
 </Expander>

@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using Microsoft.Extensions.DependencyInjection;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using Wpf.NotificationCenter.Services;
 
 namespace Wpf.NotificationCenter.Extensions
 {
@@ -10,6 +12,14 @@ namespace Wpf.NotificationCenter.Extensions
     /// </summary>
     public static class WpfExtensions
     {
+        public static IServiceCollection UseWpfNotificationCenter(this IServiceCollection services)
+        {
+            services.AddSingleton<IWpfNotificationService, WpfNotificationService>()
+                .AddSingleton<NotificationCenter>();
+
+            return services;
+        }
+
         /// <summary>
         ///     Finds a Child of a given item in the visual tree.
         /// </summary>
@@ -21,7 +31,7 @@ namespace Wpf.NotificationCenter.Extensions
         ///     If not matching item can be found,
         ///     a null parent is being returned.
         /// </returns>
-        public static T? FindChild<T>(this DependencyObject? parent, string? childName = "") where T : DependencyObject
+        internal static T? FindChild<T>(this DependencyObject? parent, string? childName = "") where T : DependencyObject
         {
             // Confirm parent and childName are valid.
             parent ??= Application.Current.MainWindow;
@@ -68,7 +78,7 @@ namespace Wpf.NotificationCenter.Extensions
         /// </summary>
         /// <param name="parent">The parent.</param>
         /// <param name="child">The child.</param>
-        public static void RemoveChild(this DependencyObject parent, UIElement child)
+        internal static void RemoveChild(this DependencyObject parent, UIElement child)
         {
             var panel = parent as Panel;
 

@@ -5,6 +5,7 @@ using System.IO;
 using System.Windows;
 using System.Windows.Threading;
 using Wpf.NotificationCenter;
+using Wpf.NotificationCenter.Extensions;
 using Wpf.NotificationCenter.Services;
 
 namespace WpfNotificationCenter
@@ -18,12 +19,12 @@ namespace WpfNotificationCenter
         ///     Configuration.
         /// </summary>
         /// <value>The configuration.</value>
-        public IConfiguration Configuration { get; private set; }
+        public IConfiguration Configuration { get; set; }
 
         /// <summary>
         /// The underlying <see cref="IServiceProvider"/> used by PowerStigUI.
         /// </summary>
-        public IServiceProvider ServiceProvider { get; private set; }
+        public IServiceProvider ServiceProvider { get; }
 
         /// <summary>
         /// The underlying <see cref="Dispatcher"/> used by PowerStigUI.
@@ -36,7 +37,10 @@ namespace WpfNotificationCenter
             Dispatcher.UnhandledException += OnDispatcherUnhandledException;
 
             //Load configurations
-            BuildConfiguration();
+            var builder = new ConfigurationBuilder()
+                .SetBasePath(Directory.GetCurrentDirectory());
+
+            Configuration = builder?.Build() ?? throw new InvalidDataException("Unable to build configuration.");
 
             //Configure services and dependency injection, then build service provider.
             var services = new ServiceCollection();
@@ -44,19 +48,16 @@ namespace WpfNotificationCenter
             ServiceProvider = services.BuildServiceProvider();
         }
 
-        private static void ConfigureServices(ServiceCollection services) =>
-            services.AddSingleton<IWpfNotificationService, WpfNotificationService>()
-                .AddSingleton<NotificationCenter>();
-        internal IConfiguration BuildConfiguration()
+        
+        private void OnStartup(object sender, StartupEventArgs e)
         {
-            //Load configurations
-            var builder = new ConfigurationBuilder()
-                .SetBasePath(Directory.GetCurrentDirectory());
-
-            Configuration = builder?.Build() ?? throw new InvalidDataException("Unable to build configuration.");
-
-            return Configuration;
+            ShutdownMode = ShutdownMode.OnMainWindowClose;
+            LaunchMainWindow();
         }
+
+        private static void ConfigureServices(IServiceCollection services) =>
+            services.UseWpfNotificationCenter()
+                .AddSingleton<MainWindowViewModel>();
 
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
@@ -65,5 +66,15 @@ namespace WpfNotificationCenter
             //Log.Error(errorMessage, e.Exception);
 
             e.Handled = true;
+        }
+
+        private void LaunchMainWindow()
+        {
+            var mainWindow = new MainWindow
+            {
+                DataContext = ServiceProvider.GetRequiredService<MainWindowViewModel>()
+            };
+
+            mainWindow.Show();
         }
     }}

@@ -9,6 +9,7 @@
              xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:behaviors="clr-namespace:Wpf.NotificationCenter.Behaviors" d:DataContext="{d:DesignInstance Type=local:NotificationCenter}"
                 mc:Ignorable="d"
+             Margin="0"
              d:DesignHeight="450" d:DesignWidth="800">
     <ContentControl.Resources>
         <CollectionViewSource x:Key="DataSource"
@@ -20,7 +21,7 @@
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </ContentControl.Resources>
-    <ListBox ItemsSource="{Binding Source={StaticResource DataSource}}">
+    <ListBox ItemsSource="{Binding Source={StaticResource DataSource}}" Margin="0">
         <ListBox.Resources>
             <Style TargetType="ListBoxItem">
                 <Setter Property="MaxWidth" Value="{Binding AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
@@ -42,7 +43,7 @@
         </ListBox.Resources>
         <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
-                <StackPanel />
+                <StackPanel Margin="0" />
             </ItemsPanelTemplate>
         </ListBox.ItemsPanel>
     </ListBox>

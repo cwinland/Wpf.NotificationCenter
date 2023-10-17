@@ -30,6 +30,7 @@
             </Setter.Value>
         </Setter>
     </Style>
+
     <Style x:Key="MaterialDesignExpanderToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="Template">
             <Setter.Value>
@@ -167,7 +168,6 @@
                                 ContentStringFormat="{TemplateBinding ContentStringFormat}"
                                 ContentTemplate="{TemplateBinding ContentTemplate}"
                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}" />
-
                         </Grid>
                     </Border>
                 </ControlTemplate>
@@ -180,7 +180,7 @@
         <ControlTemplate.Resources>
             <converters:ExpanderRotateAngleConverter x:Key="ExpanderRotateAngleConverter" />
             <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
-                <Setter Property="Kind" Value="BellAlert"></Setter>
+                <Setter Property="Kind" Value="BellAlert" />
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
                                              Value="{x:Static enums:NotificationType.Warning}">
@@ -362,7 +362,6 @@
     <Style x:Key="NotificationStyle" TargetType="{x:Type notification:Notification}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
         <Setter Property="BorderThickness" Value="0" />
-        <Setter Property="Foreground" Value="{Binding RelativeSource={RelativeSource AncestorType={x:Type FrameworkElement}}, Path=(TextElement.Foreground)}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="Template" Value="{DynamicResource NotificationControlTemplate}" />
         <Setter Property="VerticalContentAlignment" Value="Top" />
@@ -382,20 +381,22 @@
                         <Style TargetType="TextBlock" BasedOn="{StaticResource BoldTextBlock}" />
                     </DataTemplate.Resources>
                     <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                            BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
-                        <Grid>
+                            BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                            Background="{Binding AlertButtonBackground, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
+                        <Grid >
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" MinWidth="32" />
                             </Grid.ColumnDefinitions>
                             <ContentControl Grid.Column="0" Content="{Binding }" FontWeight="Bold" FontSize="14" />
                             <Grid Grid.Column="1">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition MinHeight="32" />
-                                    <RowDefinition />
-                                </Grid.RowDefinitions>
-                                <Button Grid.Row="0"
-                                            Command="{Binding ToggleCommand, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
+                                <Button Height="Auto"
+                                        Margin="0"
+                                        VerticalAlignment="Stretch"
+                                        HorizontalAlignment="Stretch"
+                                        Padding="5 0"
+                                        MaxHeight="{x:Static sys:Double.PositiveInfinity}"
+                                        Command="{Binding ToggleCommand, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
                                     <StackPanel Orientation="Horizontal">
                                         <materialDesign:PackIcon VerticalAlignment="Center">
                                             <materialDesign:PackIcon.Style>
@@ -421,7 +422,7 @@
                                 <!-- Alert Center Popup -->
                                 <local:NotificationPopup
                                 Grid.Row="1"
-                                StaysOpen="False"
+                                StaysOpen="True"
                                 Placement="Bottom"
                                 IsOpen="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
                             </Grid>
@@ -474,9 +475,7 @@
                             <ItemsControl Grid.Row="1" Grid.Column="1"
                                           ItemsSource="{Binding DisplayNotes, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
                                 <ItemsControl.Resources>
-                                    <Style TargetType="{x:Type notification:Notification}" BasedOn="{StaticResource NotificationStyle}">
-                                        <Setter Property="TextBlock.MaxHeight" Value="{x:Static sys:Double.PositiveInfinity}" />
-                                    </Style>
+                                    <Style TargetType="{x:Type notification:Notification}" BasedOn="{StaticResource NotificationStyle}" />
                                 </ItemsControl.Resources>
                             </ItemsControl>
                         </Border>
@@ -492,13 +491,27 @@
     </Style>
 
     <Style x:Key="CreatedOnStyle" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
-        <Setter Property="Margin" Value="-5 0" />
+        <Setter Property="Visibility" Value="{Binding ExpanderVisibility}" />
+        <Setter Property="Margin" Value="0 0" />
         <Setter Property="FontSize" Value="8" />
+        <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="TextTrimming" Value="CharacterEllipsis" />
         <Setter Property="Text" Value="{Binding CreatedOn, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}, StringFormat='Created: {0}'}" />
     </Style>
 
-    <Style TargetType="{x:Type notification:Notification}" BasedOn="{StaticResource NotificationStyle}">
-        <Setter Property="TextBlock.MaxHeight" Value="{Binding AlertMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+    <Style x:Key="DeleteButtonStyle" TargetType="Button">
+        <Style.Resources>
+            <Style TargetType="materialDesign:PackIcon">
+                <Setter Property="Kind" Value="RemoveBold" />
+                <Setter Property="Foreground" Value="Red" />
+            </Style>
+        </Style.Resources>
+        <Setter Property="Visibility" Value="{Binding ExpanderVisibility}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="ToolTip" Value="Remove Notification" />
     </Style>
+
+    <Style TargetType="{x:Type notification:Notification}" BasedOn="{StaticResource NotificationStyle}" />
 </ResourceDictionary>

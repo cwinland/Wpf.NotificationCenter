@@ -31,6 +31,16 @@ namespace Wpf.NotificationCenter.Notification
         #region Fields
 
         /// <summary>
+        ///     The alert maximum height property
+        /// </summary>
+        public static readonly DependencyProperty AlertMaxHeightProperty = DependencyProperty.Register(
+            nameof(AlertMaxHeight),
+            typeof(double),
+            typeof(Notification),
+            new PropertyMetadata(150d)
+        );
+
+        /// <summary>
         ///     The notification type: Information, Error, Success, Info, Warning.
         /// </summary>
         public static readonly DependencyProperty NotificationTypeProperty = DependencyProperty.Register(
@@ -80,14 +90,29 @@ namespace Wpf.NotificationCenter.Notification
             new PropertyMetadata(true)
         );
 
+        public static readonly DependencyProperty RemoveNotificationCommandProperty = DependencyProperty.Register(
+            nameof(RemoveNotificationCommand),
+            typeof(ICommand),
+            typeof(Notification),
+            new PropertyMetadata(default(ICommand))
+        );
+
         private bool isClickable;
         private TextTrimming textTrimming = TextTrimming.WordEllipsis;
-
-        private double trimmedHeight;
 
         #endregion
 
         #region Properties
+
+        /// <summary>
+        ///     Gets or sets the maximum height of the alert.
+        /// </summary>
+        /// <value>The maximum height of the alert.</value>
+        public double AlertMaxHeight
+        {
+            get => (double) GetValue(AlertMaxHeightProperty);
+            set => SetValue(AlertMaxHeightProperty, value);
+        }
 
         /// <summary>
         ///     Gets the created on.
@@ -106,17 +131,7 @@ namespace Wpf.NotificationCenter.Notification
         /// </summary>
         /// <value>The expand command.</value>
         public ICommand ExpandCommand =>
-            new RelayCommand(() =>
-                {
-                    if (textTrimming != TextTrimming.None && !double.IsPositiveInfinity(MaxHeight))
-                    {
-                        trimmedHeight = MaxHeight;
-                    }
-
-                    TextTrimming = TextTrimming == TextTrimming.None ? TextTrimming.WordEllipsis : TextTrimming.None;
-
-                    MaxHeight = textTrimming != TextTrimming.None ? trimmedHeight : double.PositiveInfinity;
-                }
+            new RelayCommand(() => { SetTextTrimming(TextTrimming == TextTrimming.None ? TextTrimming.WordEllipsis : TextTrimming.None); }
             );
 
         /// <summary>
@@ -148,6 +163,12 @@ namespace Wpf.NotificationCenter.Notification
         {
             get => (NotificationType) GetValue(NotificationTypeProperty);
             set => SetValue(NotificationTypeProperty, value);
+        }
+
+        public ICommand RemoveNotificationCommand
+        {
+            get => (ICommand) GetValue(RemoveNotificationCommandProperty);
+            set => SetValue(RemoveNotificationCommandProperty, value);
         }
 
         /// <summary>
@@ -260,6 +281,12 @@ namespace Wpf.NotificationCenter.Notification
             Background = Brushes.Wheat;
             IsExpanded = notification.IsExpanded;
             ShowExpander = notification.ShowExpander;
+        }
+
+        public void SetTextTrimming(TextTrimming trimming)
+        {
+            TextTrimming = trimming;
+            TextContent.MaxHeight = textTrimming != TextTrimming.None ? AlertMaxHeight : double.PositiveInfinity;
         }
 
         /// <inheritdoc />
