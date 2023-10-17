@@ -12,6 +12,18 @@
         <notification:NotificationHeader />
     </Expander.Header>
     <Expander.Content>
-        <notification:NotificationContent />
+        <Button Grid.Column="0" IsHitTestVisible="{Binding IsClickable}"
+                Background="Transparent"
+                Command="{Binding ExpandCommand}"
+                ToolTip="{Binding TextTooltip, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
+                CommandParameter="{Binding ElementName=TextContent }"
+                BorderThickness="0">
+            <TextBlock x:Name="TextContent"
+                       TextWrapping="WrapWithOverflow" IsHitTestVisible="True"
+                       TextTrimming="{Binding TextTrimming}"
+                       ToolTip="{Binding TextTooltip, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
+                       Text="{Binding Text, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}" />
+        </Button>
+
     </Expander.Content>
 </Expander>

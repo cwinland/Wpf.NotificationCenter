@@ -8,8 +8,7 @@
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
     <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" BorderThickness="1">
-        <Grid
-        Visibility="{Binding NotificationsVisibility, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
+        <Grid Visibility="{Binding NotificationsVisibility, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
@@ -31,8 +30,7 @@
                     </Grid.RowDefinitions>
                     <!-- Notification Popup Header -->
                     <Grid Grid.Row="0" HorizontalAlignment="Stretch" Margin="2 0">
-                        <Label FontWeight="Bold" Grid.Row="0" Content="Notifications" HorizontalAlignment="Center"
-                />
+                        <Label FontWeight="Bold" Grid.Row="0" Content="Notifications" HorizontalAlignment="Center" />
                         <Button BorderBrush="Transparent"
                         BorderThickness="0"
                         Background="Transparent"

@@ -5,15 +5,15 @@
                     xmlns:converters="clr-namespace:Wpf.NotificationCenter.Converters"
                     xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification"
                     xmlns:enums="clr-namespace:Wpf.NotificationCenter.Enums">
-    <Style x:Key="BoldTextBlock" TargetType="TextBlock">
-        <Setter Property="FontWeight" Value="Bold" />
+    <Style x:Key="TextBlockStyle" TargetType="TextBlock">
         <Setter Property="Margin" Value="5" />
         <Setter Property="HorizontalAlignment" Value="Left" />
     </Style>
-    <Style x:Key="MediumTextBlock" TargetType="TextBlock">
+    <Style x:Key="BoldTextBlock" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
+        <Setter Property="FontWeight" Value="Bold" />
+    </Style>
+    <Style x:Key="MediumTextBlock" TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}">
         <Setter Property="FontWeight" Value="Medium" />
-        <Setter Property="Margin" Value="5" />
-        <Setter Property="HorizontalAlignment" Value="Left" />
     </Style>
     <Duration x:Key="ExpandDuration">0:0:0.250</Duration>
     <Duration x:Key="CollapseDuration">0:0:0.200</Duration>
@@ -113,7 +113,6 @@
 
     <Style x:Key="MaterialDesignVerticalHeaderStyle" TargetType="{x:Type ToggleButton}">
         <Setter Property="Background" Value="Transparent" />
-
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
@@ -134,7 +133,6 @@
                                 <ToggleButton.Style>
                                     <Style TargetType="{x:Type ToggleButton}" BasedOn="{StaticResource MaterialDesignExpanderToggleButton}">
                                         <Style.Triggers>
-
                                             <DataTrigger Binding="{Binding ExpandDirection, RelativeSource={RelativeSource AncestorType=notification:Notification, AncestorLevel=1}}" Value="Left">
                                                 <Setter Property="RenderTransform">
                                                     <Setter.Value>
@@ -142,7 +140,6 @@
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
-
                                             <DataTrigger Binding="{Binding ExpandDirection, RelativeSource={RelativeSource AncestorType=notification:Notification, AncestorLevel=1}}" Value="Right">
                                                 <Setter Property="RenderTransform">
                                                     <Setter.Value>
@@ -150,7 +147,6 @@
                                                     </Setter.Value>
                                                 </Setter>
                                             </DataTrigger>
-
                                         </Style.Triggers>
                                     </Style>
                                 </ToggleButton.Style>
@@ -169,10 +165,13 @@
             </Setter.Value>
         </Setter>
     </Style>
+
+    <!-- Notification Template -->
     <ControlTemplate x:Key="NotificationControlTemplate" TargetType="{x:Type notification:Notification}">
         <ControlTemplate.Resources>
             <converters:ExpanderRotateAngleConverter x:Key="ExpanderRotateAngleConverter" />
             <Style TargetType="materialDesign:PackIcon" BasedOn="{StaticResource {x:Type materialDesign:PackIcon}}">
+                <Setter Property="Kind" Value="BellAlert"></Setter>
                 <Style.Triggers>
                     <DataTrigger Binding="{Binding NotificationType, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
                                              Value="{x:Static enums:NotificationType.Warning}">
@@ -283,23 +282,22 @@
                     </VisualState>
                 </VisualStateGroup>
             </VisualStateManager.VisualStateGroups>
-            <DockPanel Background="{TemplateBinding Background}"
-                       >
+            <DockPanel Background="{TemplateBinding Background}">
                 <ToggleButton Name="HeaderSite"
-                                              Background="{TemplateBinding materialDesign:ExpanderAssist.HeaderBackground}"
-                                              BorderThickness="0"
-                                              Content="{TemplateBinding Header}"
-                                              ContentStringFormat="{TemplateBinding HeaderStringFormat}"
-                                              ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                              ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
-                                              Cursor="Hand"
-                                              DockPanel.Dock="Top"
-                                              Focusable="False"
-                                              Foreground="{TemplateBinding Foreground}"
-                                              IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
-                                              IsTabStop="False"
-                                              Opacity="0.87"
-                                              TextElement.FontSize="{TemplateBinding materialDesign:ExpanderAssist.HeaderFontSize}" />
+                              Background="{TemplateBinding materialDesign:ExpanderAssist.HeaderBackground}"
+                              BorderThickness="0"
+                              Content="{TemplateBinding Header}"
+                              ContentStringFormat="{TemplateBinding HeaderStringFormat}"
+                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                              ContentTemplateSelector="{TemplateBinding HeaderTemplateSelector}"
+                              Cursor="Hand"
+                              DockPanel.Dock="Top"
+                              Focusable="False"
+                              Foreground="{TemplateBinding Foreground}"
+                              IsChecked="{Binding Path=IsExpanded, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                              IsTabStop="False"
+                              Opacity="0.87"
+                              TextElement.FontSize="{TemplateBinding materialDesign:ExpanderAssist.HeaderFontSize}" />
 
                 <Border Name="ContentSite" Margin="2 0" BorderThickness="0 1 0 0" BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
                     <Border.LayoutTransform>
@@ -310,7 +308,7 @@
                     </Border.LayoutTransform>
 
                     <Grid Name="ContentPanel"
-                                      Margin="0 0 0 0"
+                          Margin="0 0 0 0"
                       HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                       VerticalAlignment="{TemplateBinding VerticalContentAlignment}">
                         <Grid.LayoutTransform>
@@ -351,6 +349,7 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
 
+    <!-- Notification Style -->
     <Style x:Key="NotificationStyle" TargetType="{x:Type notification:Notification}">
         <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
         <Setter Property="BorderThickness" Value="0" />
@@ -466,5 +465,10 @@
         </Setter>
     </Style>
 
-    <Style TargetType="{x:Type notification:Notification}" BasedOn="{StaticResource NotificationStyle}" />
+    <Style TargetType="{x:Type notification:Notification}" BasedOn="{StaticResource NotificationStyle}">
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding TextTrimming, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification} }}" Value="NoWrap"></DataTrigger>
+        </Style.Triggers>
+        <Setter Property="TextBlock.MaxHeight" Value="150" />
+    </Style>
 </ResourceDictionary>

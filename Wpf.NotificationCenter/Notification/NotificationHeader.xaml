@@ -16,7 +16,7 @@
         </Grid.ColumnDefinitions>
         <materialDesign:PackIcon Grid.Column="0"
             VerticalAlignment="Center"
-            Kind="BellAlert" />
+            />
         <Label Grid.Column="1">
             <TextBlock FontWeight="{Binding TitleWeight, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
                        TextWrapping="Wrap" Text="{Binding Title, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}" />

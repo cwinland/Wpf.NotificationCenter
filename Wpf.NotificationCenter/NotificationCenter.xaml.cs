@@ -125,10 +125,7 @@ namespace Wpf.NotificationCenter
         public double AlertMaxWidth
         {
             get => (double) GetValue(AlertMaxWidthProperty);
-            set
-            {
-                SetValue(AlertMaxWidthProperty, value);
-            }
+            set => SetValue(AlertMaxWidthProperty, value);
         }
 
         /// <summary>
@@ -277,6 +274,18 @@ namespace Wpf.NotificationCenter
             DisplayNotes.CollectionChanged += (_, _) => OnPropertyChanged(nameof(DisplayNotes));
         }
 
+        public static readonly DependencyProperty IsItemsAscendingProperty = DependencyProperty.Register(
+            nameof(IsItemsAscending),
+            typeof(bool),
+            typeof(NotificationCenter),
+            new PropertyMetadata(false)
+        );
+
+        public bool IsItemsAscending
+        {
+            get => (bool) GetValue(IsItemsAscendingProperty);
+            set => SetValue(IsItemsAscendingProperty, value);
+        }
         /// <summary>
         ///     Called when [property changed].
         /// </summary>
@@ -289,7 +298,7 @@ namespace Wpf.NotificationCenter
             notification.IsExpanded = false;
             notification.ShowExpander = true;
             notification.Expanded += Refresh;
-
+            notification.IsClickable = true;
             Notifications.Add(notification);
 
             if (MaxNotifications > 0 && Notifications.Count > MaxNotifications && Notifications.Any(x => !x.Unread))

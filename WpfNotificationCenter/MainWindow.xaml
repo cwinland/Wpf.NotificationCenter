@@ -28,6 +28,7 @@
                                                AlertMaxWidth="175"
                                                MaxNotifications="10"
                                                BorderBrush="Blue"
+                                               IsItemsAscending="False"
                                                Grid.Row="0">
             <notificationCenter:NotificationCenter.Header>
                 <Grid>
@@ -67,6 +68,7 @@
                                                AlertMaxWidth="175"
                                                MaxNotifications="10"
                                                BorderBrush="Blue"
+                                               IsItemsAscending="True"
                                                Grid.Row="1">
             <notificationCenter:NotificationCenter.Header>
                 <Grid>

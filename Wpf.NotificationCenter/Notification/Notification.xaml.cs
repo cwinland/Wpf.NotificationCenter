@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.Input;
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
@@ -79,9 +80,16 @@ namespace Wpf.NotificationCenter.Notification
             new PropertyMetadata(true)
         );
 
+        private bool isClickable;
+        private TextTrimming textTrimming = TextTrimming.WordEllipsis;
+
+        private double trimmedHeight;
+
         #endregion
-        
+
         #region Properties
+
+        public DateTime CreatedOn { get; } = DateTime.Now;
 
         /// <summary>
         ///     Gets or sets the display time.
@@ -89,11 +97,36 @@ namespace Wpf.NotificationCenter.Notification
         /// <value>The display time.</value>
         public TimeSpan DisplayTime { get; set; } = TimeSpan.FromSeconds(5);
 
+        public ICommand ExpandCommand =>
+            new RelayCommand(() =>
+                {
+                    if (textTrimming != TextTrimming.None && !double.IsPositiveInfinity(MaxHeight))
+                    {
+                        trimmedHeight = MaxHeight;
+                    }
+
+                    TextTrimming = TextTrimming == TextTrimming.None ? TextTrimming.WordEllipsis : TextTrimming.None;
+
+                    MaxHeight = textTrimming != TextTrimming.None ? trimmedHeight : double.PositiveInfinity;
+                }
+            );
+
         /// <summary>
         ///     Gets the expander visibility.
         /// </summary>
         /// <value>The expander visibility.</value>
         public Visibility ExpanderVisibility => ShowExpander ? Visibility.Visible : Visibility.Collapsed;
+
+        public bool IsClickable
+        {
+            get => isClickable;
+            set
+            {
+                isClickable = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(TextTooltip));
+            }
+        }
 
         /// <summary>
         ///     Gets or sets the type of the notification.
@@ -127,6 +160,22 @@ namespace Wpf.NotificationCenter.Notification
         {
             get => GetValue(TextProperty)?.ToString();
             set => SetValue(TextProperty, value ?? string.Empty);
+        }
+
+        public string TextTooltip =>
+            IsClickable
+                ? (TextTrimming == TextTrimming.None ? "Click to shrink text." : "Click to expand text.") + TextContent?.Text
+                : TextContent?.Text ?? string.Empty;
+
+        public TextTrimming TextTrimming
+        {
+            get => textTrimming;
+            set
+            {
+                textTrimming = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(TextTooltip));
+            }
         }
 
         /// <summary>
@@ -164,7 +213,8 @@ namespace Wpf.NotificationCenter.Notification
         #endregion
 
         /// <summary>
-        ///     Initializes static members of the <see cref="Notification"/> class. Overrides the default metadata from the control base to Notification.
+        ///     Initializes static members of the <see cref="Notification" /> class. Overrides the default metadata from the
+        ///     control base to Notification.
         /// </summary>
         static Notification() => DefaultStyleKeyProperty?.OverrideMetadata(typeof(Notification), new FrameworkPropertyMetadata(typeof(Notification)));
 
