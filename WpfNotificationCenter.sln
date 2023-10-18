@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34202.233
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfNotificationCenter", "WpfNotificationCenter\WpfNotificationCenter.csproj", "{38C4112C-7573-41B8-8F91-E99DF042D4D6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WpfNotificationCenter", "WpfNotificationCenter\WpfNotificationCenter.csproj", "{38C4112C-7573-41B8-8F91-E99DF042D4D6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.NotificationCenter", "Wpf.NotificationCenter\Wpf.NotificationCenter.csproj", "{C99B78AE-3165-4BFE-8E69-43F09A2725B6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Wpf.NotificationCenter", "Wpf.NotificationCenter\Wpf.NotificationCenter.csproj", "{C99B78AE-3165-4BFE-8E69-43F09A2725B6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wpf.NotificationCenter.Tests", "Wpf.NotificationCenter.Tests\Wpf.NotificationCenter.Tests.csproj", "{8DE0C6D3-738E-4907-B8A2-7848AE0A4E16}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{C99B78AE-3165-4BFE-8E69-43F09A2725B6}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C99B78AE-3165-4BFE-8E69-43F09A2725B6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C99B78AE-3165-4BFE-8E69-43F09A2725B6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8DE0C6D3-738E-4907-B8A2-7848AE0A4E16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8DE0C6D3-738E-4907-B8A2-7848AE0A4E16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8DE0C6D3-738E-4907-B8A2-7848AE0A4E16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8DE0C6D3-738E-4907-B8A2-7848AE0A4E16}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

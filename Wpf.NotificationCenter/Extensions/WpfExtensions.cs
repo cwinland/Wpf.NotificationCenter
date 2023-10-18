@@ -1,6 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using System.Collections.Generic;
-using System.Linq;
+using System.Diagnostics.CodeAnalysis;
 using System.Windows;
 using System.Windows.Controls;
 using Wpf.NotificationCenter.Services;
@@ -12,6 +11,12 @@ namespace Wpf.NotificationCenter.Extensions
     /// </summary>
     public static class WpfExtensions
     {
+        /// <summary>
+        ///     Uses the WPF notification center.
+        /// </summary>
+        /// <param name="services">The services.</param>
+        /// <returns>Uses the WPF notification center.</returns>
+        [ExcludeFromCodeCoverage]
         public static IServiceCollection UseWpfNotificationCenter(this IServiceCollection services)
         {
             services.AddSingleton<IWpfNotificationService, WpfNotificationService>()
@@ -31,12 +36,13 @@ namespace Wpf.NotificationCenter.Extensions
         ///     If not matching item can be found,
         ///     a null parent is being returned.
         /// </returns>
+        [ExcludeFromCodeCoverage]
         internal static T? FindChild<T>(this DependencyObject? parent, string? childName = "") where T : DependencyObject
         {
             // Confirm parent and childName are valid.
             parent ??= Application.Current.MainWindow;
 
-            T foundChild = null;
+            T? foundChild = null;
             IEnumerable<DependencyObject> children = LogicalTreeHelper.GetChildren(parent).OfType<DependencyObject>();
 
             foreach (var child in children)
@@ -44,7 +50,7 @@ namespace Wpf.NotificationCenter.Extensions
                 if (child is not T childType)
                 {
                     // recursively drill down the tree
-                    foundChild = FindChild<T>(child, childName);
+                    foundChild = child.FindChild<T>(childName);
 
                     // If the child is found, break so we do not overwrite the found child. 
                     if (foundChild != null)
@@ -78,51 +84,44 @@ namespace Wpf.NotificationCenter.Extensions
         /// </summary>
         /// <param name="parent">The parent.</param>
         /// <param name="child">The child.</param>
+        [ExcludeFromCodeCoverage]
         internal static void RemoveChild(this DependencyObject parent, UIElement child)
         {
-            var panel = parent as Panel;
-
-            if (panel != null)
+            switch (parent)
             {
-                panel.Children.Remove(child);
-                return;
-            }
-
-            var decorator = parent as Decorator;
-
-            if (decorator != null)
-            {
-                if (decorator.Child == child)
+                case Panel panel:
+                    panel.Children.Remove(child);
+                    return;
+                case Decorator decorator:
                 {
-                    decorator.Child = null;
+                    if (decorator.Child == child)
+                    {
+                        decorator.Child = null;
+                    }
+
+                    return;
                 }
-
-                return;
-            }
-
-            var contentPresenter = parent as ContentPresenter;
-
-            if (contentPresenter != null)
-            {
-                if (contentPresenter.Content == child)
+                case ContentPresenter contentPresenter:
                 {
-                    contentPresenter.Content = null;
+                    if (Equals(contentPresenter.Content, child))
+                    {
+                        contentPresenter.Content = null;
+                    }
+
+                    return;
                 }
-
-                return;
-            }
-
-            var contentControl = parent as ContentControl;
-
-            if (contentControl != null)
-            {
-                if (contentControl.Content == child)
+                case ContentControl contentControl:
                 {
-                    contentControl.Content = null;
-                }
-            }
+                    if (Equals(contentControl.Content, child))
+                    {
+                        contentControl.Content = null;
+                    }
 
-            // maybe more
+                    break;
+                }
+                default:
+                    throw new NotSupportedException($"{parent.GetType().Name} not supported.");
+            }
         }
     }
 }

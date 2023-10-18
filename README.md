@@ -15,6 +15,7 @@
 - [Installation](#installation)
 - [Example Images](#example-images)
 - [Customization](#customization)
+- [API Documentation](./Help/index.html)
 - [Release Notes](#release-notes)
 
 ## Installation
@@ -130,6 +131,10 @@ NoAlertIcon           | PackIconKind | Notifications | False     | The icon when
 Most of the look / feel is defined in the generic.xaml file. Primary theme styles are inherited from the theme of the site.
 
 [Click here to view the theme - generic.xaml](https://raw.githubusercontent.com/cwinland/Wpf.NotificationCenter/master/Wpf.NotificationCenter/Themes/Generic.xaml)
+
+## API Documentation
+
+[API Documentation](./Help/index.html)
 
 ## Release Notes
 

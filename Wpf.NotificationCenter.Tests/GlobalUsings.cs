@@ -1,0 +1,10 @@
+global using Xunit;
+global using FastMoq;
+global using Moq;
+global using FluentAssertions;
+global using Wpf.NotificationCenter;
+global using Wpf.NotificationCenter.Converters;
+global using Wpf.NotificationCenter.Enums;
+global using Wpf.NotificationCenter.Extensions;
+global using Wpf.NotificationCenter.Models;
+global using Wpf.NotificationCenter.Services;

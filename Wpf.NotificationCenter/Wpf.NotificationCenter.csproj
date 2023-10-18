@@ -1,7 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFrameworks>net6.0-windows;net7.0-windows</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <LangVersion>latest</LangVersion>
+    <GeneratePackageOnBuild>False</GeneratePackageOnBuild>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
     <EnableWindowsTargeting>true</EnableWindowsTargeting>
@@ -12,7 +15,7 @@
     <Copyright>copyright(c) 2023</Copyright>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <RepositoryUrl>https://github.com/cwinland/Wpf.NotificationCenter</RepositoryUrl>
-    <PackageTags>alerts;toast;notifications;customizable;wpf</PackageTags>
+    <PackageTags>alerts;toast;notifications;customizable;wpf;notification</PackageTags>
     <PackageLicenseFile>license.txt</PackageLicenseFile>
   </PropertyGroup>
 
