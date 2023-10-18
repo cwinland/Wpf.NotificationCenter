@@ -383,7 +383,7 @@
                     <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
                             BorderThickness="{Binding BorderThickness, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
                             Background="{Binding AlertButtonBackground, NotifyOnSourceUpdated=True, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
-                        <Grid >
+                        <Grid>
                             <Grid.ColumnDefinitions>
                                 <ColumnDefinition Width="*" />
                                 <ColumnDefinition Width="Auto" MinWidth="32" />

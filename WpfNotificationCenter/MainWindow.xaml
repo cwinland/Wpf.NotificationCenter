@@ -29,6 +29,11 @@
                                                MaxNotifications="10"
                                                BorderBrush="Blue"
                                                IsItemsAscending="False"
+
+                                               NewAlertIcon="BellAlert"
+                                               NoAlertIcon="BellCancel"
+                                               AlertMaxHeight="200"
+                                               AlertButtonBackground="Gray"
                                                Grid.Row="0">
             <notificationCenter:NotificationCenter.Header>
                 <Grid>

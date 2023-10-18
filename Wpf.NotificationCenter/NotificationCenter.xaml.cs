@@ -33,17 +33,7 @@ namespace Wpf.NotificationCenter
         #region Fields
 
         /// <summary>
-        ///     The notifications visibility property
-        /// </summary>
-        public static readonly DependencyProperty NotificationsVisibilityProperty = DependencyProperty.Register(
-            nameof(NotificationsVisibility),
-            typeof(Visibility),
-            typeof(NotificationCenter),
-            new PropertyMetadata(Visibility.Collapsed, Refresh)
-        );
-
-        /// <summary>
-        ///     Creates new alertcolorproperty.
+        ///     Color of the icon when there is a new alert.
         /// </summary>
         public static readonly DependencyProperty NewAlertColorProperty = DependencyProperty.Register(
             nameof(NewAlertColor),
@@ -53,7 +43,7 @@ namespace Wpf.NotificationCenter
         );
 
         /// <summary>
-        ///     The no alert color property
+        ///     Color of the icon when there are no unread alerts.
         /// </summary>
         public static readonly DependencyProperty NoAlertColorProperty = DependencyProperty.Register(
             nameof(NoAlertColor),
@@ -63,17 +53,7 @@ namespace Wpf.NotificationCenter
         );
 
         /// <summary>
-        ///     The notifications visible property
-        /// </summary>
-        public static readonly DependencyProperty NotificationsVisibleProperty = DependencyProperty.Register(
-            nameof(NotificationsVisible),
-            typeof(bool),
-            typeof(NotificationCenter),
-            new PropertyMetadata(default(bool), Refresh)
-        );
-
-        /// <summary>
-        ///     The no alert icon property
+        ///     The icon when there are no unread alerts.
         /// </summary>
         public static readonly DependencyProperty NoAlertIconProperty = DependencyProperty.Register(
             nameof(NoAlertIcon),
@@ -83,7 +63,7 @@ namespace Wpf.NotificationCenter
         );
 
         /// <summary>
-        ///     The icon used for indication of new alerts
+        ///     The icon when there is a new alert.
         /// </summary>
         public static readonly DependencyProperty NewAlertIconProperty = DependencyProperty.Register(
             nameof(NewAlertIcon),
@@ -93,7 +73,7 @@ namespace Wpf.NotificationCenter
         );
 
         /// <summary>
-        ///     The alert maximum height property
+        ///     The alert text content maximum height in the alert center.
         /// </summary>
         public static readonly DependencyProperty AlertMaxHeightProperty = DependencyProperty.Register(
             nameof(AlertMaxHeight),
@@ -103,7 +83,7 @@ namespace Wpf.NotificationCenter
         );
 
         /// <summary>
-        ///     The alert maximum width property
+        ///     The alert maximum width property of the notification center popup.
         /// </summary>
         public static readonly DependencyProperty AlertMaxWidthProperty = DependencyProperty.Register(
             nameof(AlertMaxWidth),
@@ -132,6 +112,9 @@ namespace Wpf.NotificationCenter
             new PropertyMetadata(false)
         );
 
+        /// <summary>
+        ///     The background of the header that is not in the provided content (alert button area).
+        /// </summary>
         public static readonly DependencyProperty AlertButtonBackgroundProperty = DependencyProperty.Register(
             nameof(AlertButtonBackground),
             typeof(SolidColorBrush),
@@ -140,11 +123,16 @@ namespace Wpf.NotificationCenter
         );
 
         private readonly SolidColorBrush defaultColor = Brushes.Black;
+        private bool notificationsVisible;
 
         #endregion
 
         #region Properties
 
+        /// <summary>
+        ///     Gets or sets the alert button background.
+        /// </summary>
+        /// <value>The alert button background.</value>
         public SolidColorBrush AlertButtonBackground
         {
             get => (SolidColorBrush) GetValue(AlertButtonBackgroundProperty);
@@ -285,11 +273,7 @@ namespace Wpf.NotificationCenter
         ///     Gets or sets the notifications visibility.
         /// </summary>
         /// <value>The notifications visibility.</value>
-        public Visibility NotificationsVisibility
-        {
-            get => (Visibility) GetValue(NotificationsVisibilityProperty);
-            set => SetValue(NotificationsVisibilityProperty, value);
-        }
+        public Visibility NotificationsVisibility => NotificationsVisible ? Visibility.Visible : Visibility.Collapsed;
 
         /// <summary>
         ///     Gets or sets a value indicating whether [notifications visible].
@@ -297,11 +281,12 @@ namespace Wpf.NotificationCenter
         /// <value><c>true</c> if [notifications visible]; otherwise, <c>false</c>.</value>
         public bool NotificationsVisible
         {
-            get => (bool) GetValue(NotificationsVisibleProperty);
+            get => notificationsVisible;
             set
             {
-                SetValue(NotificationsVisibleProperty, value);
-                SetValue(NotificationsVisibilityProperty, value ? Visibility.Visible : Visibility.Collapsed);
+                notificationsVisible = value;
+                OnPropertyChanged();
+                OnPropertyChanged(nameof(NotificationsVisibility));
             }
         }
 
@@ -341,8 +326,10 @@ namespace Wpf.NotificationCenter
         ///     Called when [property changed].
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
+        {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         internal void CreateNotificationAlert(Notification.Notification notification)
         {
