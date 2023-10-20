@@ -44,5 +44,14 @@ jobs:
       - name: Creating a package
         run: dotnet pack Wpf.NotificationCenter/Wpf.NotificationCenter.csproj --no-build -c Release -o . /p:PackageVersion=${{ env.VERSION }}
 
-      - name: Publish to Nuget 
-        run: dotnet nuget push *.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate -n 
+      - name: Push to NuGet
+        id: push
+        run: |
+          OUTPUT=$(dotnet nuget push *.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate)
+          echo "$OUTPUT"
+          if [[ $OUTPUT == *"Your package was pushed"* ]]; then
+            echo "Push successful"
+          else
+            echo "Push failed"
+            exit 1
+          fi
