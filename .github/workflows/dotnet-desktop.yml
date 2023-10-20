@@ -1,10 +1,11 @@
 name: publish to nuget
 on:
+  release:
+    types: [published]
   push:
     branches:
       - master # Release branch
     paths:
-      - Wpf.NotificationCenter/**
       - .github/workflows/**
       
 jobs:
@@ -24,9 +25,16 @@ jobs:
       # Publish
       - name: Build FastMoq
         run: dotnet build Wpf.NotificationCenter/Wpf.NotificationCenter.csproj -c Release
-      
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Get latest tag
+        id: gettag
+        run: echo ::set-output name=TAG::$(git describe --tags $(git rev-list --tags --max-count=1))
+
       - name: Creating a package
-        run: dotnet pack Wpf.NotificationCenter/Wpf.NotificationCenter.csproj --no-build -c Release -o .
+        run: dotnet pack Wpf.NotificationCenter/Wpf.NotificationCenter.csproj --no-build -c Release -o . /p:PackageVersion=${{ steps.gettag.outputs.TAG }}
 
       - name: Publish to Nuget 
         run: dotnet nuget push *.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate -n 
