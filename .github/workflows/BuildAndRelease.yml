@@ -29,17 +29,17 @@ jobs:
       - name: Fetch all tags
         run: git fetch --tags
 
-     - name: Validate and set version
-  id: validate
-  run: |
-    TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
-    VERSION=${TAG#v} # Remove 'v' from the beginning of the tag
-    if [[ $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$ ]]; then
-      echo ::set-output name=VERSION::$VERSION
-    else
-      echo "Error: Latest tag ($TAG) is not a valid SemVer version"
-      exit 1
-    fi
+      - name: Validate and set version
+        id: validate
+        run: |
+          TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+          VERSION=${TAG#v} # Remove 'v' from the beginning of the tag
+          if [[ $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$ ]]; then
+            echo ::set-output name=VERSION::$VERSION
+          else
+            echo "Error: Latest tag ($TAG) is not a valid SemVer version"
+            exit 1
+          fi
 
       - name: Creating a package
         run: dotnet pack Wpf.NotificationCenter/Wpf.NotificationCenter.csproj --no-build -c Release -o . /p:PackageVersion=${{ steps.gettag.outputs.TAG }}
