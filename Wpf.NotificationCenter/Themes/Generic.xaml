@@ -385,7 +385,6 @@
 
     <!-- Notification Style -->
     <Style x:Key="NotificationStyle" TargetType="{x:Type notification:Notification}">
-        <Setter Property="Background" Value="{DynamicResource MaterialDesign.Brush.Background}" />
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
