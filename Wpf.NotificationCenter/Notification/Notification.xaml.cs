@@ -1,5 +1,4 @@
-﻿using CommunityToolkit.Mvvm.Input;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
@@ -89,6 +88,9 @@ namespace Wpf.NotificationCenter.Notification
             new PropertyMetadata(true)
         );
 
+        /// <summary>
+        ///     The remove notification command property
+        /// </summary>
         public static readonly DependencyProperty RemoveNotificationCommandProperty = DependencyProperty.Register(
             nameof(RemoveNotificationCommand),
             typeof(ICommand),
@@ -96,8 +98,17 @@ namespace Wpf.NotificationCenter.Notification
             new PropertyMetadata(default(ICommand))
         );
 
+        /// <summary>
+        ///     The alert type property
+        /// </summary>
+        public static readonly DependencyProperty AlertTypeProperty = DependencyProperty.Register(
+            nameof(AlertType),
+            typeof(AlertType),
+            typeof(Notification),
+            new PropertyMetadata(default(AlertType))
+        );
+
         private bool isClickable;
-        private TextTrimming textTrimming = TextTrimming.WordEllipsis;
 
         #endregion
 
@@ -114,6 +125,16 @@ namespace Wpf.NotificationCenter.Notification
         }
 
         /// <summary>
+        ///     Gets or sets the type of the alert.
+        /// </summary>
+        /// <value>The type of the alert.</value>
+        public AlertType AlertType
+        {
+            get => (AlertType) GetValue(AlertTypeProperty);
+            set => SetValue(AlertTypeProperty, value);
+        }
+
+        /// <summary>
         ///     Gets the created on.
         /// </summary>
         /// <value>The created on.</value>
@@ -124,14 +145,6 @@ namespace Wpf.NotificationCenter.Notification
         /// </summary>
         /// <value>The display time.</value>
         public TimeSpan DisplayTime { get; set; } = TimeSpan.FromSeconds(5);
-
-        /// <summary>
-        ///     Gets the expand command.
-        /// </summary>
-        /// <value>The expand command.</value>
-        public ICommand ExpandCommand =>
-            new RelayCommand(() => { SetTextTrimming(TextTrimming == TextTrimming.None ? TextTrimming.WordEllipsis : TextTrimming.None); }
-            );
 
         /// <summary>
         ///     Gets the expander visibility.
@@ -150,7 +163,6 @@ namespace Wpf.NotificationCenter.Notification
             {
                 isClickable = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(TextTooltip));
             }
         }
 
@@ -164,6 +176,10 @@ namespace Wpf.NotificationCenter.Notification
             set => SetValue(NotificationTypeProperty, value);
         }
 
+        /// <summary>
+        ///     Gets or sets the remove notification command.
+        /// </summary>
+        /// <value>The remove notification command.</value>
         public ICommand RemoveNotificationCommand
         {
             get => (ICommand) GetValue(RemoveNotificationCommandProperty);
@@ -192,30 +208,6 @@ namespace Wpf.NotificationCenter.Notification
         {
             get => GetValue(TextProperty)?.ToString();
             set => SetValue(TextProperty, value ?? string.Empty);
-        }
-
-        /// <summary>
-        ///     Gets the text tooltip.
-        /// </summary>
-        /// <value>The text tooltip.</value>
-        public string TextTooltip =>
-            IsClickable
-                ? (TextTrimming == TextTrimming.None ? "Click to shrink text." : "Click to expand text.") + TextContent?.Text
-                : TextContent?.Text ?? string.Empty;
-
-        /// <summary>
-        ///     Gets or sets the text trimming.
-        /// </summary>
-        /// <value>The text trimming.</value>
-        public TextTrimming TextTrimming
-        {
-            get => textTrimming;
-            set
-            {
-                textTrimming = value;
-                OnPropertyChanged();
-                OnPropertyChanged(nameof(TextTooltip));
-            }
         }
 
         /// <summary>
@@ -283,12 +275,8 @@ namespace Wpf.NotificationCenter.Notification
             ShowExpander = notification.ShowExpander;
         }
 
-        public void SetTextTrimming(TextTrimming trimming)
-        {
-            TextTrimming = trimming;
-            TextContent.MaxHeight = textTrimming != TextTrimming.None ? AlertMaxHeight : double.PositiveInfinity;
-        }
-
+        //TextContent.MaxHeight = textTrimming != TextTrimming.None ? AlertMaxHeight : double.PositiveInfinity;
+        //ButtonContent.MaxHeight = TextContent.MaxHeight;
         /// <inheritdoc />
         protected override void OnExpanded()
         {

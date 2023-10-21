@@ -8,6 +8,7 @@ using System.Windows.Controls;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
+using Wpf.NotificationCenter.Enums;
 
 namespace Wpf.NotificationCenter
 {
@@ -77,7 +78,7 @@ namespace Wpf.NotificationCenter
             nameof(AlertMaxHeight),
             typeof(double),
             typeof(NotificationCenter),
-            new PropertyMetadata(150d)
+            new PropertyMetadata(200d)
         );
 
         /// <summary>
@@ -113,12 +114,12 @@ namespace Wpf.NotificationCenter
         /// <summary>
         ///     The background of the header that is not in the provided content (alert button area).
         /// </summary>
-        public static readonly DependencyProperty AlertButtonBackgroundProperty = DependencyProperty.Register(
-            nameof(AlertButtonBackground),
-            typeof(SolidColorBrush),
-            typeof(NotificationCenter),
-            new PropertyMetadata(Brushes.Transparent)
-        );
+        //public static readonly DependencyProperty AlertButtonBackgroundProperty = DependencyProperty.Register(
+        //    nameof(AlertButtonBackground),
+        //    typeof(SolidColorBrush),
+        //    typeof(NotificationCenter),
+        //    new PropertyMetadata(Brushes.Transparent)
+        //);
 
         private readonly SolidColorBrush defaultColor = Brushes.Black;
         private bool notificationsVisible;
@@ -128,14 +129,34 @@ namespace Wpf.NotificationCenter
         #region Properties
 
         /// <summary>
+        ///     The button alignment property
+        /// </summary>
+        public static readonly DependencyProperty ButtonHorizontalAlignmentProperty = DependencyProperty.Register(
+            nameof(ButtonHorizontalAlignment),
+            typeof(HorizontalAlignment),
+            typeof(NotificationCenter),
+            new PropertyMetadata(System.Windows.HorizontalAlignment.Right)
+        );
+
+        /// <summary>
+        ///     Gets or sets the button alignment.
+        /// </summary>
+        /// <value>The button alignment.</value>
+        public HorizontalAlignment ButtonHorizontalAlignment
+        {
+            get => (HorizontalAlignment) GetValue(ButtonHorizontalAlignmentProperty);
+            set => SetValue(ButtonHorizontalAlignmentProperty, value);
+        }
+
+        /// <summary>
         ///     Gets or sets the alert button background.
         /// </summary>
         /// <value>The alert button background.</value>
-        public SolidColorBrush AlertButtonBackground
-        {
-            get => (SolidColorBrush) GetValue(AlertButtonBackgroundProperty);
-            set => SetValue(AlertButtonBackgroundProperty, value);
-        }
+        //public SolidColorBrush AlertButtonBackground
+        //{
+        //    get => (SolidColorBrush) GetValue(AlertButtonBackgroundProperty);
+        //    set => SetValue(AlertButtonBackgroundProperty, value);
+        //}
 
         /// <summary>
         ///     Gets or sets the maximum height of the alert.
@@ -297,7 +318,6 @@ namespace Wpf.NotificationCenter
                 foreach (var notification in Notifications)
                 {
                     notification.IsExpanded = false;
-                    notification.SetTextTrimming(TextTrimming.WordEllipsis);
                 }
 
                 NotificationsVisible = !NotificationsVisible;
@@ -309,8 +329,9 @@ namespace Wpf.NotificationCenter
         static NotificationCenter() =>
             DefaultStyleKeyProperty?.OverrideMetadata(typeof(NotificationCenter), new FrameworkPropertyMetadata(typeof(NotificationCenter)));
 
+        /// <inheritdoc />
         /// <summary>
-        ///     Initializes a new instance of the <see cref="NotificationCenter" /> class.
+        ///     Initializes a new instance of the <see cref="T:Wpf.NotificationCenter.NotificationCenter" /> class.
         /// </summary>
         public NotificationCenter()
         {
@@ -324,19 +345,17 @@ namespace Wpf.NotificationCenter
         ///     Called when [property changed].
         /// </summary>
         /// <param name="propertyName">Name of the property.</param>
-        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null)
-        {
+        protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
 
         internal void CreateNotificationAlert(Notification.Notification notification)
         {
+            notification.AlertType = AlertType.NotificationCenter;
             notification.IsExpanded = false;
             notification.ShowExpander = true;
             notification.Expanded += Refresh;
             notification.IsClickable = true;
             notification.AlertMaxHeight = AlertMaxHeight;
-            notification.SetTextTrimming(TextTrimming.WordEllipsis);
             notification.RemoveNotificationCommand = new RelayCommand<Notification.Notification>(RemoveNotification);
 
             Notifications.Add(notification);
@@ -354,38 +373,41 @@ namespace Wpf.NotificationCenter
         {
             var newNote = new Notification.Notification(notification)
             {
-                MinWidth = ActualWidth / 4,
                 ShowExpander = false,
                 IsExpanded = true,
-                AlertMaxHeight = double.PositiveInfinity
+                AlertType = AlertType.NotificationPopup,
+                MaxHeight = AlertMaxHeight,
             };
 
-            newNote.SetTextTrimming(TextTrimming.None);
-
-            DisplayNotes.Add(newNote);
-
-            var timer = new DispatcherTimer(notification.DisplayTime,
-                DispatcherPriority.Render,
-                TimerCallback,
-                Dispatcher.CurrentDispatcher
-            );
-
-            newNote.OnClicked += TimerCallback;
-
-            timer.Start();
-
-            void TimerCallback(object? sender, EventArgs? args)
+            try
             {
-                if (sender is DispatcherTimer t)
+                DisplayNotes.Add(newNote);
+
+                var timer = new DispatcherTimer(notification.DisplayTime,
+                    DispatcherPriority.Render,
+                    TimerCallback,
+                    Dispatcher.CurrentDispatcher
+                );
+
+                newNote.OnClicked += TimerCallback;
+
+                timer.Start();
+
+                void TimerCallback(object? sender, EventArgs? args)
                 {
-                    t.Stop();
+                    if (sender is DispatcherTimer t)
+                    {
+                        t.Stop();
+                    }
+
+                    DisplayNotes.Remove(newNote);
+                    OnPropertyChanged(nameof(DisplayNotes));
                 }
-
-                DisplayNotes.Remove(newNote);
-                OnPropertyChanged(nameof(DisplayNotes));
             }
-
-            Refresh();
+            finally
+            {
+                Refresh();
+            }
         }
 
         internal void Refresh(object? sender = null, EventArgs? args = null)

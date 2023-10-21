@@ -59,7 +59,7 @@ namespace WpfNotificationCenter
 
         private void OnDispatcherUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
-            string errorMessage = $"An unhandled exception occurred: {e.Exception.Message}";
+            var errorMessage = $"An unhandled exception occurred: {e.Exception.Message}";
             MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
             //Log.Error(errorMessage, e.Exception);
 

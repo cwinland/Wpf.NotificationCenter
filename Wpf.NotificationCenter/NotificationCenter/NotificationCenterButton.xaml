@@ -1,0 +1,49 @@
+﻿<ContentControl x:Class="Wpf.NotificationCenter.NotificationCenterButton"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:nc="clr-namespace:Wpf.NotificationCenter"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             xmlns:sys="clr-namespace:System;assembly=System.Runtime"
+             mc:Ignorable="d"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="Transparent" ZIndex="900">
+        <!-- Notification Center Button -->
+        <Button Height="Auto"
+                Margin="0"
+                VerticalAlignment="Stretch"
+                HorizontalAlignment="Stretch"
+                Padding="5 0"
+                MaxHeight="{x:Static sys:Double.PositiveInfinity}"
+                Command="{Binding ToggleCommand, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon VerticalAlignment="Center">
+                    <materialDesign:PackIcon.Style>
+                        <Style TargetType="materialDesign:PackIcon">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding NewAlert, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}"
+                                             Value="True">
+                                    <Setter Property="Foreground" Value="{Binding NewAlertColor, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
+                                    <Setter Property="Kind" Value="{Binding NewAlertIcon, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding NewAlert, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}"
+                                             Value="False">
+                                    <Setter Property="Foreground" Value="{Binding NoAlertColor, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
+                                    <Setter Property="Kind" Value="{Binding NoAlertIcon, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </materialDesign:PackIcon.Style>
+                </materialDesign:PackIcon>
+                <Label Content="{Binding NewNotificationCount, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
+            </StackPanel>
+        </Button>
+
+        <!-- Alert Center Popup -->
+        <nc:NotificationPopup StaysOpen="False"
+                              Placement="Bottom"
+                              Width="{Binding AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}"
+                              IsOpen="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
+    </Grid>
+</ContentControl>

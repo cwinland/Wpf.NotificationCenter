@@ -9,7 +9,7 @@
              d:DataContext="{d:DesignInstance Type=notification:Notification}"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid ToolTip="{Binding NotificationType}">
+    <Grid ToolTip="{Binding Title}">
         <Grid.RowDefinitions>
             <RowDefinition />
             <RowDefinition />

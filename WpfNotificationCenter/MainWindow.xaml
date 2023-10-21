@@ -29,11 +29,10 @@
                                                MaxNotifications="10"
                                                BorderBrush="Blue"
                                                IsItemsAscending="False"
-
+                                               ButtonHorizontalAlignment="Right"
                                                NewAlertIcon="BellAlert"
                                                NoAlertIcon="BellCancel"
                                                AlertMaxHeight="200"
-                                               AlertButtonBackground="Gray"
                                                Grid.Row="0">
             <notificationCenter:NotificationCenter.Header>
                 <Grid>
@@ -77,7 +76,7 @@
                                                Grid.Row="1">
             <notificationCenter:NotificationCenter.Header>
                 <Grid>
-                    <Label FontWeight="Bold">Notification Center 2</Label>
+                    <Label FontWeight="Bold" Background="Aqua">Notification Center 2</Label>
                 </Grid>
             </notificationCenter:NotificationCenter.Header>
             <notificationCenter:NotificationCenter.Content>

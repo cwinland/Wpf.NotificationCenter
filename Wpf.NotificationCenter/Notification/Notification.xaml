@@ -4,39 +4,14 @@
           xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
           xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification"
-          xmlns:system="clr-namespace:System;assembly=System.Runtime"
-          mc:Ignorable="d" 
+          mc:Ignorable="d"
            d:DataContext="{d:DesignInstance Type=notification:Notification}"
            MouseDown="Notification_OnMouseDown"
            d:DesignHeight="450" d:DesignWidth="800">
-    <Expander.Resources>
-        <Style x:Key="ContentTextStyle" TargetType="{x:Type TextBlock}">
-            <Setter Property="HorizontalAlignment" Value="Left" />
-            <Setter Property="Margin" Value="0" />
-            <Setter Property="Padding" Value="0" />
-            <Setter Property="MaxHeight" Value="{Binding AlertMaxHeight}" />
-            <Setter Property="TextWrapping" Value="WrapWithOverflow" />
-            <Setter Property="IsHitTestVisible" Value="True" />
-            <Setter Property="TextTrimming" Value="{Binding TextTrimming}" />
-            <Setter Property="ToolTip" Value="{Binding TextTooltip, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}" />
-            <Setter Property="Text" Value="{Binding Text, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}" />
-        </Style>
-    </Expander.Resources>
     <Expander.Header>
         <notification:NotificationHeader />
     </Expander.Header>
     <Expander.Content>
-        <Button Grid.Column="0" IsHitTestVisible="{Binding IsClickable}"
-                Background="Transparent"
-                Height="Auto"
-                MaxHeight="{x:Static system:Double.PositiveInfinity}"
-                Command="{Binding ExpandCommand}"
-                ToolTip="{Binding TextTooltip, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}"
-                CommandParameter="{Binding ElementName=TextContent }"
-                BorderThickness="0">
-            <TextBlock x:Name="TextContent"
-                       Style="{StaticResource ContentTextStyle}"
-                       />
-        </Button>
+        <TextBox Style="{StaticResource NotificationTextStyle}" />
     </Expander.Content>
 </Expander>

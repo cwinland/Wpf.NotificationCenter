@@ -114,6 +114,7 @@ An extra long message will automatically be collapsed, indicated by the ellipses
 AlertButtonBackground | Brushes      | Transparent   | False     | The background of the header that is not in the provided content (alert button area).
 AlertMaxWidth         | Double       | Auto          | False     | The alert maximum width property of the notification center popup.
 AlertMaxHeight        | Double       | 150           | False     | The alert text content maximum height in the alert center.
+ButtonHorizontalAlignment | HorizontalAlignment | Right | False | Indicates the placement of the Alert Center.
 BorderBrush="Blue"    | Brushes      | Transparent   | True      | Used for line colors in notification center and / or headers.
 IsItemsAscending      | Boolean      | False         | False     | Indicates the order of alerts in the notification center.
 MaxNotifications      | Byte         | 0 (Unlimited) | False     | The upper limit of notifications allowed in the alert center. Oldest are removed when this number is exceeded.
