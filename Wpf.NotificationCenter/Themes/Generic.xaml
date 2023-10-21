@@ -48,6 +48,7 @@
         <Setter Property="MaxHeight" Value="{Binding AlertMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}" />
         <Setter Property="Text" Value="{Binding Text, RelativeSource={RelativeSource AncestorType={x:Type notification:Notification}}}" />
     </Style>
+
     <Style x:Key="MaterialDesignExpanderToggleButton" TargetType="{x:Type ToggleButton}">
         <Setter Property="Template">
             <Setter.Value>
@@ -388,7 +389,6 @@
         <Setter Property="Foreground" Value="Black" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="HorizontalAlignment" Value="{Binding ButtonHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
         <Setter Property="Template" Value="{DynamicResource NotificationControlTemplate}" />
         <Setter Property="VerticalContentAlignment" Value="Top" />
         <Setter Property="materialDesign:ExpanderAssist.HeaderBackground" Value="Transparent" />
@@ -442,7 +442,7 @@
                                           >
                                 <ItemsControl.Resources>
                                     <Style TargetType="{x:Type notification:Notification}" BasedOn="{StaticResource NotificationStyle}">
-                                        <Setter Property="Width" Value="350" />
+                                        <Setter Property="Background" Value="Wheat" />
                                     </Style>
                                 </ItemsControl.Resources>
                             </ItemsControl>

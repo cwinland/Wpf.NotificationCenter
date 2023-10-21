@@ -6,8 +6,7 @@
           xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification"
           mc:Ignorable="d"
            d:DataContext="{d:DesignInstance Type=notification:Notification}"
-           MouseDown="Notification_OnMouseDown"
-           d:DesignHeight="450" d:DesignWidth="800">
+          d:DesignHeight="450" d:DesignWidth="800">
     <Expander.Header>
         <notification:NotificationHeader />
     </Expander.Header>

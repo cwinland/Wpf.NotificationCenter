@@ -112,14 +112,14 @@ namespace Wpf.NotificationCenter
         );
 
         /// <summary>
-        ///     The background of the header that is not in the provided content (alert button area).
+        ///     The button alignment property
         /// </summary>
-        //public static readonly DependencyProperty AlertButtonBackgroundProperty = DependencyProperty.Register(
-        //    nameof(AlertButtonBackground),
-        //    typeof(SolidColorBrush),
-        //    typeof(NotificationCenter),
-        //    new PropertyMetadata(Brushes.Transparent)
-        //);
+        public static readonly DependencyProperty ButtonHorizontalAlignmentProperty = DependencyProperty.Register(
+            nameof(ButtonHorizontalAlignment),
+            typeof(HorizontalAlignment),
+            typeof(NotificationCenter),
+            new PropertyMetadata(HorizontalAlignment.Right)
+        );
 
         private readonly SolidColorBrush defaultColor = Brushes.Black;
         private bool notificationsVisible;
@@ -127,36 +127,6 @@ namespace Wpf.NotificationCenter
         #endregion
 
         #region Properties
-
-        /// <summary>
-        ///     The button alignment property
-        /// </summary>
-        public static readonly DependencyProperty ButtonHorizontalAlignmentProperty = DependencyProperty.Register(
-            nameof(ButtonHorizontalAlignment),
-            typeof(HorizontalAlignment),
-            typeof(NotificationCenter),
-            new PropertyMetadata(System.Windows.HorizontalAlignment.Right)
-        );
-
-        /// <summary>
-        ///     Gets or sets the button alignment.
-        /// </summary>
-        /// <value>The button alignment.</value>
-        public HorizontalAlignment ButtonHorizontalAlignment
-        {
-            get => (HorizontalAlignment) GetValue(ButtonHorizontalAlignmentProperty);
-            set => SetValue(ButtonHorizontalAlignmentProperty, value);
-        }
-
-        /// <summary>
-        ///     Gets or sets the alert button background.
-        /// </summary>
-        /// <value>The alert button background.</value>
-        //public SolidColorBrush AlertButtonBackground
-        //{
-        //    get => (SolidColorBrush) GetValue(AlertButtonBackgroundProperty);
-        //    set => SetValue(AlertButtonBackgroundProperty, value);
-        //}
 
         /// <summary>
         ///     Gets or sets the maximum height of the alert.
@@ -176,6 +146,16 @@ namespace Wpf.NotificationCenter
         {
             get => (double) GetValue(AlertMaxWidthProperty);
             set => SetValue(AlertMaxWidthProperty, value);
+        }
+
+        /// <summary>
+        ///     Gets or sets the button alignment.
+        /// </summary>
+        /// <value>The button alignment.</value>
+        public HorizontalAlignment ButtonHorizontalAlignment
+        {
+            get => (HorizontalAlignment) GetValue(ButtonHorizontalAlignmentProperty);
+            set => SetValue(ButtonHorizontalAlignmentProperty, value);
         }
 
         /// <summary>
@@ -326,6 +306,10 @@ namespace Wpf.NotificationCenter
 
         #endregion
 
+        /// <summary>
+        ///     Initializes static members of the <see cref="NotificationCenter"/> class.
+        /// </summary>
+        /// <remarks>Sets the Style key to NotificationCenter.</remarks>
         static NotificationCenter() =>
             DefaultStyleKeyProperty?.OverrideMetadata(typeof(NotificationCenter), new FrameworkPropertyMetadata(typeof(NotificationCenter)));
 
@@ -357,7 +341,6 @@ namespace Wpf.NotificationCenter
             notification.IsClickable = true;
             notification.AlertMaxHeight = AlertMaxHeight;
             notification.RemoveNotificationCommand = new RelayCommand<Notification.Notification>(RemoveNotification);
-
             Notifications.Add(notification);
 
             if (MaxNotifications > 0 && Notifications.Count > MaxNotifications && Notifications.Any(x => !x.Unread))
@@ -395,6 +378,12 @@ namespace Wpf.NotificationCenter
 
                 void TimerCallback(object? sender, EventArgs? args)
                 {
+                    // Don't close notification if the mouse is over it.
+                    if (newNote.IsMouseOver)
+                    {
+                        return;
+                    }
+
                     if (sender is DispatcherTimer t)
                     {
                         t.Stop();

@@ -270,7 +270,6 @@ namespace Wpf.NotificationCenter.Notification
             Title = notification.Title;
             Text = notification.Text;
             NotificationType = notification.NotificationType;
-            Background = Brushes.Wheat;
             IsExpanded = notification.IsExpanded;
             ShowExpander = notification.ShowExpander;
         }
@@ -290,7 +289,5 @@ namespace Wpf.NotificationCenter.Notification
         /// <param name="propertyName">Name of the property.</param>
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-
-        private void Notification_OnMouseDown(object sender, MouseButtonEventArgs e) => OnClicked?.Invoke(sender, e);
     }
 }

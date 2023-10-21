@@ -8,13 +8,6 @@
         xmlns:enums="clr-namespace:Wpf.NotificationCenter.Enums;assembly=Wpf.NotificationCenter" d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Window.Resources>
-        <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/Wpf.NotificationCenter;component/Themes/Generic.xaml" />
-            </ResourceDictionary.MergedDictionaries>
-        </ResourceDictionary>
-    </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*" />
@@ -58,46 +51,6 @@
                     </Button>
                     <Button 
                         Command="{Binding DataContext.CreateNotificationCommand, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                        CommandParameter="{x:Static enums:NotificationType.Warning}">
-                        Create Warning Notification
-                    </Button>
-                </StackPanel>
-            </notificationCenter:NotificationCenter.Content>
-        </notificationCenter:NotificationCenter>
-        <notificationCenter:NotificationCenter x:Name="NotificationCenter2"
-                                               VerticalAlignment="Stretch"
-                                               HorizontalAlignment="Stretch"
-                                               NewAlertColor="GoldenRod"
-                                               NoAlertColor="Gray"
-                                               AlertMaxWidth="175"
-                                               MaxNotifications="10"
-                                               BorderBrush="Blue"
-                                               IsItemsAscending="True"
-                                               Grid.Row="1">
-            <notificationCenter:NotificationCenter.Header>
-                <Grid>
-                    <Label FontWeight="Bold" Background="Aqua">Notification Center 2</Label>
-                </Grid>
-            </notificationCenter:NotificationCenter.Header>
-            <notificationCenter:NotificationCenter.Content>
-                <StackPanel>
-                    <Button 
-                        Command="{Binding DataContext.CreateNotification2Command, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                        CommandParameter="{x:Static enums:NotificationType.Information}">
-                        Create Info Notification
-                    </Button>
-                    <Button 
-                        Command="{Binding DataContext.CreateNotification2Command, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                        CommandParameter="{x:Static enums:NotificationType.Success}">
-                        Create Success Notification
-                    </Button>
-                    <Button 
-                        Command="{Binding DataContext.CreateNotification2Command, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                        CommandParameter="{x:Static enums:NotificationType.Error}">
-                        Create Error Notification
-                    </Button>
-                    <Button 
-                        Command="{Binding DataContext.CreateNotification2Command, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                         CommandParameter="{x:Static enums:NotificationType.Warning}">
                         Create Warning Notification
                     </Button>

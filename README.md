@@ -40,18 +40,20 @@ Choose one:
   - Install Wpf.NotificationCenter as a Cake Tool
     - ``` #tool nuget:?package=Wpf.NotificationCenter&version=1.0.0 ```
 
+### App.xaml (Add Theme)
+
+- Include theme resource dictionary
+
+  ``` xaml
+  <ResourceDictionary Source="pack://application:,,,/Wpf.NotificationCenter;component/Themes/Generic.xaml" />
+  ```
+
 ### MainWindow.xaml (Add Notification Center)
 
 - Add namespace
   
   ``` xaml
   xmlns:notificationCenter="clr-namespace:Wpf.NotificationCenter;assembly=Wpf.NotificationCenter"
-  ```
-
-- Include theme resource dictionary
-
-  ``` xaml
-  <ResourceDictionary Source="pack://application:,,,/Wpf.NotificationCenter;component/Themes/Generic.xaml" />
   ```
 
 - Add Notification Center with content inside.
@@ -66,7 +68,6 @@ Choose one:
         AlertMaxWidth="175"
         MaxNotifications="10"
         BorderBrush="Blue"
-        AlertButtonBackground="#27252F"
         IsItemsAscending="False">
         <notificationCenter:NotificationCenter.Header>
             <!-- Header Content -->
@@ -109,19 +110,18 @@ An extra long message will automatically be collapsed, indicated by the ellipses
 
 ### Notification Center Element Properties
 
-| Property            | Value Type   | Default       | Inherited | Description
-:---------------------|:-------------|:--------------|:---------:|:-----------
-AlertButtonBackground | Brushes      | Transparent   | False     | The background of the header that is not in the provided content (alert button area).
-AlertMaxWidth         | Double       | Auto          | False     | The alert maximum width property of the notification center popup.
-AlertMaxHeight        | Double       | 150           | False     | The alert text content maximum height in the alert center.
-ButtonHorizontalAlignment | HorizontalAlignment | Right | False | Indicates the placement of the Alert Center.
-BorderBrush="Blue"    | Brushes      | Transparent   | True      | Used for line colors in notification center and / or headers.
-IsItemsAscending      | Boolean      | False         | False     | Indicates the order of alerts in the notification center.
-MaxNotifications      | Byte         | 0 (Unlimited) | False     | The upper limit of notifications allowed in the alert center. Oldest are removed when this number is exceeded.
-NewAlertColor         | Brushes      | Goldenrod     | False     | Color of the icon when there is a new alert.
-NewAlertIcon          | PackIconKind | BellAlert     | False     | The icon when there is a new alert.
-NoAlertColor          | Brushes      | Black         | False     | Color of the icon when there are no unread alerts.
-NoAlertIcon           | PackIconKind | Notifications | False     | The icon when there are no unread alerts.
+| Property                | Value Type          | Default       | Inherited | Description
+:-------------------------|:--------------------|:--------------|:---------:|:-----------
+AlertMaxHeight            | Double              | 150           | False     | The alert text content maximum height in the alert center.
+AlertMaxWidth             | Double              | Auto          | False     | The alert maximum width property of the notification center popup.
+ButtonHorizontalAlignment | HorizontalAlignment | Right         | False     | Indicates the placement of the Alert Center.
+BorderBrush               | Brushes             | Transparent   | True      | Used for line colors in notification center and / or headers.
+IsItemsAscending          | Boolean             | False         | False     | Indicates the order of alerts in the notification center.
+MaxNotifications          | Byte                | 0 (Unlimited) | False     | The upper limit of notifications allowed in the alert center. Oldest are removed when this number is exceeded.
+NewAlertColor             | Brushes             | Goldenrod     | False     | Color of the icon when there is a new alert.
+NewAlertIcon              | PackIconKind        | BellAlert     | False     | The icon when there is a new alert.
+NoAlertColor              | Brushes             | Black         | False     | Color of the icon when there are no unread alerts.
+NoAlertIcon               | PackIconKind        | Notifications | False     | The icon when there are no unread alerts.
 
 #### Example
 
