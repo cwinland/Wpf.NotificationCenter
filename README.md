@@ -47,6 +47,20 @@ Choose one:
   ``` xaml
   <ResourceDictionary Source="pack://application:,,,/Wpf.NotificationCenter;component/Themes/Generic.xaml" />
   ```
+  
+### App.xaml.cs (update the services collection)
+
+- Add using statement
+  
+  ``` c#
+  using Wpf.NotificationCenter.Extensions;
+  ```
+
+- Add the services to the collection:
+  
+  ``` c#
+  services.UseWpfNotificationCenter();
+  ```
 
 ### MainWindow.xaml (Add Notification Center)
 
@@ -81,20 +95,6 @@ Choose one:
         </notificationCenter:NotificationCenter.Content>
   </notificationCenter:NotificationCenter> ```
 
-### App.xaml.cs (update the services collection)
-
-- Add using statement
-  
-  ``` c#
-  using Wpf.NotificationCenter.Extensions;
-  ```
-
-- Add the services to the collection:
-  
-  ``` c#
-  services.UseWpfNotificationCenter();
-  ```
-
 ## Example Images
 
 |                          |                          |
@@ -103,8 +103,6 @@ Notification Center resides in the header. | Toast notifications can be shown.
 <img src="Resources/image-8.png" alt="Image of the notification center residing in the header" width="200" /> | <img src="Resources/image-1.png" alt="Image of an error toast notification" width="200" />
 Alert center Notification with collapsed message. | Alert center Notification with expanded message.
 <img src="Resources/image-2.png" alt="Image of an error collapsed in the notification center" width="200" /> | <img src="Resources/image-3.png" alt="Image of an error expanded in the notification center" width="200" />
-An extra long message will automatically be collapsed, indicated by the ellipses. | An extra long message can be expanded by clicking on the collapsed message.
-<img src="Resources/image-5.png" alt="Image of collapsed extra long message" width="200" /> | <img src="Resources/image-6.png" alt="Image of expanded extra long message" width="200" />
 
 ## Customization
 

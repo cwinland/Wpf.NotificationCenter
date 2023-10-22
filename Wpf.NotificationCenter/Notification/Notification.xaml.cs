@@ -2,7 +2,6 @@
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Input;
-using System.Windows.Media;
 using Wpf.NotificationCenter.Enums;
 
 namespace Wpf.NotificationCenter.Notification
@@ -108,6 +107,16 @@ namespace Wpf.NotificationCenter.Notification
             new PropertyMetadata(default(AlertType))
         );
 
+        /// <summary>
+        ///     The created on visibility property
+        /// </summary>
+        public static readonly DependencyProperty CreatedOnVisibilityProperty = DependencyProperty.Register(
+            nameof(CreatedOnVisibility),
+            typeof(Visibility),
+            typeof(Notification),
+            new PropertyMetadata(default(Visibility))
+        );
+
         private bool isClickable;
 
         #endregion
@@ -139,6 +148,16 @@ namespace Wpf.NotificationCenter.Notification
         /// </summary>
         /// <value>The created on.</value>
         public DateTime CreatedOn { get; } = DateTime.Now;
+
+        /// <summary>
+        ///     Gets or sets the created on visibility.
+        /// </summary>
+        /// <value>The created on visibility.</value>
+        public Visibility CreatedOnVisibility
+        {
+            get => (Visibility) GetValue(CreatedOnVisibilityProperty);
+            set => SetValue(CreatedOnVisibilityProperty, value);
+        }
 
         /// <summary>
         ///     Gets or sets the display time.

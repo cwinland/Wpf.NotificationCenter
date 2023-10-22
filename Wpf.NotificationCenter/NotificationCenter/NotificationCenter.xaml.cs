@@ -9,6 +9,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using Wpf.NotificationCenter.Enums;
+using Note = Wpf.NotificationCenter.Notification.Notification;
 
 namespace Wpf.NotificationCenter
 {
@@ -174,7 +175,7 @@ namespace Wpf.NotificationCenter
         ///     Gets or sets the display notes.
         /// </summary>
         /// <value>The display notes.</value>
-        public ObservableCollection<Notification.Notification> DisplayNotes { get; set; } = new();
+        public ObservableCollection<Note> DisplayNotes { get; set; } = new();
 
         /// <summary>
         ///     Gets or sets a value indicating whether this instance is items ascending.
@@ -266,7 +267,7 @@ namespace Wpf.NotificationCenter
         ///     Gets the notifications.
         /// </summary>
         /// <value>The notifications.</value>
-        public ObservableCollection<Notification.Notification> Notifications { get; } = new();
+        public ObservableCollection<Note> Notifications { get; } = new();
 
         /// <summary>
         ///     Gets or sets the notifications visibility.
@@ -332,7 +333,7 @@ namespace Wpf.NotificationCenter
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
-        internal void CreateNotificationAlert(Notification.Notification notification)
+        internal Note CreateNotificationAlert(Note notification)
         {
             notification.AlertType = AlertType.NotificationCenter;
             notification.IsExpanded = false;
@@ -340,7 +341,7 @@ namespace Wpf.NotificationCenter
             notification.Expanded += Refresh;
             notification.IsClickable = true;
             notification.AlertMaxHeight = AlertMaxHeight;
-            notification.RemoveNotificationCommand = new RelayCommand<Notification.Notification>(RemoveNotification);
+            notification.RemoveNotificationCommand = new RelayCommand<Note>(RemoveNotification);
             Notifications.Add(notification);
 
             if (MaxNotifications > 0 && Notifications.Count > MaxNotifications && Notifications.Any(x => !x.Unread))
@@ -350,16 +351,19 @@ namespace Wpf.NotificationCenter
             }
 
             Refresh();
+
+            return notification;
         }
 
-        internal void CreateNotificationPopup(Notification.Notification notification)
+        internal Note CreateNotificationPopup(Note notification)
         {
-            var newNote = new Notification.Notification(notification)
+            var newNote = new Note(notification)
             {
                 ShowExpander = false,
                 IsExpanded = true,
                 AlertType = AlertType.NotificationPopup,
                 MaxHeight = AlertMaxHeight,
+                CreatedOnVisibility = Visibility.Hidden,
             };
 
             try
@@ -397,6 +401,8 @@ namespace Wpf.NotificationCenter
             {
                 Refresh();
             }
+
+            return newNote;
         }
 
         internal void Refresh(object? sender = null, EventArgs? args = null)
@@ -411,7 +417,7 @@ namespace Wpf.NotificationCenter
             OnPropertyChanged(nameof(NewAlert));
         }
 
-        internal void RemoveNotification(Notification.Notification? notification)
+        internal void RemoveNotification(Note? notification)
         {
             if (notification == null)
             {

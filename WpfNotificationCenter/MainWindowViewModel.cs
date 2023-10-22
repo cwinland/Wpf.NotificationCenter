@@ -25,17 +25,6 @@ namespace WpfNotificationCenter
 
         #region Properties
 
-        public ICommand CreateNotification2Command => new RelayCommand<NotificationType>(t =>
-            {
-                notificationService.Create($"{t} {DateTime.Now.ToLongTimeString()}",
-                    $"{t}\n{DateTime.Now}",
-                    t,
-                    "NotificationCenter2",
-                    AlertType.NotificationCenter
-                );
-            }
-        );
-
         public ICommand CreateNotificationCommand => new RelayCommand<NotificationType>(t =>
             {
                 notificationService.Create($"{t} {DateTime.Now.ToLongTimeString()}",
