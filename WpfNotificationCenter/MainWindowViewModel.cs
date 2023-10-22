@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Wpf.NotificationCenter.Enums;
@@ -23,13 +25,22 @@ namespace WpfNotificationCenter
 
         #endregion
 
-        #region Properties
+        public string AlertText { get; set; } = "Alert Text";
+        public List<AlertType> AlertTypes => Enum.GetValues<AlertType>().ToList();
+        public List<NotificationType> NotificationTypes => Enum.GetValues<NotificationType>().ToList();
 
-        public ICommand CreateNotificationCommand => new RelayCommand<NotificationType>(t =>
+        #region Properties
+        public NotificationType SelectedNotificationType { get; set; }
+        public AlertType SelectedAlertType { get; set; }
+
+        public ICommand CreateNotificationCommand => new RelayCommand(() =>
             {
-                notificationService.Create($"{t} {DateTime.Now.ToLongTimeString()}",
-                    $"kls lasdfng oksdnf lgk;sndfkljg nserdoig jseriog jseoirpgj seopirg jseporgjsedprog jnserpog jserpoig sjeroigp sjeroipg sjeoirg jseroipgjseroig j\n dfhng iousdhf kjlasdbfnkjl asnrdfiklja slern fgljksednrfg kljsenrg oisenrg kjnsergoi nseroikg nseior gosiper gjseoirg nsekljrng soielrgn soeipr jgseriogj seorigj seroipg jseroigj seroipg jseroipg jseroip gjseroipg jesaoirgpj\nsndfkljawn fkjlasdnf kjlawenf iulajwenf iuawen fjklawenf iuawlen faiowuef nwaeiukjln{t}\n{DateTime.Now}",
-                    t
+                var alertType = SelectedAlertType;
+                var notificationType = SelectedNotificationType;
+
+                notificationService.Create($"{notificationType} {DateTime.Now.ToLongTimeString()}",
+                    AlertText,
+                    notificationType, alertType: alertType
                 );
             }
         );

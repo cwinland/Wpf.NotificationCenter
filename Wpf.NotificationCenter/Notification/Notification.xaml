@@ -11,6 +11,6 @@
         <notification:NotificationHeader />
     </Expander.Header>
     <Expander.Content>
-        <TextBox Style="{StaticResource NotificationTextStyle}" />
+        <TextBox Style="{StaticResource NotificationTextStyle}" BorderThickness="0" />
     </Expander.Content>
 </Expander>

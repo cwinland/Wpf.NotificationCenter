@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:notificationCenter="clr-namespace:Wpf.NotificationCenter;assembly=Wpf.NotificationCenter"
         xmlns:local="clr-namespace:WpfNotificationCenter"
-        xmlns:enums="clr-namespace:Wpf.NotificationCenter.Enums;assembly=Wpf.NotificationCenter" d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
+        d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
     <Grid>
@@ -33,28 +33,30 @@
                 </Grid>
             </notificationCenter:NotificationCenter.Header>
             <notificationCenter:NotificationCenter.Content>
-                <StackPanel>
-                    <Button 
-                        Command="{Binding DataContext.CreateNotificationCommand, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                        CommandParameter="{x:Static enums:NotificationType.Information}">
-                        Create Info Notification
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                        <ComboBox Grid.Row="0" Grid.Column="0"
+                                  SelectedItem="{Binding DataContext.SelectedAlertType, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                                  ItemsSource="{Binding DataContext.AlertTypes, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
+                        <ComboBox Grid.Row="0" Grid.Column="1"
+                                  SelectedItem="{Binding DataContext.SelectedNotificationType, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                                  ItemsSource="{Binding DataContext.NotificationTypes, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                        />
+                    </StackPanel>
+                    <StackPanel Grid.Row="1" Orientation="Vertical" Grid.Column="0" Grid.ColumnSpan="2">
+                        <Label>Alert text:</Label>
+                        <TextBox MaxLines="5" TextWrapping="Wrap" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}" HorizontalAlignment="Stretch" Text="{Binding DataContext.AlertText, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"></TextBox>
+                    </StackPanel>
+                    <Button  Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                        Command="{Binding DataContext.CreateNotificationCommand, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}">
+                        Create Notification
                     </Button>
-                    <Button 
-                        Command="{Binding DataContext.CreateNotificationCommand, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                        CommandParameter="{x:Static enums:NotificationType.Success}">
-                        Create Success Notification
-                    </Button>
-                    <Button 
-                        Command="{Binding DataContext.CreateNotificationCommand, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                        CommandParameter="{x:Static enums:NotificationType.Error}">
-                        Create Error Notification
-                    </Button>
-                    <Button 
-                        Command="{Binding DataContext.CreateNotificationCommand, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                        CommandParameter="{x:Static enums:NotificationType.Warning}">
-                        Create Warning Notification
-                    </Button>
-                </StackPanel>
+                </Grid>
             </notificationCenter:NotificationCenter.Content>
         </notificationCenter:NotificationCenter>
     </Grid>
