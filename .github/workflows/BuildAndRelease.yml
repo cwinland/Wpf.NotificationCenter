@@ -1,0 +1,57 @@
+name: publish to nuget
+on:
+  release:
+    types: [published]
+  push:
+    branches:
+      - master # Release branch
+    paths:
+      - .github/workflows/**
+      
+jobs:
+  publish:
+    name: build, pack & publish
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 7.0.x
+          
+      # Publish
+      - name: Build FastMoq
+        run: dotnet build Wpf.NotificationCenter/Wpf.NotificationCenter.csproj -c Release
+
+      - name: Fetch all tags
+        run: git fetch --tags
+
+      - name: Validate and set version
+        id: validate
+        run: |
+          TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
+          VERSION=${TAG#v} # Remove 'v' from the beginning of the tag
+          if [[ $VERSION =~ ^[0-9]+\.[0-9]+\.[0-9]+(-[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?(\+[0-9A-Za-z-]+(\.[0-9A-Za-z-]+)*)?$ ]]; then
+            echo "VERSION=$VERSION" >> $GITHUB_ENV
+          else
+            echo "Error: Latest tag ($TAG) is not a valid SemVer version"
+            exit 1
+          fi
+
+      - name: Creating a package
+        run: dotnet pack Wpf.NotificationCenter/Wpf.NotificationCenter.csproj --no-build -c Release -o . /p:PackageVersion=${{ env.VERSION }}
+
+      - name: Push to NuGet
+        id: push
+        run: |
+          OUTPUT=$(dotnet nuget push *.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGET_API_KEY}} --skip-duplicate)
+          echo "$OUTPUT"
+          if [[ $OUTPUT == *"Your package was pushed"* ]]; then
+            echo "Push successful"
+          else
+            echo "Push failed"
+            exit 1
+          fi
