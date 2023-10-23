@@ -42,7 +42,7 @@ jobs:
           fi
 
       - name: Creating a package
-        run: dotnet pack Wpf.NotificationCenter/Wpf.NotificationCenter.csproj --no-build -c Release -o . /p:PackageVersion=${{ env.VERSION }}
+        run: dotnet pack Wpf.NotificationCenter/Wpf.NotificationCenter.csproj --no-build -c Release -o . /p:PackageVersion=1.1.3
 
       - name: Push to NuGet
         id: push
