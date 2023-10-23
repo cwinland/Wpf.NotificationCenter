@@ -23,7 +23,7 @@ jobs:
           dotnet-version: 7.0.x
           
       # Publish
-      - name: Build FastMoq
+      - name: Build Application
         run: dotnet build Wpf.NotificationCenter/Wpf.NotificationCenter.csproj -c Release
 
       - name: Fetch all tags
