@@ -23,10 +23,14 @@
                                                BorderBrush="Blue"
                                                IsItemsAscending="False"
                                                ButtonHorizontalAlignment="Right"
+                                               ButtonVerticalAlignment="Bottom"
+                                               PopupPlacement="Bottom"
                                                NewAlertIcon="BellAlert"
                                                NoAlertIcon="BellCancel"
                                                AlertMaxHeight="200"
-                                               ShowNotificationCenterButton="True"
+                                               ShowButtonInHeader="True"
+                                               ShowButtonInContent="False"
+                                               ButtonZIndex="5000"
                                                Grid.Row="0">
             <notificationCenter:NotificationCenter.Header>
                 <Grid>
@@ -35,7 +39,7 @@
             </notificationCenter:NotificationCenter.Header>
             <notificationCenter:NotificationCenter.Content>
                 <StackPanel>
-                    <StackPanel Grid.Row="0" Orientation="Horizontal">
+                    <StackPanel Orientation="Horizontal">
                         <ComboBox SelectedItem="{Binding DataContext.SelectedAlertType, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                   ItemsSource="{Binding DataContext.AlertTypes, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
                         <ComboBox SelectedItem="{Binding DataContext.SelectedNotificationType, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"

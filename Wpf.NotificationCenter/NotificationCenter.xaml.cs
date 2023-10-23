@@ -5,6 +5,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
@@ -31,6 +32,16 @@ namespace Wpf.NotificationCenter
         #endregion
 
         #region Fields
+
+        /// <summary>
+        ///     The button z index property
+        /// </summary>
+        public static readonly DependencyProperty ButtonZIndexProperty = DependencyProperty.Register(
+            nameof(ButtonZIndex),
+            typeof(int),
+            typeof(NotificationCenter),
+            new UIPropertyMetadata(999)
+        );
 
         /// <summary>
         ///     Color of the icon when there is a new alert.
@@ -79,7 +90,7 @@ namespace Wpf.NotificationCenter
             nameof(AlertMaxHeight),
             typeof(double),
             typeof(NotificationCenter),
-            new PropertyMetadata(200d)
+            new UIPropertyMetadata(200d)
         );
 
         /// <summary>
@@ -89,17 +100,7 @@ namespace Wpf.NotificationCenter
             nameof(AlertMaxWidth),
             typeof(double),
             typeof(NotificationCenter),
-            new PropertyMetadata(double.NaN, Refresh)
-        );
-
-        /// <summary>
-        ///     The show notification center button property
-        /// </summary>
-        public static readonly DependencyProperty ShowNotificationCenterButtonProperty = DependencyProperty.Register(
-            nameof(ShowNotificationCenterButton),
-            typeof(bool),
-            typeof(NotificationCenter),
-            new PropertyMetadata(true)
+            new UIPropertyMetadata(double.NaN, Refresh)
         );
 
         /// <summary>
@@ -129,7 +130,47 @@ namespace Wpf.NotificationCenter
             nameof(ButtonHorizontalAlignment),
             typeof(HorizontalAlignment),
             typeof(NotificationCenter),
-            new PropertyMetadata(HorizontalAlignment.Right)
+            new UIPropertyMetadata(HorizontalAlignment.Right)
+        );
+
+        /// <summary>
+        ///     The show button in header property
+        /// </summary>
+        public static readonly DependencyProperty ShowButtonInHeaderProperty = DependencyProperty.Register(
+            nameof(ShowButtonInHeader),
+            typeof(bool),
+            typeof(NotificationCenter),
+            new PropertyMetadata(true)
+        );
+
+        /// <summary>
+        ///     The show button in content property
+        /// </summary>
+        public static readonly DependencyProperty ShowButtonInContentProperty = DependencyProperty.Register(
+            nameof(ShowButtonInContent),
+            typeof(bool),
+            typeof(NotificationCenter),
+            new PropertyMetadata(false)
+        );
+
+        /// <summary>
+        ///     The button vertical alignment property
+        /// </summary>
+        public static readonly DependencyProperty ButtonVerticalAlignmentProperty = DependencyProperty.Register(
+            nameof(ButtonVerticalAlignment),
+            typeof(VerticalAlignment),
+            typeof(NotificationCenter),
+            new UIPropertyMetadata(default(VerticalAlignment))
+        );
+
+        /// <summary>
+        ///     The popup placement property
+        /// </summary>
+        public static readonly DependencyProperty PopupPlacementProperty = DependencyProperty.Register(
+            nameof(PopupPlacement),
+            typeof(PlacementMode),
+            typeof(NotificationCenter),
+            new FrameworkPropertyMetadata(PlacementMode.Bottom)
         );
 
         private readonly SolidColorBrush defaultColor = Brushes.Black;
@@ -167,6 +208,26 @@ namespace Wpf.NotificationCenter
         {
             get => (HorizontalAlignment) GetValue(ButtonHorizontalAlignmentProperty);
             set => SetValue(ButtonHorizontalAlignmentProperty, value);
+        }
+
+        /// <summary>
+        ///     Gets or sets the button vertical alignment.
+        /// </summary>
+        /// <value>The button vertical alignment.</value>
+        public VerticalAlignment ButtonVerticalAlignment
+        {
+            get => (VerticalAlignment) GetValue(ButtonVerticalAlignmentProperty);
+            set => SetValue(ButtonVerticalAlignmentProperty, value);
+        }
+
+        /// <summary>
+        ///     Gets or sets the index of the button z.
+        /// </summary>
+        /// <value>The index of the button z.</value>
+        public int ButtonZIndex
+        {
+            get => (int) GetValue(ButtonZIndexProperty);
+            set => SetValue(ButtonZIndexProperty, value);
         }
 
         /// <summary>
@@ -284,13 +345,6 @@ namespace Wpf.NotificationCenter
         public ObservableCollection<Note> Notifications { get; } = new();
 
         /// <summary>
-        ///     Gets or sets the notifications visibility.
-        /// </summary>
-        /// <value>The notifications visibility.</value>
-        /// <exclude />
-        public Visibility NotificationsVisibility => NotificationsVisible ? Visibility.Visible : Visibility.Collapsed;
-
-        /// <summary>
         ///     Gets or sets a value indicating whether [notifications visible].
         /// </summary>
         /// <value><c>true</c> if [notifications visible]; otherwise, <c>false</c>.</value>
@@ -301,18 +355,95 @@ namespace Wpf.NotificationCenter
             {
                 notificationsVisible = value;
                 OnPropertyChanged();
-                OnPropertyChanged(nameof(NotificationsVisibility));
             }
         }
 
         /// <summary>
-        ///     Gets or sets a value indicating whether [show notification center button].
+        ///     Gets or sets the popup placement.
         /// </summary>
-        /// <value><c>true</c> if [show notification center button]; otherwise, <c>false</c>.</value>
-        public bool ShowNotificationCenterButton
+        /// <value>The popup placement.</value>
+        public PlacementMode PopupPlacement
         {
-            get => (bool) GetValue(ShowNotificationCenterButtonProperty);
-            set => SetValue(ShowNotificationCenterButtonProperty, value);
+            get => (PlacementMode) GetValue(PopupPlacementProperty);
+            set => SetValue(PopupPlacementProperty, value);
+        }
+
+        /// <summary>
+        ///     The popup stays open property
+        /// </summary>
+        public static readonly DependencyProperty PopupStaysOpenProperty = DependencyProperty.Register(
+            nameof(PopupStaysOpen),
+            typeof(bool),
+            typeof(NotificationCenter),
+            new FrameworkPropertyMetadata(false)
+        );
+
+        /// <summary>
+        ///     Gets or sets a value indicating whether [popup stays open].
+        /// </summary>
+        /// <value><c>true</c> if [popup stays open]; otherwise, <c>false</c>.</value>
+        public bool PopupStaysOpen
+        {
+            get => (bool) GetValue(PopupStaysOpenProperty);
+            set => SetValue(PopupStaysOpenProperty, value);
+        }
+        /// <summary>
+        ///     The popup horizontal placement property
+        /// </summary>
+        public static readonly DependencyProperty PopupHorizontalPlacementProperty = DependencyProperty.Register(
+            nameof(PopupHorizontalPlacement),
+            typeof(double),
+            typeof(NotificationCenter),
+            new FrameworkPropertyMetadata(default(double))
+        );
+
+        /// <summary>
+        ///     Gets or sets the popup horizontal placement.
+        /// </summary>
+        /// <value>The popup horizontal placement.</value>
+        public double PopupHorizontalPlacement
+        {
+            get => (double) GetValue(PopupHorizontalPlacementProperty);
+            set => SetValue(PopupHorizontalPlacementProperty, value);
+        }
+
+        /// <summary>
+        ///     The popup vertical placement property
+        /// </summary>
+        public static readonly DependencyProperty PopupVerticalPlacementProperty = DependencyProperty.Register(
+            nameof(PopupVerticalPlacement),
+            typeof(double),
+            typeof(NotificationCenter),
+            new FrameworkPropertyMetadata(default(double))
+        );
+
+        /// <summary>
+        ///     Gets or sets the popup vertical placement.
+        /// </summary>
+        /// <value>The popup vertical placement.</value>
+        public double PopupVerticalPlacement
+        {
+            get => (double) GetValue(PopupVerticalPlacementProperty);
+            set => SetValue(PopupVerticalPlacementProperty, value);
+        }
+        /// <summary>
+        ///     Gets or sets a value indicating whether [show button in content].
+        /// </summary>
+        /// <value><c>true</c> if [show button in content]; otherwise, <c>false</c>.</value>
+        public bool ShowButtonInContent
+        {
+            get => (bool) GetValue(ShowButtonInContentProperty);
+            set => SetValue(ShowButtonInContentProperty, value);
+        }
+
+        /// <summary>
+        ///     Gets or sets a value indicating whether [show button in header].
+        /// </summary>
+        /// <value><c>true</c> if [show button in header]; otherwise, <c>false</c>.</value>
+        public bool ShowButtonInHeader
+        {
+            get => (bool) GetValue(ShowButtonInHeaderProperty);
+            set => SetValue(ShowButtonInHeaderProperty, value);
         }
 
         /// <summary>

@@ -113,6 +113,8 @@ Alert center Notification with collapsed message. | Alert center Notification wi
 AlertMaxHeight               | Double              | 150           | The alert text content maximum height in the alert center.
 AlertMaxWidth                | Double              | Auto          | The alert maximum width property of the notification center popup.
 ButtonHorizontalAlignment    | HorizontalAlignment | Right         | Indicates the placement of the Alert Center.
+ButtonVerticalAlignment      | VerticalAlignment   | Top           | Indicates the placement of the Alert Center.
+ButtonZIndex                 | Integer             | 999           | Indicates the order in which the button is drawn over content.
 BorderBrush (Inherited)      | Brushes             | Transparent   | Used for line colors in notification center and / or headers.
 IsItemsAscending             | Boolean             | False         | Indicates the order of alerts in the notification center.
 MaxNotifications             | Byte                | 0 (Unlimited) | The upper limit of notifications allowed in the alert center. Oldest are removed when this number is exceeded.
@@ -120,7 +122,12 @@ NewAlertColor                | Brushes             | Goldenrod     | Color of th
 NewAlertIcon                 | PackIconKind        | BellAlert     | The icon when there is a new alert.
 NoAlertColor                 | Brushes             | Black         | Color of the icon when there are no unread alerts.
 NoAlertIcon                  | PackIconKind        | Notifications | The icon when there are no unread alerts.
-ShowNotificationCenterButton | Boolean             | True          | Sets whether the notification center button is visibile. Set to 'False' to hide the button.
+PopupHorizontalPlacement     | Double              | 0             | Alert Center Popup Positioning.
+PopupPlacement               | PlacementMode       | Bottom        | Alert Center Popup Positioning.
+PopupStaysOpen               | Boolean             | False         | Indicates if the popup should stay open or automatically close when clicking away.
+PopupVerticalPlacement       | Double              | 0             | Alert Center Popup Positioning.
+ShowButtonInHeader           | Boolean             | True          | Sets whether the notification center button is visibile. Set to 'False' to hide the button.
+ShowButtonInContent          | Boolean             | False         | Sets whether the notification center button is visibile. Set to 'False' to hide the button.
 
 #### Example
 

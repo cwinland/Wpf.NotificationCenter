@@ -11,6 +11,7 @@
        mc:Ignorable="d" AllowsTransparency="True" PopupAnimation="Slide"
              d:DesignHeight="450" d:DesignWidth="800">
     <Popup.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <CollectionViewSource x:Key="DataSource"
                               Source="{Binding Notifications, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
                               behaviors:CollectionViewSourceBehavior.IsAscending="{Binding IsItemsAscending, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}} }"
@@ -24,7 +25,8 @@
         <Border.Effect>
             <DropShadowEffect BlurRadius="15" Opacity="0.8" ShadowDepth="10" Direction="-90" RenderingBias="Quality"></DropShadowEffect>
         </Border.Effect>
-        <Grid Visibility="{Binding NotificationsVisibility, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
+        <Grid
+            Visibility="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}, Converter={StaticResource BooleanToVisibilityConverter}}">
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />

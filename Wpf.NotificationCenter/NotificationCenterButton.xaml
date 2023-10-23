@@ -8,7 +8,7 @@
              xmlns:sys="clr-namespace:System;assembly=System.Runtime"
              mc:Ignorable="d"
              d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="Transparent" ZIndex="900">
+    <Grid Background="Transparent" ZIndex="{Binding ButtonZIndex, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}">
         <!-- Notification Center Button -->
         <Button Height="Auto"
                 Margin="0"
@@ -39,11 +39,5 @@
                 <Label Content="{Binding NewNotificationCount, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
             </StackPanel>
         </Button>
-
-        <!-- Alert Center Popup -->
-        <nc:NotificationPopup StaysOpen="False"
-                              Placement="Bottom"
-                              Width="{Binding AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}"
-                              IsOpen="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
     </Grid>
 </ContentControl>
