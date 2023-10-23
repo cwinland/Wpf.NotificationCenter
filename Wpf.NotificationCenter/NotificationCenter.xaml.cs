@@ -92,6 +92,13 @@ namespace Wpf.NotificationCenter
             new PropertyMetadata(double.NaN, Refresh)
         );
 
+        public static readonly DependencyProperty ShowNotificationCenterButtonProperty = DependencyProperty.Register(
+            nameof(ShowNotificationCenterButton),
+            typeof(bool),
+            typeof(NotificationCenter),
+            new PropertyMetadata(true)
+        );
+
         /// <summary>
         ///     The maximum notifications property
         /// </summary>
@@ -290,6 +297,12 @@ namespace Wpf.NotificationCenter
             }
         }
 
+        public bool ShowNotificationCenterButton
+        {
+            get => (bool) GetValue(ShowNotificationCenterButtonProperty);
+            set => SetValue(ShowNotificationCenterButtonProperty, value);
+        }
+
         /// <summary>
         ///     Gets the toggle command.
         /// </summary>
@@ -308,7 +321,7 @@ namespace Wpf.NotificationCenter
         #endregion
 
         /// <summary>
-        ///     Initializes static members of the <see cref="NotificationCenter"/> class.
+        ///     Initializes static members of the <see cref="NotificationCenter" /> class.
         /// </summary>
         /// <remarks>Sets the Style key to NotificationCenter.</remarks>
         static NotificationCenter() =>

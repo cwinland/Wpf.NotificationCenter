@@ -108,18 +108,19 @@ Alert center Notification with collapsed message. | Alert center Notification wi
 
 ### Notification Center Element Properties
 
-| Property                | Value Type          | Default       | Inherited | Description
-:-------------------------|:--------------------|:--------------|:---------:|:-----------
-AlertMaxHeight            | Double              | 150           | False     | The alert text content maximum height in the alert center.
-AlertMaxWidth             | Double              | Auto          | False     | The alert maximum width property of the notification center popup.
-ButtonHorizontalAlignment | HorizontalAlignment | Right         | False     | Indicates the placement of the Alert Center.
-BorderBrush               | Brushes             | Transparent   | True      | Used for line colors in notification center and / or headers.
-IsItemsAscending          | Boolean             | False         | False     | Indicates the order of alerts in the notification center.
-MaxNotifications          | Byte                | 0 (Unlimited) | False     | The upper limit of notifications allowed in the alert center. Oldest are removed when this number is exceeded.
-NewAlertColor             | Brushes             | Goldenrod     | False     | Color of the icon when there is a new alert.
-NewAlertIcon              | PackIconKind        | BellAlert     | False     | The icon when there is a new alert.
-NoAlertColor              | Brushes             | Black         | False     | Color of the icon when there are no unread alerts.
-NoAlertIcon               | PackIconKind        | Notifications | False     | The icon when there are no unread alerts.
+| Property                   | Value Type          | Default       | Description
+:----------------------------|:--------------------|:--------------|:-----------
+AlertMaxHeight               | Double              | 150           | The alert text content maximum height in the alert center.
+AlertMaxWidth                | Double              | Auto          | The alert maximum width property of the notification center popup.
+ButtonHorizontalAlignment    | HorizontalAlignment | Right         | Indicates the placement of the Alert Center.
+BorderBrush (Inherited)      | Brushes             | Transparent   | Used for line colors in notification center and / or headers.
+IsItemsAscending             | Boolean             | False         | Indicates the order of alerts in the notification center.
+MaxNotifications             | Byte                | 0 (Unlimited) | The upper limit of notifications allowed in the alert center. Oldest are removed when this number is exceeded.
+NewAlertColor                | Brushes             | Goldenrod     | Color of the icon when there is a new alert.
+NewAlertIcon                 | PackIconKind        | BellAlert     | The icon when there is a new alert.
+NoAlertColor                 | Brushes             | Black         | Color of the icon when there are no unread alerts.
+NoAlertIcon                  | PackIconKind        | Notifications | The icon when there are no unread alerts.
+ShowNotificationCenterButton | Boolean             | True          | Sets whether the notification center button is visibile. Set to 'False' to hide the button.
 
 #### Example
 

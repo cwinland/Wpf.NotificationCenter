@@ -5,7 +5,7 @@
                     xmlns:converters="clr-namespace:Wpf.NotificationCenter.Converters"
                     xmlns:enums="clr-namespace:Wpf.NotificationCenter.Enums"
                     xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification">
-
+<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <Style x:Key="TextBlockStyle" TargetType="TextBlock">
         <Setter Property="Margin" Value="5" />
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -410,7 +410,9 @@
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
                         <ContentControl Canvas.ZIndex="0" Content="{Binding }" FontWeight="Bold" FontSize="14" />
-                        <local:NotificationCenterButton HorizontalAlignment="{Binding ButtonHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                        <local:NotificationCenterButton HorizontalAlignment="{Binding ButtonHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" 
+                                                        Visibility="{Binding ShowNotificationCenterButton, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}, Converter={StaticResource BooleanToVisibilityConverter}}"
+                                                        />
                     </Grid>
                 </DataTemplate>
             </Setter.Value>
