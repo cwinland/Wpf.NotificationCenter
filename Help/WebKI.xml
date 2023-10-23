@@ -17,6 +17,10 @@
   <HelpKINode Title="All field" Url="html/F-Wpf.NotificationCenter.Enums.AlertType.All.htm" />
   <HelpKINode Title="ButtonHorizontalAlignment property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.ButtonHorizontalAlignment.htm" />
   <HelpKINode Title="ButtonHorizontalAlignmentProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ButtonHorizontalAlignmentProperty.htm" />
+  <HelpKINode Title="ButtonVerticalAlignment property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.ButtonVerticalAlignment.htm" />
+  <HelpKINode Title="ButtonVerticalAlignmentProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ButtonVerticalAlignmentProperty.htm" />
+  <HelpKINode Title="ButtonZIndex property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.ButtonZIndex.htm" />
+  <HelpKINode Title="ButtonZIndexProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ButtonZIndexProperty.htm" />
   <HelpKINode Title="Close method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Close.htm" />
   <HelpKINode Title="Close method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Close.htm" />
   <HelpKINode Title="CollectionViewSourceBehavior class" Url="html/AllMembers.T-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.htm" />
@@ -46,8 +50,8 @@
   <HelpKINode Title="DisplayTime property" Url="html/P-Wpf.NotificationCenter.Notification.Notification.DisplayTime.htm" />
   <HelpKINode Title="Error enumeration member" Url="html/T-Wpf.NotificationCenter.Enums.NotificationType.htm" />
   <HelpKINode Title="Error field" Url="html/F-Wpf.NotificationCenter.Enums.NotificationType.Error.htm" />
-  <HelpKINode Title="Error method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Error.htm" />
-  <HelpKINode Title="Error method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Error.htm" />
+  <HelpKINode Title="Error method" Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Error.htm" />
+  <HelpKINode Title="Error method" Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Error.htm" />
   <HelpKINode Title="ExpanderRotateAngleConverter class" Url="html/AllMembers.T-Wpf.NotificationCenter.Converters.ExpanderRotateAngleConverter.htm" />
   <HelpKINode Title="ExpanderRotateAngleConverter class" Url="html/T-Wpf.NotificationCenter.Converters.ExpanderRotateAngleConverter.htm" />
   <HelpKINode Title="ExpanderRotateAngleConverter class">
@@ -64,8 +68,8 @@
   <HelpKINode Title="GetLastToastNotification method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.GetLastToastNotification.htm" />
   <HelpKINode Title="Information enumeration member" Url="html/T-Wpf.NotificationCenter.Enums.NotificationType.htm" />
   <HelpKINode Title="Information field" Url="html/F-Wpf.NotificationCenter.Enums.NotificationType.Information.htm" />
-  <HelpKINode Title="Information method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Information.htm" />
-  <HelpKINode Title="Information method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Information.htm" />
+  <HelpKINode Title="Information method" Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Information.htm" />
+  <HelpKINode Title="Information method" Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Information.htm" />
   <HelpKINode Title="IsAscendingProperty field" Url="html/F-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.IsAscendingProperty.htm" />
   <HelpKINode Title="IsClickable property" Url="html/P-Wpf.NotificationCenter.Notification.Notification.IsClickable.htm" />
   <HelpKINode Title="IsItemsAscending property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.IsItemsAscending.htm" />
@@ -81,12 +85,12 @@
   <HelpKINode Title="IWpfNotificationService.Create method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Create.htm" />
   <HelpKINode Title="IWpfNotificationService.CreateAlertNotification method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.CreateAlertNotification.htm" />
   <HelpKINode Title="IWpfNotificationService.CreateToastNotification method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.CreateToastNotification.htm" />
-  <HelpKINode Title="IWpfNotificationService.Error method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Error.htm" />
+  <HelpKINode Title="IWpfNotificationService.Error method" Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Error.htm" />
   <HelpKINode Title="IWpfNotificationService.GetLastAlertCenterNotification method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.GetLastAlertCenterNotification.htm" />
   <HelpKINode Title="IWpfNotificationService.GetLastToastNotification method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.GetLastToastNotification.htm" />
-  <HelpKINode Title="IWpfNotificationService.Information method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Information.htm" />
-  <HelpKINode Title="IWpfNotificationService.Success method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Success.htm" />
-  <HelpKINode Title="IWpfNotificationService.Warning method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Warning.htm" />
+  <HelpKINode Title="IWpfNotificationService.Information method" Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Information.htm" />
+  <HelpKINode Title="IWpfNotificationService.Success method" Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Success.htm" />
+  <HelpKINode Title="IWpfNotificationService.Warning method" Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Warning.htm" />
   <HelpKINode Title="MaxNotifications property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.MaxNotifications.htm" />
   <HelpKINode Title="MaxNotificationsProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.MaxNotificationsProperty.htm" />
   <HelpKINode Title="NewAlertColor property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.NewAlertColor.htm" />
@@ -149,6 +153,10 @@
   <HelpKINode Title="NotificationCenter.AlertMaxWidthProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.AlertMaxWidthProperty.htm" />
   <HelpKINode Title="NotificationCenter.ButtonHorizontalAlignment property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.ButtonHorizontalAlignment.htm" />
   <HelpKINode Title="NotificationCenter.ButtonHorizontalAlignmentProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ButtonHorizontalAlignmentProperty.htm" />
+  <HelpKINode Title="NotificationCenter.ButtonVerticalAlignment property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.ButtonVerticalAlignment.htm" />
+  <HelpKINode Title="NotificationCenter.ButtonVerticalAlignmentProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ButtonVerticalAlignmentProperty.htm" />
+  <HelpKINode Title="NotificationCenter.ButtonZIndex property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.ButtonZIndex.htm" />
+  <HelpKINode Title="NotificationCenter.ButtonZIndexProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ButtonZIndexProperty.htm" />
   <HelpKINode Title="NotificationCenter.DisplayNotes property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.DisplayNotes.htm" />
   <HelpKINode Title="NotificationCenter.IsItemsAscending property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.IsItemsAscending.htm" />
   <HelpKINode Title="NotificationCenter.IsItemsAscendingProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.IsItemsAscendingProperty.htm" />
@@ -165,9 +173,19 @@
   <HelpKINode Title="NotificationCenter.NoAlertIconProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.NoAlertIconProperty.htm" />
   <HelpKINode Title="NotificationCenter.Notifications property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.Notifications.htm" />
   <HelpKINode Title="NotificationCenter.NotificationsVisible property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.NotificationsVisible.htm" />
+  <HelpKINode Title="NotificationCenter.PopupHorizontalPlacement property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.PopupHorizontalPlacement.htm" />
+  <HelpKINode Title="NotificationCenter.PopupHorizontalPlacementProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.PopupHorizontalPlacementProperty.htm" />
+  <HelpKINode Title="NotificationCenter.PopupPlacement property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.PopupPlacement.htm" />
+  <HelpKINode Title="NotificationCenter.PopupPlacementProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.PopupPlacementProperty.htm" />
+  <HelpKINode Title="NotificationCenter.PopupStaysOpen property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.PopupStaysOpen.htm" />
+  <HelpKINode Title="NotificationCenter.PopupStaysOpenProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.PopupStaysOpenProperty.htm" />
+  <HelpKINode Title="NotificationCenter.PopupVerticalPlacement property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.PopupVerticalPlacement.htm" />
+  <HelpKINode Title="NotificationCenter.PopupVerticalPlacementProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.PopupVerticalPlacementProperty.htm" />
   <HelpKINode Title="NotificationCenter.PropertyChanged event" Url="html/E-Wpf.NotificationCenter.NotificationCenter.PropertyChanged.htm" />
-  <HelpKINode Title="NotificationCenter.ShowNotificationCenterButton property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.ShowNotificationCenterButton.htm" />
-  <HelpKINode Title="NotificationCenter.ShowNotificationCenterButtonProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ShowNotificationCenterButtonProperty.htm" />
+  <HelpKINode Title="NotificationCenter.ShowButtonInContent property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.ShowButtonInContent.htm" />
+  <HelpKINode Title="NotificationCenter.ShowButtonInContentProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ShowButtonInContentProperty.htm" />
+  <HelpKINode Title="NotificationCenter.ShowButtonInHeader property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.ShowButtonInHeader.htm" />
+  <HelpKINode Title="NotificationCenter.ShowButtonInHeaderProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ShowButtonInHeaderProperty.htm" />
   <HelpKINode Title="NotificationCenter.ToggleCommand property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.ToggleCommand.htm" />
   <HelpKINode Title="NotificationCenterButton class" Url="html/AllMembers.T-Wpf.NotificationCenter.NotificationCenterButton.htm" />
   <HelpKINode Title="NotificationCenterButton class" Url="html/T-Wpf.NotificationCenter.NotificationCenterButton.htm" />
@@ -215,20 +233,30 @@
   </HelpKINode>
   <HelpKINode Title="OnClicked event" Url="html/E-Wpf.NotificationCenter.Notification.Notification.OnClicked.htm" />
   <HelpKINode Title="OnIsAscendingChanged method" Url="html/M-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.OnIsAscendingChanged.htm" />
+  <HelpKINode Title="PopupHorizontalPlacement property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.PopupHorizontalPlacement.htm" />
+  <HelpKINode Title="PopupHorizontalPlacementProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.PopupHorizontalPlacementProperty.htm" />
+  <HelpKINode Title="PopupPlacement property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.PopupPlacement.htm" />
+  <HelpKINode Title="PopupPlacementProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.PopupPlacementProperty.htm" />
+  <HelpKINode Title="PopupStaysOpen property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.PopupStaysOpen.htm" />
+  <HelpKINode Title="PopupStaysOpenProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.PopupStaysOpenProperty.htm" />
+  <HelpKINode Title="PopupVerticalPlacement property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.PopupVerticalPlacement.htm" />
+  <HelpKINode Title="PopupVerticalPlacementProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.PopupVerticalPlacementProperty.htm" />
   <HelpKINode Title="PropertyChanged event" Url="html/E-Wpf.NotificationCenter.Notification.Notification.PropertyChanged.htm" />
   <HelpKINode Title="PropertyChanged event" Url="html/E-Wpf.NotificationCenter.NotificationCenter.PropertyChanged.htm" />
   <HelpKINode Title="PropertyChanged event" Url="html/E-Wpf.NotificationCenter.NotificationPopup.PropertyChanged.htm" />
   <HelpKINode Title="RemoveNotificationCommand property" Url="html/P-Wpf.NotificationCenter.Notification.Notification.RemoveNotificationCommand.htm" />
   <HelpKINode Title="RemoveNotificationCommandProperty field" Url="html/F-Wpf.NotificationCenter.Notification.Notification.RemoveNotificationCommandProperty.htm" />
   <HelpKINode Title="SetIsAscending method" Url="html/M-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.SetIsAscending.htm" />
+  <HelpKINode Title="ShowButtonInContent property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.ShowButtonInContent.htm" />
+  <HelpKINode Title="ShowButtonInContentProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ShowButtonInContentProperty.htm" />
+  <HelpKINode Title="ShowButtonInHeader property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.ShowButtonInHeader.htm" />
+  <HelpKINode Title="ShowButtonInHeaderProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ShowButtonInHeaderProperty.htm" />
   <HelpKINode Title="ShowExpander property" Url="html/P-Wpf.NotificationCenter.Notification.Notification.ShowExpander.htm" />
   <HelpKINode Title="ShowExpanderProperty field" Url="html/F-Wpf.NotificationCenter.Notification.Notification.ShowExpanderProperty.htm" />
-  <HelpKINode Title="ShowNotificationCenterButton property" Url="html/P-Wpf.NotificationCenter.NotificationCenter.ShowNotificationCenterButton.htm" />
-  <HelpKINode Title="ShowNotificationCenterButtonProperty field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ShowNotificationCenterButtonProperty.htm" />
   <HelpKINode Title="Success enumeration member" Url="html/T-Wpf.NotificationCenter.Enums.NotificationType.htm" />
   <HelpKINode Title="Success field" Url="html/F-Wpf.NotificationCenter.Enums.NotificationType.Success.htm" />
-  <HelpKINode Title="Success method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Success.htm" />
-  <HelpKINode Title="Success method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Success.htm" />
+  <HelpKINode Title="Success method" Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Success.htm" />
+  <HelpKINode Title="Success method" Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Success.htm" />
   <HelpKINode Title="Text property" Url="html/P-Wpf.NotificationCenter.Notification.Notification.Text.htm" />
   <HelpKINode Title="TextProperty field" Url="html/F-Wpf.NotificationCenter.Notification.Notification.TextProperty.htm" />
   <HelpKINode Title="Title property" Url="html/P-Wpf.NotificationCenter.Notification.Notification.Title.htm" />
@@ -239,8 +267,8 @@
   <HelpKINode Title="UseWpfNotificationCenter method" Url="html/M-Wpf.NotificationCenter.Extensions.WpfExtensions.UseWpfNotificationCenter.htm" />
   <HelpKINode Title="Warning enumeration member" Url="html/T-Wpf.NotificationCenter.Enums.NotificationType.htm" />
   <HelpKINode Title="Warning field" Url="html/F-Wpf.NotificationCenter.Enums.NotificationType.Warning.htm" />
-  <HelpKINode Title="Warning method" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Warning.htm" />
-  <HelpKINode Title="Warning method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Warning.htm" />
+  <HelpKINode Title="Warning method" Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Warning.htm" />
+  <HelpKINode Title="Warning method" Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Warning.htm" />
   <HelpKINode Title="Wpf.NotificationCenter namespace" Url="html/N-Wpf.NotificationCenter.htm" />
   <HelpKINode Title="Wpf.NotificationCenter.Behaviors namespace" Url="html/N-Wpf.NotificationCenter.Behaviors.htm" />
   <HelpKINode Title="Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior class" Url="html/AllMembers.T-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.htm" />
@@ -293,11 +321,11 @@
   <HelpKINode Title="WpfNotificationService.Create method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Create.htm" />
   <HelpKINode Title="WpfNotificationService.CreateAlertNotification method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.CreateAlertNotification.htm" />
   <HelpKINode Title="WpfNotificationService.CreateToastNotification method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.CreateToastNotification.htm" />
-  <HelpKINode Title="WpfNotificationService.Error method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Error.htm" />
+  <HelpKINode Title="WpfNotificationService.Error method" Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Error.htm" />
   <HelpKINode Title="WpfNotificationService.GetLastAlertCenterNotification method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.GetLastAlertCenterNotification.htm" />
   <HelpKINode Title="WpfNotificationService.GetLastToastNotification method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.GetLastToastNotification.htm" />
-  <HelpKINode Title="WpfNotificationService.Information method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Information.htm" />
-  <HelpKINode Title="WpfNotificationService.Success method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Success.htm" />
-  <HelpKINode Title="WpfNotificationService.Warning method" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Warning.htm" />
+  <HelpKINode Title="WpfNotificationService.Information method" Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Information.htm" />
+  <HelpKINode Title="WpfNotificationService.Success method" Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Success.htm" />
+  <HelpKINode Title="WpfNotificationService.Warning method" Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Warning.htm" />
   <HelpKINode Title="WpfNotificationService.WpfNotificationService constructor" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.-ctor.htm" />
 </HelpKI>

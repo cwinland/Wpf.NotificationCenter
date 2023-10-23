@@ -311,7 +311,7 @@
             </VisualStateManager.VisualStateGroups>
             <DockPanel Background="{TemplateBinding Background}"
                        HorizontalAlignment="Left"
-                       Width="{Binding AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                       Width="{Binding AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}, NotifyOnSourceUpdated=True}"
                        >
                 <ToggleButton Name="HeaderSite"
                               Background="{TemplateBinding materialDesign:ExpanderAssist.HeaderBackground}"
@@ -419,7 +419,7 @@
                                                  HorizontalOffset="{Binding PopupHorizontalPlacement, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
                                                  VerticalOffset="{Binding PopupVerticalPlacement, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
                                                  Placement="{Binding PopupPlacement, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                                                 Width="{Binding AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                                                 Width="{Binding AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}, NotifyOnSourceUpdated=True}"
                                                  IsOpen="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
                     </Grid>
                 </DataTemplate>

@@ -18,18 +18,18 @@
                                                HorizontalAlignment="Stretch"
                                                NewAlertColor="GoldenRod"
                                                NoAlertColor="Gray"
-                                               AlertMaxWidth="175"
+                                               AlertMaxWidth="{Binding DataContext.AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                                MaxNotifications="10"
                                                BorderBrush="Blue"
                                                IsItemsAscending="False"
-                                               ButtonHorizontalAlignment="Right"
-                                               ButtonVerticalAlignment="Bottom"
+                                               ButtonHorizontalAlignment="{Binding DataContext.SelectedHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                                               ButtonVerticalAlignment="{Binding DataContext.SelectedVerticalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                                PopupPlacement="Bottom"
                                                NewAlertIcon="BellAlert"
                                                NoAlertIcon="BellCancel"
-                                               AlertMaxHeight="200"
-                                               ShowButtonInHeader="True"
-                                               ShowButtonInContent="False"
+                                               AlertMaxHeight="{Binding DataContext.AlertMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                                               ShowButtonInHeader="{Binding DataContext.ShowInHeader, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                                               ShowButtonInContent="{Binding DataContext.ShowInContent, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                                ButtonZIndex="5000"
                                                Grid.Row="0">
             <notificationCenter:NotificationCenter.Header>
@@ -38,21 +38,71 @@
                 </Grid>
             </notificationCenter:NotificationCenter.Header>
             <notificationCenter:NotificationCenter.Content>
-                <StackPanel>
-                    <StackPanel Orientation="Horizontal">
-                        <ComboBox SelectedItem="{Binding DataContext.SelectedAlertType, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                                  ItemsSource="{Binding DataContext.AlertTypes, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
-                        <ComboBox SelectedItem="{Binding DataContext.SelectedNotificationType, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                                  ItemsSource="{Binding DataContext.NotificationTypes, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                        />
-                    </StackPanel>
-                    <Label>Alert text:</Label>
-                    <TextBox MaxLines="5" TextWrapping="Wrap" Width="{Binding ActualWidth, RelativeSource={RelativeSource AncestorType={x:Type Grid}}}"
-                                 HorizontalAlignment="Stretch" Text="{Binding DataContext.AlertText, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
-                    <Button Command="{Binding DataContext.CreateNotificationCommand, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}">
+                <Grid>
+                    <Grid.Resources>
+                        <Style TargetType="TextBlock">
+                            <Setter Property="Margin" Value="5 0" />
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                            <Setter Property="MaxWidth" Value="100"></Setter>
+                            <Setter Property="VerticalAlignment" Value="Bottom" />
+                        </Style>
+                        <Style TargetType="TextBox">
+                            <Setter Property="TextWrapping" Value="Wrap" />
+                            <Setter Property="Margin" Value="5 0" />
+                        </Style>
+                        <Style TargetType="ComboBox">
+                            <Setter Property="Margin" Value="5 0" />
+                        </Style>
+                    </Grid.Resources>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0">Alert Type</TextBlock>
+                    <ComboBox Grid.Row="1" Grid.Column="0" SelectedItem="{Binding DataContext.SelectedAlertType, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                              ItemsSource="{Binding DataContext.AlertTypes, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
+                    <TextBlock Grid.Row="0" Grid.Column="1">Notification Type</TextBlock>
+                    <ComboBox Grid.Row="1" Grid.Column="1" SelectedItem="{Binding DataContext.SelectedNotificationType, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                              ItemsSource="{Binding DataContext.NotificationTypes, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
+                    <TextBlock Grid.Row="0" Grid.Column="2">Horizontal Alignment</TextBlock>
+                    <ComboBox Grid.Row="1" Grid.Column="2"  SelectedItem="{Binding DataContext.SelectedHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                               ItemsSource="{Binding DataContext.HorizontalAlignments, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
+                    <TextBlock Grid.Row="0" Grid.Column="3">Vertical Alignment</TextBlock>
+                    <ComboBox Grid.Row="1" Grid.Column="3"  SelectedItem="{Binding DataContext.SelectedVerticalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                              ItemsSource="{Binding DataContext.VerticalAlignments, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
+                    <TextBlock Grid.Row="0" Grid.Column="5" Text="Alert Max Height" Width="65" />
+                    <TextBox Grid.Row="1" Grid.Column="5"  Text="{Binding DataContext.AlertMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Width="65" />
+                    <TextBlock Grid.Row="0" Grid.Column="6" Text="Alert Width" Width="65" />
+                    <TextBox Grid.Row="1" Grid.Column="6"  Text="{Binding DataContext.AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Width="65" />
+                    <TextBlock Grid.Row="0" Grid.Column="7" Text="Header" Margin="5 0" />
+                    <CheckBox Grid.Row="1" Grid.Column="7"  IsChecked="{Binding DataContext.ShowInHeader, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" HorizontalAlignment="Center" />
+                    <TextBlock Grid.Row="0" Grid.Column="8" Text="Content" Margin="5 0" />
+                    <CheckBox Grid.Row="1" Grid.Column="8"  IsChecked="{Binding DataContext.ShowInContent, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" HorizontalAlignment="Center" />
+                    <Label Grid.Row="2" Grid.Column="0">Alert text:</Label>
+                    <TextBox Grid.Row="2" Grid.Column="1" Grid.ColumnSpan="6" MaxLines="5" TextWrapping="Wrap"
+                             Margin="5"
+                             VerticalContentAlignment="Center"
+                             MaxWidth="1000"
+                             HorizontalAlignment="Stretch" Text="{Binding DataContext.AlertText, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
+                    <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="50" Margin="5"  Command="{Binding DataContext.CreateNotificationCommand, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}">
                         Create Notification
                     </Button>
-                </StackPanel>
+                </Grid>
             </notificationCenter:NotificationCenter.Content>
         </notificationCenter:NotificationCenter>
     </Grid>
