@@ -1,6 +1,6 @@
 # Wpf.NotificationCenter
 
-![Image of an error expanded in the notification center](Resources/image-3.png)
+![Image of an error expanded in the notification center](https://raw.githubusercontent.com/cwinland/Wpf.NotificationCenter/master/Resources/image-3.png)
 
 ## Objective
 
@@ -100,9 +100,9 @@ Choose one:
 |                          |                          |
 :-------------------------:|:-------------------------:
 Notification Center resides in the header. | Toast notifications can be shown.
-![Image of the notification center residing in the header](Resources/image-8.png) | ![Image of an error toast notification](Resources/image-1.png)
+![Image of the notification center residing in the header](https://raw.githubusercontent.com/cwinland/Wpf.NotificationCenter/master/Resources/image-8.png) | ![Image of an error toast notification](https://raw.githubusercontent.com/cwinland/Wpf.NotificationCenter/master/Resources/image-1.png)
 Alert center Notification with collapsed message. | Alert center Notification with expanded message.
-![Image of an error collapsed in the notification center](Resources/image-2.png) | ![Image of an error expanded in the notification center](Resources/image-3.png)
+![Image of an error collapsed in the notification center](https://raw.githubusercontent.com/cwinland/Wpf.NotificationCenter/master/Resources/image-2.png) | ![Image of an error expanded in the notification center](https://raw.githubusercontent.com/cwinland/Wpf.NotificationCenter/master/Resources/image-3.png)
 
 ## Customization
 
@@ -147,3 +147,4 @@ Most of the look / feel is defined in the generic.xaml file. Primary theme style
 
 - Initial Release - v1.0.0.
 - Add UI fixes, more customization, fix bugs - v1.1.0.
+- Add Notification Options, Customization Options - v1.1.1.
