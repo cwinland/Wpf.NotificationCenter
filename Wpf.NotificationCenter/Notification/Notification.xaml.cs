@@ -169,6 +169,7 @@ namespace Wpf.NotificationCenter.Notification
         ///     Gets the expander visibility.
         /// </summary>
         /// <value>The expander visibility.</value>
+        /// <exclude />
         public Visibility ExpanderVisibility => ShowExpander ? Visibility.Visible : Visibility.Collapsed;
 
         /// <summary>
@@ -243,6 +244,7 @@ namespace Wpf.NotificationCenter.Notification
         ///     Gets the title font weight.
         /// </summary>
         /// <value>The title weight.</value>
+        /// <exclude />
         public FontWeight TitleWeight => Unread ? FontWeights.Bold : FontWeights.Medium;
 
         /// <summary>

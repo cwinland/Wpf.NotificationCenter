@@ -92,6 +92,9 @@ namespace Wpf.NotificationCenter
             new PropertyMetadata(double.NaN, Refresh)
         );
 
+        /// <summary>
+        ///     The show notification center button property
+        /// </summary>
         public static readonly DependencyProperty ShowNotificationCenterButtonProperty = DependencyProperty.Register(
             nameof(ShowNotificationCenterButton),
             typeof(bool),
@@ -170,19 +173,21 @@ namespace Wpf.NotificationCenter
         ///     Gets the data visibility.
         /// </summary>
         /// <value>The data visibility.</value>
+        /// <exclude />
         public Visibility DataVisibility => Notifications.Count > 0 ? Visibility.Visible : Visibility.Collapsed;
 
         /// <summary>
         ///     Gets the delete all notifications command.
         /// </summary>
         /// <value>The delete all notifications command.</value>
+        /// <exclude />
         public ICommand DeleteAllNotificationsCommand => new RelayCommand(() => Notifications.Clear());
 
         /// <summary>
-        ///     Gets or sets the display notes.
+        ///     Gets the toasts.
         /// </summary>
-        /// <value>The display notes.</value>
-        public ObservableCollection<Note> DisplayNotes { get; set; } = new();
+        /// <value>The toast message notifications.</value>
+        public ObservableCollection<Note> DisplayNotes { get; } = new();
 
         /// <summary>
         ///     Gets or sets a value indicating whether this instance is items ascending.
@@ -208,6 +213,7 @@ namespace Wpf.NotificationCenter
         ///     Creates new alert.
         /// </summary>
         /// <value><c>true</c> if [new alert]; otherwise, <c>false</c>.</value>
+        /// <exclude />
         public bool NewAlert => NewNotificationCount > 0;
 
         /// <summary>
@@ -268,10 +274,11 @@ namespace Wpf.NotificationCenter
         ///     Gets the no data visibility.
         /// </summary>
         /// <value>The no data visibility.</value>
+        /// <exclude />
         public Visibility NoDataVisibility => Notifications.Count == 0 ? Visibility.Visible : Visibility.Collapsed;
 
         /// <summary>
-        ///     Gets the notifications.
+        ///     Gets the alert center notifications.
         /// </summary>
         /// <value>The notifications.</value>
         public ObservableCollection<Note> Notifications { get; } = new();
@@ -280,6 +287,7 @@ namespace Wpf.NotificationCenter
         ///     Gets or sets the notifications visibility.
         /// </summary>
         /// <value>The notifications visibility.</value>
+        /// <exclude />
         public Visibility NotificationsVisibility => NotificationsVisible ? Visibility.Visible : Visibility.Collapsed;
 
         /// <summary>
@@ -297,6 +305,10 @@ namespace Wpf.NotificationCenter
             }
         }
 
+        /// <summary>
+        ///     Gets or sets a value indicating whether [show notification center button].
+        /// </summary>
+        /// <value><c>true</c> if [show notification center button]; otherwise, <c>false</c>.</value>
         public bool ShowNotificationCenterButton
         {
             get => (bool) GetValue(ShowNotificationCenterButtonProperty);

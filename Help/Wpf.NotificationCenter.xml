@@ -1,0 +1,711 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<doc>
+  <assembly>
+    <name>Wpf.NotificationCenter</name>
+  </assembly>
+  <members>
+    <member name="T:Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior">
+      <summary>
+       Class CollectionViewSourceBehavior.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.IsAscendingProperty">
+      <summary>
+       Gets if the source is in the ascending sort direction.
+   </summary>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.GetIsAscending(FrameworkElement)">
+      <summary>
+       Gets if the source is in the ascending sort direction.
+   </summary>
+      <param name="element">The element.</param>
+      <returns>System ofObject of the is ascending.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.OnIsAscendingChanged(DependencyObject,DependencyPropertyChangedEventArgs)">
+      <summary>
+       Handles the <see cref="E:IsAscendingChanged" /> event.
+   </summary>
+      <param name="dependencyObject">The dependency object.</param>
+      <param name="e">The <see cref="T:System.Windows.DependencyPropertyChangedEventArgs" /> instance containing the event data.</param>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.SetIsAscending(FrameworkElement,System.Object)">
+      <summary>
+       Sets if the source is in the ascending sort direction.
+   </summary>
+      <param name="element">The element.</param>
+      <param name="value">The value.</param>
+    </member>
+    <member name="T:Wpf.NotificationCenter.Converters.ExpanderRotateAngleConverter">
+      <summary>
+       Class ExpanderRotateAngleConverter.
+   Implements the <see cref="T:System.Windows.Data.IValueConverter" /></summary>
+      <seealso cref="T:System.Windows.Data.IValueConverter" />
+      <inheritdoc />
+    </member>
+    <member name="M:Wpf.NotificationCenter.Converters.ExpanderRotateAngleConverter.Convert(System.Object,Type,System.Object,CultureInfo)">
+      <inheritdoc />
+      <summary>
+       Converts the specified value.
+   </summary>
+      <param name="value">The value.</param>
+      <param name="targetType">Type of the target.</param>
+      <param name="parameter">The parameter.</param>
+      <param name="culture">The culture.</param>
+      <returns>System.Object.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Converters.ExpanderRotateAngleConverter.ConvertBack(System.Object,Type,System.Object,CultureInfo)">
+      <summary>
+       Converts the back.
+   </summary>
+      <param name="value">The value.</param>
+      <param name="targetType">Type of the target.</param>
+      <param name="parameter">The parameter.</param>
+      <param name="culture">The culture.</param>
+      <returns>System.Object.</returns>
+      <exception cref="T:System.NotImplementedException">
+      </exception>
+      <inheritdoc />
+    </member>
+    <member name="T:Wpf.NotificationCenter.Enums.AlertType">
+      <summary>
+       The type of notification such as alert center or toast popup.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Enums.AlertType.All">
+      <summary>
+       All notification types.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Enums.AlertType.NotificationCenter">
+      <summary>
+       The notification center alert.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Enums.AlertType.NotificationPopup">
+      <summary>
+       The notification popup or toast message.
+   </summary>
+    </member>
+    <member name="T:Wpf.NotificationCenter.Enums.NotificationType">
+      <summary>
+       The type of notification message such as information, error, warning, or success message.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Enums.NotificationType.Information">
+      <summary>
+       Informational notification.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Enums.NotificationType.Error">
+      <summary>
+       Error notification.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Enums.NotificationType.Warning">
+      <summary>
+       Warning notification.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Enums.NotificationType.Success">
+      <summary>
+       Success notification.
+   </summary>
+    </member>
+    <member name="T:Wpf.NotificationCenter.Extensions.WpfExtensions">
+      <summary>
+       Class WpfExtensions.
+   </summary>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Extensions.WpfExtensions.UseWpfNotificationCenter(IServiceCollection)">
+      <summary>
+       Uses the WPF notification center.
+   </summary>
+      <param name="services">The services.</param>
+      <returns>Uses the WPF notification center.</returns>
+    </member>
+    <member name="T:Wpf.NotificationCenter.Models.ObservableObjectBase">
+      <summary>
+       Class ObservableObjectBase.
+       Implements the <see cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservableObject" />
+       Implements the <see cref="IDisposable" /></summary>
+      <inheritDoc cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservableObject" />
+      <inheritDoc cref="IDisposable" />
+      <seealso cref="T:CommunityToolkit.Mvvm.ComponentModel.ObservableObject" />
+      <seealso cref="IDisposable" />
+    </member>
+    <member name="M:Wpf.NotificationCenter.Models.ObservableObjectBase.Dispose">
+      <inheritdoc />
+    </member>
+    <member name="T:Wpf.NotificationCenter.Notification.Notification">
+      <summary>     Interaction logic for Notification.xaml </summary>
+      <inheritdoc cref="T:System.Windows.Controls.Expander" />
+      <inheritdoc cref="T:System.ComponentModel.INotifyPropertyChanged" />
+    </member>
+    <member name="E:Wpf.NotificationCenter.Notification.Notification.OnClicked">
+      <summary>
+       Occurs when content is clicked.
+   </summary>
+    </member>
+    <member name="E:Wpf.NotificationCenter.Notification.Notification.PropertyChanged">
+      <summary>Occurs when a property value changes.</summary>
+      <inheritdoc />
+    </member>
+    <member name="F:Wpf.NotificationCenter.Notification.Notification.AlertMaxHeightProperty">
+      <summary>
+       The alert maximum height property
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Notification.Notification.NotificationTypeProperty">
+      <summary>
+       The notification type: Information, Error, Success, Info, Warning.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Notification.Notification.TitleProperty">
+      <summary>
+       The header / title of the notification.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Notification.Notification.TextProperty">
+      <summary>
+       The text of the notification.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Notification.Notification.UnreadProperty">
+      <summary>
+       Indicates if notification is unread.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Notification.Notification.ShowExpanderProperty">
+      <summary>
+       The show expander property
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Notification.Notification.RemoveNotificationCommandProperty">
+      <summary>
+       The remove notification command property
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Notification.Notification.AlertTypeProperty">
+      <summary>
+       The alert type property
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.Notification.Notification.CreatedOnVisibilityProperty">
+      <summary>
+       The created on visibility property
+   </summary>
+    </member>
+    <member name="P:Wpf.NotificationCenter.Notification.Notification.AlertMaxHeight">
+      <summary>
+       Gets or sets the maximum height of the alert.
+   </summary>
+      <value>The maximum height of the alert.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.Notification.Notification.AlertType">
+      <summary>
+       Gets or sets the type of the alert.
+   </summary>
+      <value>The type of the alert.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.Notification.Notification.CreatedOn">
+      <summary>
+       Gets the created on.
+   </summary>
+      <value>The created on.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.Notification.Notification.CreatedOnVisibility">
+      <summary>
+       Gets or sets the created on visibility.
+   </summary>
+      <value>The created on visibility.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.Notification.Notification.DisplayTime">
+      <summary>
+       Gets or sets the display time.
+   </summary>
+      <value>The display time.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.Notification.Notification.IsClickable">
+      <summary>
+       Gets or sets a value indicating whether this instance is clickable.
+   </summary>
+      <value>
+        <c>true</c> if this instance is clickable; otherwise, <c>false</c>.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.Notification.Notification.NotificationType">
+      <summary>
+       Gets or sets the type of the notification.
+   </summary>
+      <value>The type of the notification.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.Notification.Notification.RemoveNotificationCommand">
+      <summary>
+       Gets or sets the remove notification command.
+   </summary>
+      <value>The remove notification command.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.Notification.Notification.ShowExpander">
+      <summary>
+       Gets or sets a value indicating whether [show expander].
+   </summary>
+      <value>
+        <c>true</c> if [show expander]; otherwise, <c>false</c>.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.Notification.Notification.Text">
+      <summary>
+       Gets or sets the text.
+   </summary>
+      <value>The text.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.Notification.Notification.Title">
+      <summary>
+       Gets or sets the title.
+   </summary>
+      <value>The title.</value>
+    </member>
+    <member name="T:Wpf.NotificationCenter.Notification.NotificationHeader">
+      <summary> Interaction logic for NotificationHeader.xaml </summary>
+    </member>
+    <member name="P:Wpf.NotificationCenter.Notification.Notification.Unread">
+      <summary>
+       Gets or sets a value indicating whether this <see cref="T:Wpf.NotificationCenter.Notification.Notification" /> is unread.
+   </summary>
+      <value>
+        <c>true</c> if unread; otherwise, <c>false</c>.</value>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Notification.Notification.#ctor">
+      <summary>
+       Initializes a new instance of the <see cref="T:Wpf.NotificationCenter.Notification.Notification" /> class.
+   </summary>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Notification.Notification.#ctor(Notification)">
+      <inheritdoc />
+      <summary>
+       Initializes a new instance of the <see cref="T:Wpf.NotificationCenter.Notification.Notification" /> class.
+   </summary>
+      <param name="notification">The notification.</param>
+    </member>
+    <member name="T:Wpf.NotificationCenter.Services.IWpfNotificationService">
+      <summary>
+       Interface IWpfNotificationService
+   </summary>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.IWpfNotificationService.Close(Note,System.Nullable{System.String})">
+      <summary>
+       Closes the specified notification.
+   </summary>
+      <param name="notification">The notification.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.IWpfNotificationService.Create(System.String,System.String,NotificationType,System.Nullable{System.String},AlertType)">
+      <summary>
+       Creates the Notification(s).
+   </summary>
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationType">Type of the notification.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <param name="alertType">Type of the alert.</param>
+      <returns>Alert Center Notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.IWpfNotificationService.CreateAlertNotification(System.String,System.String,NotificationType,System.Nullable{System.String})">
+      <summary>
+       Creates the alert notification.
+   </summary>
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationType">Type of the notification.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <returns>Creates the alert notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.IWpfNotificationService.CreateToastNotification(System.String,System.String,NotificationType,System.Nullable{System.String})">
+      <summary>
+       Creates the toast notification.
+   </summary>
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationType">Type of the notification.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <returns>Creates the toast notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.IWpfNotificationService.Error(System.String,System.String,System.Nullable{System.String},AlertType)">
+      <summary>
+       Creates the error notification(s).
+   </summary>
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <param name="alertType">Type of the alert.</param>
+      <returns>Alert Center Notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.IWpfNotificationService.GetLastAlertCenterNotification(System.Nullable{System.String})">
+      <summary>
+       Gets the last alert center notification.
+   </summary>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <returns>Notification ofNotification of the last alert center notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.IWpfNotificationService.GetLastToastNotification(System.Nullable{System.String})">
+      <summary>
+       Gets the last toast notification.
+   </summary>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <returns>Notification ofNotification of the last toast notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.IWpfNotificationService.Information(System.String,System.String,System.Nullable{System.String},AlertType)">
+      <summary>
+       Creates the information notification(s).
+   </summary>
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <param name="alertType">Type of the alert.</param>
+      <returns>Alert Center Notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.IWpfNotificationService.Success(System.String,System.String,System.Nullable{System.String},AlertType)">
+      <summary>
+       Creates the success notification(s).
+   </summary>
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <param name="alertType">Type of the alert.</param>
+      <returns>Alert Center Notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.IWpfNotificationService.Warning(System.String,System.String,System.Nullable{System.String},AlertType)">
+      <summary>
+       Creates the warning notification(s).
+   </summary>
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <param name="alertType">Type of the alert.</param>
+      <returns>Alert Center Notification.</returns>
+    </member>
+    <member name="T:Wpf.NotificationCenter.Services.WpfNotificationService">
+      <summary>
+       Class WpfNotificationService.
+       Implements the <see cref="T:Wpf.NotificationCenter.Services.IWpfNotificationService" /></summary>
+      <inheritdoc />
+      <seealso cref="T:Wpf.NotificationCenter.Services.IWpfNotificationService" />
+      <example>
+       Register this service:
+      <code><![CDATA[
+   services.UseWpfNotificationCenter();
+   ]]></code>
+       Inject service:
+      <code><![CDATA[
+   public MyClass(IWpfNotificationService notificationService) {}
+   ]]></code>
+       Usage:
+      <code><![CDATA[
+   notificationService.Create(alertTitle, alertText, notificationType, alertType: alertType);
+   notificationService.Create(alertTitle, alertText, notificationType, "NotificationCenter", alertType);
+   notificationService.CreateAlertNotification(title, text, NotificationType.Information);
+   notificationService.Information(title, text, AlertType.NotificationPopup);
+   notificationService.Success(title, text, AlertType.NotificationPopup);
+   notificationService.Error(title, text, AlertType.NotificationPopup);
+   notificationService.Warning(title, text, AlertType.NotificationPopup);
+   ]]></code>
+   Get the last toast or alert center notification:
+  <code><![CDATA[
+   var toast = notificationService.GetLastToastNotification();
+   var alert = notificationService.GetLastAlertCenterNotification();
+   ]]></code></example>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.WpfNotificationService.#ctor(System.Nullable{Dispatcher})">
+      <summary>
+       Initializes a new instance of the <see cref="T:Wpf.NotificationCenter.Services.WpfNotificationService" /> class.
+   </summary>
+      <param name="dispatcher">The dispatcher.</param>
+      <exception cref="ArgumentNullException">dispatcher</exception>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.WpfNotificationService.Close(Note,System.Nullable{System.String})">
+      <summary>
+    Closes the specified notification.
+</summary>
+      <inheritdoc />
+      <param name="notification">The notification.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.WpfNotificationService.Create(System.String,System.String,NotificationType,System.Nullable{System.String},AlertType)">
+      <summary>
+    Creates the Notification(s).
+</summary>
+      <inheritdoc />
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationType">Type of the notification.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <param name="alertType">Type of the alert.</param>
+      <returns>Alert Center Notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.WpfNotificationService.CreateAlertNotification(System.String,System.String,NotificationType,System.Nullable{System.String})">
+      <summary>
+    Creates the alert notification.
+</summary>
+      <inheritdoc />
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationType">Type of the notification.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <returns>Creates the alert notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.WpfNotificationService.CreateToastNotification(System.String,System.String,NotificationType,System.Nullable{System.String})">
+      <summary>
+    Creates the toast notification.
+</summary>
+      <inheritdoc />
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationType">Type of the notification.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <returns>Creates the toast notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.WpfNotificationService.Error(System.String,System.String,System.Nullable{System.String},AlertType)">
+      <summary>
+    Creates the error notification(s).
+</summary>
+      <inheritdoc />
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <param name="alertType">Type of the alert.</param>
+      <returns>Alert Center Notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.WpfNotificationService.GetLastAlertCenterNotification(System.Nullable{System.String})">
+      <summary>
+    Gets the last alert center notification.
+</summary>
+      <inheritdoc />
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <returns>Notification ofNotification of the last alert center notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.WpfNotificationService.GetLastToastNotification(System.Nullable{System.String})">
+      <summary>
+    Gets the last toast notification.
+</summary>
+      <inheritdoc />
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <returns>Notification ofNotification of the last toast notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.WpfNotificationService.Information(System.String,System.String,System.Nullable{System.String},AlertType)">
+      <summary>
+    Creates the information notification(s).
+</summary>
+      <inheritdoc />
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <param name="alertType">Type of the alert.</param>
+      <returns>Alert Center Notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.WpfNotificationService.Success(System.String,System.String,System.Nullable{System.String},AlertType)">
+      <summary>
+    Creates the success notification(s).
+</summary>
+      <inheritdoc />
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <param name="alertType">Type of the alert.</param>
+      <returns>Alert Center Notification.</returns>
+    </member>
+    <member name="M:Wpf.NotificationCenter.Services.WpfNotificationService.Warning(System.String,System.String,System.Nullable{System.String},AlertType)">
+      <summary>
+    Creates the warning notification(s).
+</summary>
+      <inheritdoc />
+      <param name="title">The title.</param>
+      <param name="text">The text.</param>
+      <param name="notificationCenterName">Name of the notification center.</param>
+      <param name="alertType">Type of the alert.</param>
+      <returns>Alert Center Notification.</returns>
+    </member>
+    <member name="T:Wpf.NotificationCenter.NotificationCenter">
+      <summary>     Interaction logic for NotificationCenter.xaml </summary>
+      <inheritdoc cref="T:System.Windows.Controls.HeaderedContentControl" />
+      <inheritdoc cref="T:System.ComponentModel.INotifyPropertyChanged" />
+    </member>
+    <member name="E:Wpf.NotificationCenter.NotificationCenter.PropertyChanged">
+      <summary>
+       Occurs when a property value changes.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.NotificationCenter.NewAlertColorProperty">
+      <summary>
+       Color of the icon when there is a new alert.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.NotificationCenter.NoAlertColorProperty">
+      <summary>
+       Color of the icon when there are no unread alerts.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.NotificationCenter.NoAlertIconProperty">
+      <summary>
+       The icon when there are no unread alerts.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.NotificationCenter.NewAlertIconProperty">
+      <summary>
+       The icon when there is a new alert.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.NotificationCenter.AlertMaxHeightProperty">
+      <summary>
+       The alert text content maximum height in the alert center.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.NotificationCenter.AlertMaxWidthProperty">
+      <summary>
+       The alert maximum width property of the notification center popup.
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.NotificationCenter.ShowNotificationCenterButtonProperty">
+      <summary>
+       The show notification center button property
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.NotificationCenter.MaxNotificationsProperty">
+      <summary>
+       The maximum notifications property
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.NotificationCenter.IsItemsAscendingProperty">
+      <summary>
+       The is items ascending property
+   </summary>
+    </member>
+    <member name="F:Wpf.NotificationCenter.NotificationCenter.ButtonHorizontalAlignmentProperty">
+      <summary>
+       The button alignment property
+   </summary>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.AlertMaxHeight">
+      <summary>
+       Gets or sets the maximum height of the alert.
+   </summary>
+      <value>The maximum height of the alert.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.AlertMaxWidth">
+      <summary>
+       Gets or sets the maximum width of the alert.
+   </summary>
+      <value>The maximum width of the alert.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.ButtonHorizontalAlignment">
+      <summary>
+       Gets or sets the button alignment.
+   </summary>
+      <value>The button alignment.</value>
+    </member>
+    <member name="M:Wpf.NotificationCenter.NotificationPopup.#ctor">
+      <summary>
+       Initializes a new instance of the <see cref="T:Wpf.NotificationCenter.NotificationPopup" /> class.
+   </summary>
+    </member>
+    <member name="E:Wpf.NotificationCenter.NotificationPopup.PropertyChanged">
+      <inheritdoc />
+      <summary>
+       Occurs when a property value changes.
+   </summary>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.DisplayNotes">
+      <summary>
+       Gets the toasts.
+   </summary>
+      <value>The toast message notifications.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.IsItemsAscending">
+      <summary>
+       Gets or sets a value indicating whether this instance is items ascending.
+   </summary>
+      <value>
+        <c>true</c> if this instance is items ascending; otherwise, <c>false</c>.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.MaxNotifications">
+      <summary>
+       Gets or sets the maximum notifications.
+   </summary>
+      <value>The maximum notifications.</value>
+    </member>
+    <member name="T:Wpf.NotificationCenter.NotificationPopup">
+      <summary>     Interaction logic for NotificationPopup.xaml </summary>
+      <inheritdoc cref="T:System.Windows.Controls.Primitives.Popup" />
+      <inheritdoc cref="T:System.ComponentModel.INotifyPropertyChanged" />
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.NewAlertColor">
+      <summary>
+       The color used when a new alert is detected.
+   </summary>
+      <value>The new color of the alert.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.NewAlertIcon">
+      <summary>
+       The icon used when a new alert is detected.
+   </summary>
+      <value>The new alert icon.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.NewNotificationCount">
+      <summary>
+       Gets new notification count.
+   </summary>
+      <value>The new notification count.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.NoAlertColor">
+      <summary>
+       Gets or sets the color of the no alert.
+   </summary>
+      <value>The color of the no alert.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.NoAlertIcon">
+      <summary>
+       Gets or sets the no alert icon.
+   </summary>
+      <value>The no alert icon.</value>
+    </member>
+    <member name="M:Wpf.NotificationCenter.NotificationCenterButton.#ctor">
+      <inheritdoc />
+      <summary>
+       Initializes a new instance of the <see cref="T:Wpf.NotificationCenter.NotificationCenterButton" /> class.
+   </summary>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.Notifications">
+      <summary>
+       Gets the alert center notifications.
+   </summary>
+      <value>The notifications.</value>
+    </member>
+    <member name="T:Wpf.NotificationCenter.NotificationCenterButton">
+      <inheritdoc />
+      <summary>     Interaction logic for NotificationCenterButton.xaml </summary>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.NotificationsVisible">
+      <summary>
+       Gets or sets a value indicating whether [notifications visible].
+   </summary>
+      <value>
+        <c>true</c> if [notifications visible]; otherwise, <c>false</c>.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.ShowNotificationCenterButton">
+      <summary>
+       Gets or sets a value indicating whether [show notification center button].
+   </summary>
+      <value>
+        <c>true</c> if [show notification center button]; otherwise, <c>false</c>.</value>
+    </member>
+    <member name="P:Wpf.NotificationCenter.NotificationCenter.ToggleCommand">
+      <summary>
+       Gets the toggle command.
+   </summary>
+      <value>The toggle command.</value>
+    </member>
+    <member name="M:Wpf.NotificationCenter.NotificationCenter.#ctor">
+      <inheritdoc />
+      <summary>
+       Initializes a new instance of the <see cref="T:Wpf.NotificationCenter.NotificationCenter" /> class.
+   </summary>
+    </member>
+  </members>
+</doc>

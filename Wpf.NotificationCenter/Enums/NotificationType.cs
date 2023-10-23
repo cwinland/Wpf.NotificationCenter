@@ -1,27 +1,27 @@
 ﻿namespace Wpf.NotificationCenter.Enums
 {
     /// <summary>
-    ///     Enum NotificationType
+    ///     The type of notification message such as information, error, warning, or success message.
     /// </summary>
     public enum NotificationType
     {
         /// <summary>
-        ///     The information
+        ///     Informational notification.
         /// </summary>
         Information,
 
         /// <summary>
-        ///     The error
+        ///     Error notification.
         /// </summary>
         Error,
 
         /// <summary>
-        ///     The warning
+        ///     Warning notification.
         /// </summary>
         Warning,
 
         /// <summary>
-        ///     The success
+        ///     Success notification.
         /// </summary>
         Success
     }

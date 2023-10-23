@@ -12,6 +12,38 @@ namespace Wpf.NotificationCenter.Services
     /// </summary>
     /// <inheritdoc />
     /// <seealso cref="IWpfNotificationService" />
+    /// <example>
+    ///     Register this service:
+    ///     <code>
+    /// <![CDATA[
+    /// services.UseWpfNotificationCenter();
+    /// ]]>
+    /// </code>
+    ///     Inject service:
+    ///     <code>
+    /// <![CDATA[
+    /// public MyClass(IWpfNotificationService notificationService) {}
+    /// ]]>
+    /// </code>
+    ///     Usage:
+    ///     <code>
+    /// <![CDATA[
+    /// notificationService.Create(alertTitle, alertText, notificationType, alertType: alertType);
+    /// notificationService.Create(alertTitle, alertText, notificationType, "NotificationCenter", alertType);
+    /// notificationService.CreateAlertNotification(title, text, NotificationType.Information);
+    /// notificationService.Information(title, text, AlertType.NotificationPopup);
+    /// notificationService.Success(title, text, AlertType.NotificationPopup);
+    /// notificationService.Error(title, text, AlertType.NotificationPopup);
+    /// notificationService.Warning(title, text, AlertType.NotificationPopup);
+    /// ]]>
+    /// </code>
+    /// Get the last toast or alert center notification:
+    /// <code>
+    /// <![CDATA[
+    /// var toast = notificationService.GetLastToastNotification();
+    /// var alert = notificationService.GetLastAlertCenterNotification();
+    /// ]]></code>
+    /// </example>
     public class WpfNotificationService : IWpfNotificationService
     {
         #region Fields
@@ -32,12 +64,19 @@ namespace Wpf.NotificationCenter.Services
             this.dispatcher = dispatcher ?? throw new ArgumentNullException(nameof(dispatcher));
         }
 
+        private Note CreateBoth(string title, string text, NotificationType notificationType, string? notificationCenterName)
+        {
+            _ = CreateToastNotification(title, text, notificationType, notificationCenterName);
+            return CreateAlertNotification(title, text, notificationType, notificationCenterName);
+        }
+
+        private static InvalidProgramException ErrorCreating() => new("Error Creating Notification");
+
         private static NotificationCenter GetNotificationCenter(string? notificationCenterName = null) =>
             Application.Current?.MainWindow?.FindChild<NotificationCenter>(notificationCenterName) ??
             throw NotFound(notificationCenterName);
 
         private static KeyNotFoundException NotFound(string? name = null) => new($"{name ?? "Notification Center"} not found.");
-        private static InvalidProgramException ErrorCreating() => new ("Error Creating Notification");
 
         #region IWpfNotificationService
 
@@ -57,10 +96,21 @@ namespace Wpf.NotificationCenter.Services
                     _ => CreateBoth(title, text, notificationType, notificationCenterName),
                 };
 
-        private Note CreateBoth(string title, string text, NotificationType notificationType, string? notificationCenterName)
+        /// <inheritdoc />
+        public Note CreateAlertNotification(string title, string text,
+            NotificationType notificationType = NotificationType.Information,
+            string? notificationCenterName = null)
         {
-            _ = CreateToastNotification(title, text, notificationType, notificationCenterName);
-            return CreateAlertNotification(title, text, notificationType, notificationCenterName);
+            if (!dispatcher.CheckAccess())
+            {
+                return dispatcher.Invoke(() => CreateAlertNotification(title, text, notificationType, notificationCenterName)) ??
+                       throw ErrorCreating();
+            }
+
+            var notification = new Note {Title = title, Text = text, NotificationType = notificationType};
+            var center = GetNotificationCenter(notificationCenterName);
+
+            return center.CreateNotificationAlert(notification);
         }
 
         /// <inheritdoc />
@@ -74,27 +124,10 @@ namespace Wpf.NotificationCenter.Services
                        throw ErrorCreating();
             }
 
-            var notification = new Note { Title = title, Text = text, NotificationType = notificationType};
+            var notification = new Note {Title = title, Text = text, NotificationType = notificationType};
             var center = GetNotificationCenter(notificationCenterName);
 
             return center.CreateNotificationPopup(notification);
-        }
-
-        /// <inheritdoc />
-        public Note CreateAlertNotification(string title, string text,
-            NotificationType notificationType = NotificationType.Information,
-            string? notificationCenterName = null)
-        {
-            if (!dispatcher.CheckAccess())
-            {
-                return dispatcher.Invoke(() => CreateAlertNotification(title, text, notificationType, notificationCenterName)) ??
-                       throw ErrorCreating();
-            }
-
-            var notification = new Note { Title = title, Text = text, NotificationType = notificationType};
-            var center = GetNotificationCenter(notificationCenterName);
-
-            return center.CreateNotificationAlert(notification);
         }
 
         /// <inheritdoc />
