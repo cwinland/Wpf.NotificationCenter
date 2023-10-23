@@ -1,6 +1,6 @@
 # Wpf.NotificationCenter
 
-<img src="Resources/image-3.png" alt="Image of an error expanded in the notification center" width="200" />
+![Image of an error expanded in the notification center](Resources/image-3.png)
 
 ## Objective
 
@@ -100,9 +100,9 @@ Choose one:
 |                          |                          |
 :-------------------------:|:-------------------------:
 Notification Center resides in the header. | Toast notifications can be shown.
-<img src="Resources/image-8.png" alt="Image of the notification center residing in the header" width="200" /> | <img src="Resources/image-1.png" alt="Image of an error toast notification" width="200" />
+![Image of the notification center residing in the header](Resources/image-8.png) | ![Image of an error toast notification](Resources/image-1.png)
 Alert center Notification with collapsed message. | Alert center Notification with expanded message.
-<img src="Resources/image-2.png" alt="Image of an error collapsed in the notification center" width="200" /> | <img src="Resources/image-3.png" alt="Image of an error expanded in the notification center" width="200" />
+![Image of an error collapsed in the notification center](Resources/image-2.png) | ![Image of an error expanded in the notification center](Resources/image-3.png)
 
 ## Customization
 
@@ -134,7 +134,7 @@ Most of the look / feel is defined in the generic.xaml file. Primary theme style
 
 ## API Documentation
 
-[API Documentation](./Help/index.html)
+[API Documentation](https://rawcdn.githack.com/cwinland/Wpf.NotificationCenter/de65ab193fb9845d0351cdffe57d6e3758459657/Help/index.html)
 
 ## Release Notes
 
