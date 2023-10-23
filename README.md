@@ -138,4 +138,5 @@ Most of the look / feel is defined in the generic.xaml file. Primary theme style
 
 ## Release Notes
 
-- Initial Release - v.1.0.0
+- Initial Release - v1.0.0.
+- Add UI fixes, more customization, fix bugs - v1.0.4.
