@@ -3,6 +3,12 @@
 ###############################################################################
 * text=auto
 
+# Vendored dependencies
+*.htm linguist-vendored
+*.css linguist-vendored
+* linguist-language=c#
+Help/* linguist-documentation
+
 ###############################################################################
 # Set default behavior for command prompt diff.
 #
@@ -61,5 +67,3 @@
 #*.PDF   diff=astextplain
 #*.rtf   diff=astextplain
 #*.RTF   diff=astextplain
-# Apply override to all files in the directory
-Help/* linguist-documentation
