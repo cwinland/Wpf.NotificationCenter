@@ -37,8 +37,8 @@ namespace Wpf.NotificationCenter.Services
     /// notificationService.Warning(title, text, AlertType.NotificationPopup);
     /// ]]>
     /// </code>
-    /// Get the last toast or alert center notification:
-    /// <code>
+    ///     Get the last toast or alert center notification:
+    ///     <code>
     /// <![CDATA[
     /// var toast = notificationService.GetLastToastNotification();
     /// var alert = notificationService.GetLastAlertCenterNotification();
@@ -136,6 +136,10 @@ namespace Wpf.NotificationCenter.Services
             Create(title, text, NotificationType.Error, notificationCenterName, alertType);
 
         /// <inheritdoc />
+        public Note Error(string text, string? notificationCenterName = null, AlertType alertType = AlertType.All) =>
+            Error("Error", text, notificationCenterName, alertType);
+
+        /// <inheritdoc />
         public Note GetLastAlertCenterNotification(string? notificationCenterName = null) =>
             GetNotificationCenter(notificationCenterName).DisplayNotes.Last();
 
@@ -148,12 +152,24 @@ namespace Wpf.NotificationCenter.Services
             AlertType alertType = AlertType.All) => Create(title, text, NotificationType.Information, notificationCenterName, alertType);
 
         /// <inheritdoc />
+        public Note Information(string text, string? notificationCenterName = null, AlertType alertType = AlertType.All) =>
+            Information("Information", text, notificationCenterName, alertType);
+
+        /// <inheritdoc />
         public Note Success(string title, string text, string? notificationCenterName = null,
             AlertType alertType = AlertType.All) => Create(title, text, NotificationType.Success, notificationCenterName, alertType);
 
         /// <inheritdoc />
+        public Note Success(string text, string? notificationCenterName = null, AlertType alertType = AlertType.All) =>
+            Success("Success", text, notificationCenterName, alertType);
+
+        /// <inheritdoc />
         public Note Warning(string title, string text, string? notificationCenterName = null,
             AlertType alertType = AlertType.All) => Create(title, text, NotificationType.Warning, notificationCenterName, alertType);
+
+        /// <inheritdoc />
+        public Note Warning(string text, string? notificationCenterName = null, AlertType alertType = AlertType.All) =>
+            Warning("Warning", text, notificationCenterName, alertType);
 
         #endregion
     }

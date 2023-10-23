@@ -61,6 +61,8 @@ namespace Wpf.NotificationCenter.Services
         /// <returns>Alert Center Notification.</returns>
         Note Error(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
 
+        Note Error(string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
+
         /// <summary>
         ///     Gets the last alert center notification.
         /// </summary>
@@ -83,8 +85,8 @@ namespace Wpf.NotificationCenter.Services
         /// <param name="notificationCenterName">Name of the notification center.</param>
         /// <param name="alertType">Type of the alert.</param>
         /// <returns>Alert Center Notification.</returns>
-        Notification.Notification Information(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
-
+        Note Information(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
+        Note Information(string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
         /// <summary>
         ///     Creates the success notification(s).
         /// </summary>
@@ -94,7 +96,7 @@ namespace Wpf.NotificationCenter.Services
         /// <param name="alertType">Type of the alert.</param>
         /// <returns>Alert Center Notification.</returns>
         Note Success(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
-
+        Note Success(string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
         /// <summary>
         ///     Creates the warning notification(s).
         /// </summary>
@@ -104,5 +106,6 @@ namespace Wpf.NotificationCenter.Services
         /// <param name="alertType">Type of the alert.</param>
         /// <returns>Alert Center Notification.</returns>
         Note Warning(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
+        Note Warning(string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
     }
 }
