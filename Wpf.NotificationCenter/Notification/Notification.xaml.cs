@@ -15,11 +15,6 @@ namespace Wpf.NotificationCenter.Notification
     {
         #region Events
 
-        /// <summary>
-        ///     Occurs when content is clicked.
-        /// </summary>
-        public event EventHandler? OnClicked;
-
         /// <inheritdoc />
         public event PropertyChangedEventHandler? PropertyChanged;
 

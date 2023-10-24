@@ -61,14 +61,20 @@ namespace Wpf.NotificationCenter.Services
         /// <returns>Alert Center Notification.</returns>
         Note Error(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
 
-        Note Error(string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
+        /// <summary>
+        ///     Errors the specified text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="alertType">Type of the alert.</param>
+        /// <returns>Errors.</returns>
+        Note Error(string text, AlertType alertType = AlertType.All);
 
         /// <summary>
         ///     Gets the last alert center notification.
         /// </summary>
         /// <param name="notificationCenterName">Name of the notification center.</param>
         /// <returns>Notification ofNotification of the last alert center notification.</returns>
-        Notification.Notification GetLastAlertCenterNotification(string? notificationCenterName = null);
+        Note GetLastAlertCenterNotification(string? notificationCenterName = null);
 
         /// <summary>
         ///     Gets the last toast notification.
@@ -86,7 +92,15 @@ namespace Wpf.NotificationCenter.Services
         /// <param name="alertType">Type of the alert.</param>
         /// <returns>Alert Center Notification.</returns>
         Note Information(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
-        Note Information(string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
+
+        /// <summary>
+        ///     Informations the specified text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="alertType">Type of the alert.</param>
+        /// <returns>Informations.</returns>
+        Note Information(string text, AlertType alertType = AlertType.All);
+
         /// <summary>
         ///     Creates the success notification(s).
         /// </summary>
@@ -96,7 +110,15 @@ namespace Wpf.NotificationCenter.Services
         /// <param name="alertType">Type of the alert.</param>
         /// <returns>Alert Center Notification.</returns>
         Note Success(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
-        Note Success(string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
+
+        /// <summary>
+        ///     Successes the specified text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="alertType">Type of the alert.</param>
+        /// <returns>Successes.</returns>
+        Note Success(string text, AlertType alertType = AlertType.All);
+
         /// <summary>
         ///     Creates the warning notification(s).
         /// </summary>
@@ -106,6 +128,13 @@ namespace Wpf.NotificationCenter.Services
         /// <param name="alertType">Type of the alert.</param>
         /// <returns>Alert Center Notification.</returns>
         Note Warning(string title, string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
-        Note Warning(string text, string? notificationCenterName = null, AlertType alertType = AlertType.All);
+
+        /// <summary>
+        ///     Warnings the specified text.
+        /// </summary>
+        /// <param name="text">The text.</param>
+        /// <param name="alertType">Type of the alert.</param>
+        /// <returns>Warnings.</returns>
+        Note Warning(string text, AlertType alertType = AlertType.All);
     }
 }

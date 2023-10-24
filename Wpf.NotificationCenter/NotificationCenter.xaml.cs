@@ -532,8 +532,6 @@ namespace Wpf.NotificationCenter
                     Dispatcher.CurrentDispatcher
                 );
 
-                newNote.OnClicked += TimerCallback;
-
                 timer.Start();
 
                 void TimerCallback(object? sender, EventArgs? args)
