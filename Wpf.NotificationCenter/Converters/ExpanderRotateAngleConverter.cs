@@ -10,7 +10,7 @@ namespace Wpf.NotificationCenter.Converters
     /// </summary>
     /// <seealso cref="IValueConverter" />
     /// <inheritdoc />
-    public class ExpanderRotateAngleConverter : IValueConverter
+    internal class ExpanderRotateAngleConverter : IValueConverter
     {
         /// <inheritdoc />
         /// <summary>
