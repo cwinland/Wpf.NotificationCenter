@@ -403,7 +403,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <DataTemplate.Resources>
-                        <Style TargetType="TextBlock" BasedOn="{StaticResource BoldTextBlock}" />
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}" />
                     </DataTemplate.Resources>
                     <Grid Background="Transparent">
                         <Grid.ColumnDefinitions>
@@ -429,7 +429,7 @@
             <Setter.Value>
                 <DataTemplate>
                     <DataTemplate.Resources>
-                        <Style TargetType="TextBlock" BasedOn="{StaticResource BoldTextBlock}" />
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}" />
                     </DataTemplate.Resources>
                     <Grid Background="Transparent">
                         <ContentControl Canvas.ZIndex="0" Content="{Binding }" FontWeight="Bold" FontSize="14" />

@@ -51,7 +51,7 @@
                     </Grid.RowDefinitions>
                     <!-- Notification Center Popup Header -->
                     <Border Grid.Row="0"
-                            BorderThickness="0 0 0 1"
+                            BorderThickness="0 0 0 0"
                             BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
                             Margin="0">
                         <Grid HorizontalAlignment="Stretch" Margin="2 0">

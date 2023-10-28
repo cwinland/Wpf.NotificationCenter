@@ -54,16 +54,6 @@ namespace Wpf.NotificationCenter
         );
 
         /// <summary>
-        ///     Color of the icon when there are no unread alerts.
-        /// </summary>
-        public static readonly DependencyProperty NoAlertColorProperty = DependencyProperty.Register(
-            nameof(NoAlertColor),
-            typeof(SolidColorBrush),
-            typeof(NotificationCenter),
-            new PropertyMetadata(Brushes.Black, Refresh)
-        );
-
-        /// <summary>
         ///     The icon when there are no unread alerts.
         /// </summary>
         public static readonly DependencyProperty NoAlertIconProperty = DependencyProperty.Register(
@@ -306,20 +296,6 @@ namespace Wpf.NotificationCenter
         /// </summary>
         /// <value>The new notification count.</value>
         public int NewNotificationCount => Notifications.Count(x => x.Unread);
-
-        /// <summary>
-        ///     Gets or sets the color of the no alert.
-        /// </summary>
-        /// <value>The color of the no alert.</value>
-        public SolidColorBrush NoAlertColor
-        {
-            get => (SolidColorBrush) (GetValue(NoAlertColorProperty) ?? defaultColor);
-            set
-            {
-                SetValue(NoAlertColorProperty, value);
-                SetValue(NoAlertColorProperty, NoAlertColor);
-            }
-        }
 
         /// <summary>
         ///     Gets or sets the no alert icon.
