@@ -8,7 +8,6 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
-using System.Windows.Media;
 using Wpf.NotificationCenter.Enums;
 using Wpf.NotificationCenter.Services;
 
@@ -35,8 +34,8 @@ namespace WpfNotificationCenter
         private string alertText = "Alert Text";
         private double alertMaxWidth = 250d;
         private NotificationType selectedNotificationType = NotificationType.Information;
-        private ComboBoxItem themePrimaryColor = new() { Content="DeepPurple"};
-        private ComboBoxItem themeSecondaryColor = new() { Content = "Lime"};
+        private ComboBoxItem themePrimaryColor = new() { Content="Blue"};
+        private ComboBoxItem themeSecondaryColor = new() { Content = "Yellow"};
         private ComboBoxItem themeLightDark = new() {Content = "Light"};
 
         #endregion

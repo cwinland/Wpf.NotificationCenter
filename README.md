@@ -78,7 +78,6 @@ Choose one:
         VerticalAlignment="Stretch"
         HorizontalAlignment="Stretch"
         NewAlertColor="GoldenRod"
-        NoAlertColor="Gray"
         AlertMaxWidth="175"
         MaxNotifications="10"
         BorderBrush="Blue"
@@ -121,7 +120,6 @@ MaxNotifications             | Byte                | 0 (Unlimited) | The upper l
 NewAlertColor                | Brushes             | Goldenrod     | Color of the icon when there is a new alert.
 NewAlertIcon                 | PackIconKind        | BellAlert     | The icon when there is a new alert.
 NotificationSeconds          | Integer             | 5             | Indicates how long the temporary toast message is displayed.
-NoAlertColor                 | Brushes             | Black         | Color of the icon when there are no unread alerts.
 NoAlertIcon                  | PackIconKind        | Notifications | The icon when there are no unread alerts.
 PopupHorizontalPlacement     | Double              | 0             | Alert Center Popup Positioning.
 PopupPlacement               | PlacementMode       | Bottom        | Alert Center Popup Positioning.

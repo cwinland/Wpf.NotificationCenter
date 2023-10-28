@@ -15,8 +15,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.DeepPurple.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.Lime.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/materialdesigncolor.deeppurple.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="TextBlock">
                 <Setter Property="Margin" Value="5 0" />
@@ -43,6 +43,11 @@
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Style>
+            <Style TargetType="Button">
+                <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
+                <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -51,11 +56,9 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <notificationCenter:NotificationCenter x:Name="NotificationCenter"
-                                               Foreground="{DynamicResource SecondaryHueMidBrush}"
                                                VerticalAlignment="Stretch"
                                                HorizontalAlignment="Stretch"
                                                NewAlertColor="GoldenRod"
-                                               NoAlertColor="{DynamicResource SecondaryHueMidBrush}"
                                                AlertMaxWidth="{Binding DataContext.AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                                MaxNotifications="10"
                                                NotificationSeconds="15"
@@ -142,7 +145,7 @@
                     </StackPanel>
                     <StackPanel Grid.Row="2" Grid.Column="7">
                         <TextBlock>Primary</TextBlock>
-                        <ComboBox SelectedIndex="6"
+                        <ComboBox SelectedIndex="1"
                                   Width="110"
                                   ItemsSource="{Binding DataContext.PrimaryColorItems, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                   SelectedItem="{Binding DataContext.ThemePrimaryColor, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
@@ -150,14 +153,18 @@
                     </StackPanel>
                     <StackPanel Grid.Row="2" Grid.Column="8">
                         <TextBlock>Accent</TextBlock>
-                        <ComboBox SelectedIndex="9"
+                        <ComboBox SelectedIndex="4"
                                   Width="110"
                                   ItemsSource="{Binding DataContext.AccentColorItems, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                   SelectedItem="{Binding DataContext.ThemeSecondaryColor, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
 
                     </StackPanel>
 
-                    <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Height="50" Margin="5"  Command="{Binding DataContext.CreateNotificationCommand, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}">
+                    <Button Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="10"
+                            Height="50"
+                            Margin="20"
+                            HorizontalAlignment="Center"
+                            Command="{Binding DataContext.CreateNotificationCommand, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}">
                         Create Notification
                     </Button>
                 </Grid>
