@@ -15,8 +15,8 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.Blue.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/materialdesigncolor.deeppurple.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/materialdesigncolor.bluegrey.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/materialdesigncolor.cyan.xaml" />
             </ResourceDictionary.MergedDictionaries>
             <Style TargetType="TextBlock">
                 <Setter Property="Margin" Value="5 0" />
@@ -47,6 +47,7 @@
                 <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}" />
                 <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="Padding" Value="5" />
             </Style>
         </ResourceDictionary>
     </Window.Resources>
@@ -145,7 +146,7 @@
                     </StackPanel>
                     <StackPanel Grid.Row="2" Grid.Column="7">
                         <TextBlock>Primary</TextBlock>
-                        <ComboBox SelectedIndex="1"
+                        <ComboBox SelectedIndex="2"
                                   Width="110"
                                   ItemsSource="{Binding DataContext.PrimaryColorItems, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                   SelectedItem="{Binding DataContext.ThemePrimaryColor, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
@@ -153,7 +154,7 @@
                     </StackPanel>
                     <StackPanel Grid.Row="2" Grid.Column="8">
                         <TextBlock>Accent</TextBlock>
-                        <ComboBox SelectedIndex="4"
+                        <ComboBox SelectedIndex="2"
                                   Width="110"
                                   ItemsSource="{Binding DataContext.AccentColorItems, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                   SelectedItem="{Binding DataContext.ThemeSecondaryColor, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
