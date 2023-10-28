@@ -14,7 +14,6 @@
                 Margin="0"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
-                Padding="5 0"
                 MaxHeight="{x:Static sys:Double.PositiveInfinity}"
                 Command="{Binding ToggleCommand, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}">
             <StackPanel Orientation="Horizontal">
@@ -37,6 +36,7 @@
                     </materialDesign:PackIcon.Style>
                 </materialDesign:PackIcon>
                 <Label Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"
+                       Padding="0"
                     Content="{Binding NewNotificationCount, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
             </StackPanel>
         </Button>
