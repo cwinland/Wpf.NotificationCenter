@@ -58,6 +58,7 @@
                                                NoAlertColor="{DynamicResource SecondaryHueMidBrush}"
                                                AlertMaxWidth="{Binding DataContext.AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                                MaxNotifications="10"
+                                               NotificationSeconds="15"
                                                BorderBrush="{DynamicResource SecondaryHueMidBrush}"
                                                IsItemsAscending="False"
                                                ButtonHorizontalAlignment="{Binding DataContext.SelectedHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
