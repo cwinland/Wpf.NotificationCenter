@@ -36,7 +36,8 @@
                         </Style>
                     </materialDesign:PackIcon.Style>
                 </materialDesign:PackIcon>
-                <Label Content="{Binding NewNotificationCount, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
+                <Label Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}"
+                    Content="{Binding NewNotificationCount, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
             </StackPanel>
         </Button>
     </Grid>
