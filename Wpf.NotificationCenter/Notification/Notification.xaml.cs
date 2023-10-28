@@ -155,31 +155,11 @@ namespace Wpf.NotificationCenter.Notification
         }
 
         /// <summary>
-        ///     Gets or sets the display time.
-        /// </summary>
-        /// <value>The display time.</value>
-        public TimeSpan DisplayTime { get; set; } = TimeSpan.FromSeconds(5);
-
-        /// <summary>
         ///     Gets the expander visibility.
         /// </summary>
         /// <value>The expander visibility.</value>
         /// <exclude />
         public Visibility ExpanderVisibility => ShowExpander ? Visibility.Visible : Visibility.Collapsed;
-
-        /// <summary>
-        ///     Gets or sets a value indicating whether this instance is clickable.
-        /// </summary>
-        /// <value><c>true</c> if this instance is clickable; otherwise, <c>false</c>.</value>
-        public bool IsClickable
-        {
-            get => isClickable;
-            set
-            {
-                isClickable = value;
-                OnPropertyChanged();
-            }
-        }
 
         /// <summary>
         ///     Gets or sets the type of the notification.

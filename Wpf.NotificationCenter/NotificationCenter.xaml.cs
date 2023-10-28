@@ -495,7 +495,6 @@ namespace Wpf.NotificationCenter
             notification.IsExpanded = false;
             notification.ShowExpander = true;
             notification.Expanded += Refresh;
-            notification.IsClickable = true;
             notification.AlertMaxHeight = AlertMaxHeight;
             notification.RemoveNotificationCommand = new RelayCommand<Note>(RemoveNotification);
             Notifications.Add(notification);
@@ -511,6 +510,25 @@ namespace Wpf.NotificationCenter
             return notification;
         }
 
+        /// <summary>
+        ///     The notification seconds property
+        /// </summary>
+        public static readonly DependencyProperty NotificationSecondsProperty = DependencyProperty.Register(
+            nameof(NotificationSeconds),
+            typeof(int),
+            typeof(NotificationCenter),
+            new PropertyMetadata(5)
+        );
+
+        /// <summary>
+        ///     Gets or sets the notification seconds.
+        /// </summary>
+        /// <value>The notification seconds.</value>
+        public int NotificationSeconds
+        {
+            get => (int) GetValue(NotificationSecondsProperty);
+            set => SetValue(NotificationSecondsProperty, value);
+        }
         internal Note CreateNotificationPopup(Note notification)
         {
             var newNote = new Note(notification)
@@ -519,14 +537,14 @@ namespace Wpf.NotificationCenter
                 IsExpanded = true,
                 AlertType = AlertType.NotificationPopup,
                 MaxHeight = AlertMaxHeight,
-                CreatedOnVisibility = Visibility.Hidden,
+                CreatedOnVisibility = Visibility.Collapsed,
             };
 
             try
             {
                 DisplayNotes.Add(newNote);
 
-                var timer = new DispatcherTimer(notification.DisplayTime,
+                var timer = new DispatcherTimer(TimeSpan.FromSeconds(NotificationSeconds),
                     DispatcherPriority.Render,
                     TimerCallback,
                     Dispatcher.CurrentDispatcher

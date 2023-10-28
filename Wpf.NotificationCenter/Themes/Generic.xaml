@@ -332,8 +332,6 @@
 
                 <Border Name="ContentSite"
                         Margin="2 0"
-                        BorderThickness="0 1 0 0"
-                        BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
                         HorizontalAlignment="Stretch"
                         >
                     <Border.LayoutTransform>
