@@ -5,8 +5,10 @@ using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Windows;
+using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
+using System.Windows.Media;
 using Wpf.NotificationCenter.Enums;
 using Wpf.NotificationCenter.Services;
 
@@ -33,6 +35,9 @@ namespace WpfNotificationCenter
         private string alertText = "Alert Text";
         private double alertMaxWidth = 250d;
         private NotificationType selectedNotificationType = NotificationType.Information;
+        private ComboBoxItem themePrimaryColor = new() { Content="DeepPurple"};
+        private ComboBoxItem themeSecondaryColor = new() { Content = "Lime"};
+        private ComboBoxItem themeLightDark = new() {Content = "Light"};
 
         #endregion
 
@@ -77,6 +82,100 @@ namespace WpfNotificationCenter
                 {
                     OnPropertyChanged(nameof(CreateNotificationCommand));
                 }
+            }
+        }
+
+        public ComboBoxItem ThemeLightDark
+        {
+            get => themeLightDark;
+            set => SetField(ref themeLightDark, value);
+        }
+
+        public IEnumerable<ComboBoxItem> PrimaryColorItems => new List<ComboBoxItem>()
+        {
+            new() {Content = "Amber"},
+            new() {Content = "Blue"},
+            new() {Content = "BlueGrey"},
+            new() {Content = "Brown"},
+            new() {Content = "Cyan"},
+            new() {Content = "DeepOrange"},
+            new() {Content = "DeepPurple"},
+            new() {Content = "Green"},
+            new() {Content = "Grey"},
+            new() {Content = "Indigo"},
+            new() {Content = "LightBlue"},
+            new() {Content = "LightGreen"},
+            new() {Content = "Lime"},
+            new() {Content = "Orange"},
+            new() {Content = "Pink"},
+            new() {Content = "Purple"},
+            new() {Content = "Red"},
+            new() {Content = "Teal"},
+            new() {Content = "Yellow"},
+        };
+
+        public IEnumerable<ComboBoxItem> AccentColorItems => new List<ComboBoxItem>()
+        {
+            new() {Content = "Amber"},
+            new() {Content = "Blue"},
+            new() {Content = "Cyan"},
+            new() {Content = "DeepOrange"},
+            new() {Content = "DeepPurple"},
+            new() {Content = "Green"},
+            new() {Content = "Indigo"},
+            new() {Content = "LightBlue"},
+            new() {Content = "LightGreen"},
+            new() {Content = "Lime"},
+            new() {Content = "Orange"},
+            new() {Content = "Pink"},
+            new() {Content = "Purple"},
+            new() {Content = "Red"},
+            new() {Content = "Teal"},
+            new() {Content = "Yellow"},
+
+        };
+
+
+        public ComboBoxItem ThemePrimaryColor
+        {
+            get => themePrimaryColor;
+            set => SetField(ref themePrimaryColor, value);
+        }
+
+        public ComboBoxItem ThemeSecondaryColor
+        {
+            get => themeSecondaryColor;
+            set => SetField(ref themeSecondaryColor, value);
+        }
+
+        private void ApplyResources()
+        {
+            var themeSrc = new Uri($"pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.{ThemeLightDark.Content}.xaml");
+            var primarySrc = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/MaterialDesignColor.{ThemePrimaryColor.Content}.xaml");
+            var secondarySrc = new Uri($"pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/MaterialDesignColor.{ThemeSecondaryColor.Content}.xaml");
+
+            var a = Application.Current.MainWindow as MainWindow;
+
+            AddDict(themeSrc, a);
+            AddDict(primarySrc, a);
+            AddDict(secondarySrc, a);
+        }
+
+        private static void AddDict(Uri primarySrc, MainWindow? a)
+        {
+            var dict = new ResourceDictionary()
+            {
+                Source = primarySrc
+            };
+
+            foreach (var mergeDict in dict.MergedDictionaries)
+            {
+                a.Resources.MergedDictionaries.Add(mergeDict);
+            }
+
+            foreach (var key in dict.Keys)
+            {
+                a.Resources[key] = dict[key];
             }
         }
 
@@ -136,7 +235,11 @@ namespace WpfNotificationCenter
 
         #endregion
 
-        public MainWindowViewModel(IWpfNotificationService notificationService) => this.notificationService = notificationService;
+        public MainWindowViewModel(IWpfNotificationService notificationService)
+        {
+            this.notificationService = notificationService;
+            PropertyChanged += (sender, args) => ApplyResources();
+        }
 
         protected virtual void OnPropertyChanged([CallerMemberName] string? propertyName = null) =>
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
