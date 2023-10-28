@@ -7,6 +7,7 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:behaviors="clr-namespace:Wpf.NotificationCenter.Behaviors"
+             xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification"
              d:DataContext="{d:DesignInstance Type=local:NotificationCenter}"
        mc:Ignorable="d" AllowsTransparency="True" PopupAnimation="Slide"
              d:DesignHeight="450" d:DesignWidth="800">
@@ -21,7 +22,9 @@
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
     </Popup.Resources>
-    <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" BorderThickness="1" Margin="4 0 0 4">
+    <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+            BorderThickness="1"
+            Margin="4 0 0 4">
         <Border.Effect>
             <DropShadowEffect BlurRadius="15" Opacity="0.8" ShadowDepth="10" Direction="-90" RenderingBias="Quality"></DropShadowEffect>
         </Border.Effect>
@@ -33,7 +36,7 @@
             </Grid.RowDefinitions>
             <Grid.Style>
                 <Style TargetType="Grid">
-                    <Setter Property="Background" Value="Wheat" />
+                    <Setter Property="Background" Value="{Binding Background, FallbackValue='Wheat', RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
                 </Style>
             </Grid.Style>
             <!-- No Notification Center Popup Text -->
@@ -64,7 +67,16 @@
                         </Grid>
                     </Border>
                     <!-- Notification Center Popup Items -->
-                    <ItemsControl Grid.Row="1" ItemsSource="{Binding Source={StaticResource DataSource}}" Margin="0" Foreground="Black" />
+                    <ItemsControl Grid.Row="1"
+                                  ItemsSource="{Binding Source={StaticResource DataSource}}" Margin="0" Foreground="Black">
+                        <ItemsControl.Resources>
+                            <Style TargetType="{x:Type notification:Notification}" BasedOn="{StaticResource NotificationStyle}">
+                                <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                <Setter Property="BorderThickness" Value="0 1 0 0" />
+                            </Style>
+                        </ItemsControl.Resources>
+
+                    </ItemsControl>
                 </Grid>
             </ContentControl>
         </Grid>
