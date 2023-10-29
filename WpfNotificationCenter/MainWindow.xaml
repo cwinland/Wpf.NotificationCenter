@@ -5,19 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:notificationCenter="clr-namespace:Wpf.NotificationCenter;assembly=Wpf.NotificationCenter"
         xmlns:local="clr-namespace:WpfNotificationCenter"
+        xmlns:converters="clr-namespace:Wpf.NotificationCenter.Converters;assembly=Wpf.NotificationCenter"
         d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
         mc:Ignorable="d"
         Background="{DynamicResource MaterialDesignBackground}"
-
+        SizeToContent="Width"
         Title="MainWindow" Height="450" Width="800">
     <Window.Resources>
         <ResourceDictionary>
-            <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Light.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignThemes.Wpf;component/Themes/MaterialDesignTheme.Defaults.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Primary/materialdesigncolor.bluegrey.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/MaterialDesignColors;component/Themes/Recommended/Accent/materialdesigncolor.cyan.xaml" />
-            </ResourceDictionary.MergedDictionaries>
             <Style TargetType="TextBlock">
                 <Setter Property="Margin" Value="5 0" />
                 <Setter Property="TextWrapping" Value="Wrap" />
@@ -49,6 +44,7 @@
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="Padding" Value="5" />
             </Style>
+            <converters:PopupHorizontalPlacementConverter x:Key="PopupHorizontalPlacementConverter" />
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -57,17 +53,19 @@
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <notificationCenter:NotificationCenter x:Name="NotificationCenter"
+                                               Background="{Binding DataContext.NotificationBackground.Content, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                                VerticalAlignment="Stretch"
                                                HorizontalAlignment="Stretch"
                                                NewAlertColor="GoldenRod"
                                                AlertMaxWidth="{Binding DataContext.AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                                MaxNotifications="10"
-                                               NotificationSeconds="15"
+                                               NotificationSeconds="5"
                                                BorderBrush="{DynamicResource SecondaryHueMidBrush}"
                                                IsItemsAscending="False"
                                                ButtonHorizontalAlignment="{Binding DataContext.SelectedHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                                ButtonVerticalAlignment="{Binding DataContext.SelectedVerticalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                                PopupPlacement="Bottom"
+                                               PopupStaysOpen="False"
                                                NewAlertIcon="BellAlert"
                                                NoAlertIcon="BellCancel"
                                                AlertMaxHeight="{Binding DataContext.AlertMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
@@ -128,7 +126,7 @@
                     <CheckBox Grid.Row="1" Grid.Column="8"  IsChecked="{Binding DataContext.ShowInContent, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" HorizontalAlignment="Left" 
                               Margin="5 0"
                               />
-                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="6">
+                    <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="5">
                         <TextBlock >Alert text:</TextBlock>
                         <TextBox MaxLines="5"
                                  TextWrapping="Wrap"
@@ -136,28 +134,37 @@
                                  VerticalContentAlignment="Center"
                                  HorizontalAlignment="Stretch" Text="{Binding DataContext.AlertText, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
                     </StackPanel>
-                    <StackPanel Grid.Row="2" Grid.Column="6">
+                    <StackPanel Grid.Row="2" Grid.Column="5">
                         <TextBlock>Theme</TextBlock>
                         <ComboBox SelectedIndex="0"
-                                  SelectedItem="{Binding DataContext.ThemeLightDark, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}">
+                                  SelectedItem="{Binding DataContext.ThemeLightDark, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}">
                             <ComboBoxItem IsSelected="True">Light</ComboBoxItem>
                             <ComboBoxItem>Dark</ComboBoxItem>
                         </ComboBox>
                     </StackPanel>
-                    <StackPanel Grid.Row="2" Grid.Column="7">
+                    <StackPanel Grid.Row="2" Grid.Column="6">
                         <TextBlock>Primary</TextBlock>
-                        <ComboBox SelectedIndex="2"
+                        <ComboBox SelectedIndex="6"
                                   Width="110"
-                                  ItemsSource="{Binding DataContext.PrimaryColorItems, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                                  SelectedItem="{Binding DataContext.ThemePrimaryColor, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
+                                  ItemsSource="{Binding DataContext.ColorItemsPrimary, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                                  SelectedItem="{Binding DataContext.ThemePrimaryColor, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
+
+                    </StackPanel>
+                    <StackPanel Grid.Row="2" Grid.Column="7">
+                        <TextBlock>Accent</TextBlock>
+                        <ComboBox SelectedIndex="0"
+                                  Width="110"
+                                  ItemsSource="{Binding DataContext.ColorItemsAccent, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                                  SelectedItem="{Binding DataContext.ThemeSecondaryColor, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
 
                     </StackPanel>
                     <StackPanel Grid.Row="2" Grid.Column="8">
-                        <TextBlock>Accent</TextBlock>
-                        <ComboBox SelectedIndex="2"
+                        <TextBlock>Background</TextBlock>
+                        <ComboBox SelectedIndex="136"
                                   Width="110"
-                                  ItemsSource="{Binding DataContext.AccentColorItems, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                                  SelectedItem="{Binding DataContext.ThemeSecondaryColor, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" />
+                                  ItemsSource="{Binding DataContext.BrushList, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                                  SelectedItem="{Binding DataContext.NotificationBackground, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                        />
 
                     </StackPanel>
 

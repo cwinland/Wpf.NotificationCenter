@@ -9,7 +9,9 @@
              xmlns:behaviors="clr-namespace:Wpf.NotificationCenter.Behaviors"
              xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification"
              d:DataContext="{d:DesignInstance Type=local:NotificationCenter}"
-       mc:Ignorable="d" AllowsTransparency="True" PopupAnimation="Slide"
+             mc:Ignorable="d"
+             AllowsTransparency="True"
+             PopupAnimation="Slide"
              d:DesignHeight="450" d:DesignWidth="800">
     <Popup.Resources>
         <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
@@ -28,8 +30,7 @@
         <Border.Effect>
             <DropShadowEffect BlurRadius="15" Opacity="0.8" ShadowDepth="10" Direction="-90" RenderingBias="Quality"></DropShadowEffect>
         </Border.Effect>
-        <Grid
-            Visibility="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />

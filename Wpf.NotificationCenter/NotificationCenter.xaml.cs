@@ -120,7 +120,7 @@ namespace Wpf.NotificationCenter
             nameof(ButtonHorizontalAlignment),
             typeof(HorizontalAlignment),
             typeof(NotificationCenter),
-            new UIPropertyMetadata(HorizontalAlignment.Right)
+            new UIPropertyMetadata(HorizontalAlignment.Right, Refresh)
         );
 
         /// <summary>
@@ -130,7 +130,7 @@ namespace Wpf.NotificationCenter
             nameof(ShowButtonInHeader),
             typeof(bool),
             typeof(NotificationCenter),
-            new PropertyMetadata(true)
+            new PropertyMetadata(true, Refresh)
         );
 
         /// <summary>
@@ -140,7 +140,7 @@ namespace Wpf.NotificationCenter
             nameof(ShowButtonInContent),
             typeof(bool),
             typeof(NotificationCenter),
-            new PropertyMetadata(false)
+            new PropertyMetadata(false, Refresh)
         );
 
         /// <summary>
@@ -150,7 +150,7 @@ namespace Wpf.NotificationCenter
             nameof(ButtonVerticalAlignment),
             typeof(VerticalAlignment),
             typeof(NotificationCenter),
-            new UIPropertyMetadata(default(VerticalAlignment))
+            new UIPropertyMetadata(VerticalAlignment.Top, Refresh)
         );
 
         /// <summary>
@@ -160,11 +160,52 @@ namespace Wpf.NotificationCenter
             nameof(PopupPlacement),
             typeof(PlacementMode),
             typeof(NotificationCenter),
-            new FrameworkPropertyMetadata(PlacementMode.Bottom)
+            new FrameworkPropertyMetadata(PlacementMode.Bottom, Refresh)
+        );
+
+        /// <summary>
+        ///     The popup stays open property
+        /// </summary>
+        public static readonly DependencyProperty PopupStaysOpenProperty = DependencyProperty.Register(
+            nameof(PopupStaysOpen),
+            typeof(bool),
+            typeof(NotificationCenter),
+            new FrameworkPropertyMetadata(false)
+        );
+
+        /// <summary>
+        ///     The popup horizontal placement property
+        /// </summary>
+        public static readonly DependencyProperty PopupHorizontalPlacementProperty = DependencyProperty.Register(
+            nameof(PopupHorizontalPlacement),
+            typeof(double),
+            typeof(NotificationCenter),
+            new FrameworkPropertyMetadata(default(double), Refresh)
+        );
+
+        /// <summary>
+        ///     The popup vertical placement property
+        /// </summary>
+        public static readonly DependencyProperty PopupVerticalPlacementProperty = DependencyProperty.Register(
+            nameof(PopupVerticalPlacement),
+            typeof(double),
+            typeof(NotificationCenter),
+            new FrameworkPropertyMetadata(default(double), Refresh)
+        );
+
+        /// <summary>
+        ///     The notification seconds property
+        /// </summary>
+        public static readonly DependencyProperty NotificationSecondsProperty = DependencyProperty.Register(
+            nameof(NotificationSeconds),
+            typeof(int),
+            typeof(NotificationCenter),
+            new PropertyMetadata(5)
         );
 
         private readonly SolidColorBrush defaultColor = Brushes.Black;
-        private bool notificationsVisible;
+        private bool notificationsContentVisible;
+        private bool notificationsHeaderVisible;
 
         #endregion
 
@@ -321,17 +362,61 @@ namespace Wpf.NotificationCenter
         public ObservableCollection<Note> Notifications { get; } = new();
 
         /// <summary>
-        ///     Gets or sets a value indicating whether [notifications visible].
+        ///     Gets or sets a value indicating whether [notifications content visible].
         /// </summary>
-        /// <value><c>true</c> if [notifications visible]; otherwise, <c>false</c>.</value>
-        public bool NotificationsVisible
+        /// <value><c>true</c> if [notifications content visible]; otherwise, <c>false</c>.</value>
+        public bool NotificationsContentVisible
         {
-            get => notificationsVisible;
+            get => notificationsContentVisible;
             set
             {
-                notificationsVisible = value;
+                if (value == notificationsContentVisible)
+                {
+                    return;
+                }
+
+                notificationsContentVisible = value;
                 OnPropertyChanged();
             }
+        }
+
+        /// <summary>
+        ///     Gets or sets the notification seconds.
+        /// </summary>
+        /// <value>The notification seconds.</value>
+        public int NotificationSeconds
+        {
+            get => (int) GetValue(NotificationSecondsProperty);
+            set => SetValue(NotificationSecondsProperty, value);
+        }
+
+        /// <summary>
+        ///     Gets or sets a value indicating whether [notifications header visible].
+        /// </summary>
+        /// <value><c>true</c> if [notifications header visible]; otherwise, <c>false</c>.</value>
+        public bool NotificationsHeaderVisible
+        {
+            get => notificationsHeaderVisible;
+            set
+            {
+                if (value == notificationsHeaderVisible)
+                {
+                    return;
+                }
+
+                notificationsHeaderVisible = value;
+                OnPropertyChanged();
+            }
+        }
+
+        /// <summary>
+        ///     Gets or sets the popup horizontal placement.
+        /// </summary>
+        /// <value>The popup horizontal placement.</value>
+        public double PopupHorizontalPlacement
+        {
+            get => (double) GetValue(PopupHorizontalPlacementProperty);
+            set => SetValue(PopupHorizontalPlacementProperty, value);
         }
 
         /// <summary>
@@ -345,16 +430,6 @@ namespace Wpf.NotificationCenter
         }
 
         /// <summary>
-        ///     The popup stays open property
-        /// </summary>
-        public static readonly DependencyProperty PopupStaysOpenProperty = DependencyProperty.Register(
-            nameof(PopupStaysOpen),
-            typeof(bool),
-            typeof(NotificationCenter),
-            new FrameworkPropertyMetadata(false)
-        );
-
-        /// <summary>
         ///     Gets or sets a value indicating whether [popup stays open].
         /// </summary>
         /// <value><c>true</c> if [popup stays open]; otherwise, <c>false</c>.</value>
@@ -363,35 +438,6 @@ namespace Wpf.NotificationCenter
             get => (bool) GetValue(PopupStaysOpenProperty);
             set => SetValue(PopupStaysOpenProperty, value);
         }
-        /// <summary>
-        ///     The popup horizontal placement property
-        /// </summary>
-        public static readonly DependencyProperty PopupHorizontalPlacementProperty = DependencyProperty.Register(
-            nameof(PopupHorizontalPlacement),
-            typeof(double),
-            typeof(NotificationCenter),
-            new FrameworkPropertyMetadata(default(double))
-        );
-
-        /// <summary>
-        ///     Gets or sets the popup horizontal placement.
-        /// </summary>
-        /// <value>The popup horizontal placement.</value>
-        public double PopupHorizontalPlacement
-        {
-            get => (double) GetValue(PopupHorizontalPlacementProperty);
-            set => SetValue(PopupHorizontalPlacementProperty, value);
-        }
-
-        /// <summary>
-        ///     The popup vertical placement property
-        /// </summary>
-        public static readonly DependencyProperty PopupVerticalPlacementProperty = DependencyProperty.Register(
-            nameof(PopupVerticalPlacement),
-            typeof(double),
-            typeof(NotificationCenter),
-            new FrameworkPropertyMetadata(default(double))
-        );
 
         /// <summary>
         ///     Gets or sets the popup vertical placement.
@@ -402,6 +448,7 @@ namespace Wpf.NotificationCenter
             get => (double) GetValue(PopupVerticalPlacementProperty);
             set => SetValue(PopupVerticalPlacementProperty, value);
         }
+
         /// <summary>
         ///     Gets or sets a value indicating whether [show button in content].
         /// </summary>
@@ -409,7 +456,11 @@ namespace Wpf.NotificationCenter
         public bool ShowButtonInContent
         {
             get => (bool) GetValue(ShowButtonInContentProperty);
-            set => SetValue(ShowButtonInContentProperty, value);
+            set
+            {
+                SetValue(ShowButtonInContentProperty, value);
+                Refresh();
+            }
         }
 
         /// <summary>
@@ -419,21 +470,40 @@ namespace Wpf.NotificationCenter
         public bool ShowButtonInHeader
         {
             get => (bool) GetValue(ShowButtonInHeaderProperty);
-            set => SetValue(ShowButtonInHeaderProperty, value);
+            set
+            {
+                SetValue(ShowButtonInHeaderProperty, value);
+                Refresh();
+            }
         }
 
         /// <summary>
         ///     Gets the toggle command.
         /// </summary>
         /// <value>The toggle command.</value>
-        public ICommand ToggleCommand => new RelayCommand(() =>
+        public ICommand ToggleCommandContent => new RelayCommand(() =>
             {
                 foreach (var notification in Notifications)
                 {
                     notification.IsExpanded = false;
                 }
 
-                NotificationsVisible = !NotificationsVisible;
+                NotificationsContentVisible = !NotificationsContentVisible;
+            }
+        );
+
+        /// <summary>
+        ///     Gets the toggle command.
+        /// </summary>
+        /// <value>The toggle command.</value>
+        public ICommand ToggleCommandHeader => new RelayCommand(() =>
+            {
+                foreach (var notification in Notifications)
+                {
+                    notification.IsExpanded = false;
+                }
+
+                NotificationsHeaderVisible = !NotificationsHeaderVisible;
             }
         );
 
@@ -486,25 +556,6 @@ namespace Wpf.NotificationCenter
             return notification;
         }
 
-        /// <summary>
-        ///     The notification seconds property
-        /// </summary>
-        public static readonly DependencyProperty NotificationSecondsProperty = DependencyProperty.Register(
-            nameof(NotificationSeconds),
-            typeof(int),
-            typeof(NotificationCenter),
-            new PropertyMetadata(5)
-        );
-
-        /// <summary>
-        ///     Gets or sets the notification seconds.
-        /// </summary>
-        /// <value>The notification seconds.</value>
-        public int NotificationSeconds
-        {
-            get => (int) GetValue(NotificationSecondsProperty);
-            set => SetValue(NotificationSecondsProperty, value);
-        }
         internal Note CreateNotificationPopup(Note notification)
         {
             var newNote = new Note(notification)
@@ -563,6 +614,13 @@ namespace Wpf.NotificationCenter
 
             OnPropertyChanged(nameof(NewNotificationCount));
             OnPropertyChanged(nameof(NewAlert));
+
+            OnPropertyChanged(nameof(NotificationsContentVisible));
+            OnPropertyChanged(nameof(NotificationsHeaderVisible));
+            OnPropertyChanged(nameof(PopupHorizontalPlacement));
+            OnPropertyChanged(nameof(PopupVerticalPlacement));
+            OnPropertyChanged(nameof(ButtonHorizontalAlignment));
+            OnPropertyChanged(nameof(ButtonVerticalAlignment));
         }
 
         internal void RemoveNotification(Note? notification)

@@ -7,6 +7,10 @@
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="pack://application:,,,/Wpf.NotificationCenter;component/Themes/Generic.xaml" />
             </ResourceDictionary.MergedDictionaries>
+            <Style TargetType="{x:Type ComboBoxItem}">
+                <Setter Property="HorizontalContentAlignment" Value="Left" />
+                <Setter Property="VerticalContentAlignment" Value="Top" />
+            </Style>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
