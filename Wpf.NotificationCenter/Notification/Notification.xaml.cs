@@ -112,8 +112,6 @@ namespace Wpf.NotificationCenter.Notification
             new PropertyMetadata(default(Visibility))
         );
 
-        private bool isClickable;
-
         #endregion
 
         #region Properties
@@ -231,23 +229,23 @@ namespace Wpf.NotificationCenter.Notification
             get => (bool) GetValue(UnreadProperty);
             set
             {
-                {
-                    SetValue(UnreadProperty, value);
-                    OnPropertyChanged(nameof(TitleWeight));
-                }
+                SetValue(UnreadProperty, value);
+                OnPropertyChanged(nameof(TitleWeight));
             }
         }
 
         #endregion
 
+        /// <inheritdoc />
         /// <summary>
-        ///     Initializes static members of the <see cref="Notification" /> class. Overrides the default metadata from the
+        ///     Initializes static members of the <see cref="T:Wpf.NotificationCenter.Notification.Notification" /> class. Overrides the default metadata from the
         ///     control base to Notification.
         /// </summary>
         static Notification() => DefaultStyleKeyProperty?.OverrideMetadata(typeof(Notification), new FrameworkPropertyMetadata(typeof(Notification)));
 
+        /// <inheritdoc />
         /// <summary>
-        ///     Initializes a new instance of the <see cref="Notification" /> class.
+        ///     Initializes a new instance of the <see cref="T:Wpf.NotificationCenter.Notification.Notification" /> class.
         /// </summary>
         public Notification()
         {
@@ -270,8 +268,6 @@ namespace Wpf.NotificationCenter.Notification
             ShowExpander = notification.ShowExpander;
         }
 
-        //TextContent.MaxHeight = textTrimming != TextTrimming.None ? AlertMaxHeight : double.PositiveInfinity;
-        //ButtonContent.MaxHeight = TextContent.MaxHeight;
         /// <inheritdoc />
         protected override void OnExpanded()
         {

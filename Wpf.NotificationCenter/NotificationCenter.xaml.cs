@@ -24,6 +24,7 @@ namespace Wpf.NotificationCenter
     {
         #region Events
 
+        /// <inheritdoc />
         /// <summary>
         ///     Occurs when a property value changes.
         /// </summary>
@@ -171,26 +172,6 @@ namespace Wpf.NotificationCenter
             typeof(bool),
             typeof(NotificationCenter),
             new FrameworkPropertyMetadata(false)
-        );
-
-        /// <summary>
-        ///     The popup horizontal placement property
-        /// </summary>
-        public static readonly DependencyProperty PopupHorizontalPlacementProperty = DependencyProperty.Register(
-            nameof(PopupHorizontalPlacement),
-            typeof(double),
-            typeof(NotificationCenter),
-            new FrameworkPropertyMetadata(default(double), Refresh)
-        );
-
-        /// <summary>
-        ///     The popup vertical placement property
-        /// </summary>
-        public static readonly DependencyProperty PopupVerticalPlacementProperty = DependencyProperty.Register(
-            nameof(PopupVerticalPlacement),
-            typeof(double),
-            typeof(NotificationCenter),
-            new FrameworkPropertyMetadata(default(double), Refresh)
         );
 
         /// <summary>
@@ -410,16 +391,6 @@ namespace Wpf.NotificationCenter
         }
 
         /// <summary>
-        ///     Gets or sets the popup horizontal placement.
-        /// </summary>
-        /// <value>The popup horizontal placement.</value>
-        public double PopupHorizontalPlacement
-        {
-            get => (double) GetValue(PopupHorizontalPlacementProperty);
-            set => SetValue(PopupHorizontalPlacementProperty, value);
-        }
-
-        /// <summary>
         ///     Gets or sets the popup placement.
         /// </summary>
         /// <value>The popup placement.</value>
@@ -437,16 +408,6 @@ namespace Wpf.NotificationCenter
         {
             get => (bool) GetValue(PopupStaysOpenProperty);
             set => SetValue(PopupStaysOpenProperty, value);
-        }
-
-        /// <summary>
-        ///     Gets or sets the popup vertical placement.
-        /// </summary>
-        /// <value>The popup vertical placement.</value>
-        public double PopupVerticalPlacement
-        {
-            get => (double) GetValue(PopupVerticalPlacementProperty);
-            set => SetValue(PopupVerticalPlacementProperty, value);
         }
 
         /// <summary>
@@ -509,8 +470,9 @@ namespace Wpf.NotificationCenter
 
         #endregion
 
+        /// <inheritdoc />
         /// <summary>
-        ///     Initializes static members of the <see cref="NotificationCenter" /> class.
+        ///     Initializes static members of the <see cref="T:Wpf.NotificationCenter.NotificationCenter" /> class.
         /// </summary>
         /// <remarks>Sets the Style key to NotificationCenter.</remarks>
         static NotificationCenter() =>
@@ -617,8 +579,6 @@ namespace Wpf.NotificationCenter
 
             OnPropertyChanged(nameof(NotificationsContentVisible));
             OnPropertyChanged(nameof(NotificationsHeaderVisible));
-            OnPropertyChanged(nameof(PopupHorizontalPlacement));
-            OnPropertyChanged(nameof(PopupVerticalPlacement));
             OnPropertyChanged(nameof(ButtonHorizontalAlignment));
             OnPropertyChanged(nameof(ButtonVerticalAlignment));
         }

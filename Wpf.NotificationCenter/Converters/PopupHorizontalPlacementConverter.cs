@@ -1,6 +1,5 @@
 ﻿using System.Globalization;
 using System.Windows;
-using System.Windows.Controls;
 using System.Windows.Data;
 
 namespace Wpf.NotificationCenter.Converters
@@ -11,9 +10,13 @@ namespace Wpf.NotificationCenter.Converters
     /// </summary>
     /// <inheritdoc />
     /// <seealso cref="IMultiValueConverter" />
-    public class PopupHorizontalPlacementConverter : IMultiValueConverter
+    internal class PopupHorizontalPlacementConverter : IMultiValueConverter
     {
         #region Implementation of IMultiValueConverter
+
+        public double LeftOffset { get; set; }
+        public double CenterOffset { get; set; }
+        public double RightOffset { get; set; }
 
         /// <inheritdoc />
         public object Convert(object[] values, Type targetType, object parameter, CultureInfo culture)
@@ -29,10 +32,11 @@ namespace Wpf.NotificationCenter.Converters
 
             return alignment switch
             {
-                HorizontalAlignment.Left when popupWidth > 0 => popupWidth,
-                HorizontalAlignment.Right => 0d,
-                HorizontalAlignment.Center => popupWidth / 2,
-                _ => popup.HorizontalOffset,
+                HorizontalAlignment.Left when popupWidth > 0 => popupWidth - LeftOffset,
+                HorizontalAlignment.Center => popupWidth / 2 - CenterOffset,
+                HorizontalAlignment.Right => 0d - RightOffset,
+                HorizontalAlignment.Stretch => 0d,
+                _ => popup.HorizontalOffset, // This is to make sure that a default 0 is not applied
             };
         }
 

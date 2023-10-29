@@ -5,7 +5,6 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:notificationCenter="clr-namespace:Wpf.NotificationCenter;assembly=Wpf.NotificationCenter"
         xmlns:local="clr-namespace:WpfNotificationCenter"
-        xmlns:converters="clr-namespace:Wpf.NotificationCenter.Converters;assembly=Wpf.NotificationCenter"
         d:DataContext="{d:DesignInstance Type=local:MainWindowViewModel}"
         mc:Ignorable="d"
         Background="{DynamicResource MaterialDesignBackground}"
@@ -32,19 +31,19 @@
             <Style TargetType="ComboBoxItem">
                 <Setter Property="HorizontalAlignment" Value="Left" />
             </Style>
-            <Style TargetType="Label">
+            <Style x:Key="LabelStyle" TargetType="Label">
                 <Setter Property="Margin" Value="5 0" />
                 <Setter Property="HorizontalAlignment" Value="Left" />
                 <Setter Property="VerticalAlignment" Value="Center" />
                 <Setter Property="Foreground" Value="{DynamicResource PrimaryHueMidBrush}" />
             </Style>
+            <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}" />
             <Style TargetType="Button">
                 <Setter Property="Background" Value="{DynamicResource PrimaryHueMidBrush}" />
                 <Setter Property="Foreground" Value="{DynamicResource SecondaryHueMidBrush}" />
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="Padding" Value="5" />
             </Style>
-            <converters:PopupHorizontalPlacementConverter x:Key="PopupHorizontalPlacementConverter" />
         </ResourceDictionary>
     </Window.Resources>
     <Grid>
@@ -52,31 +51,42 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <notificationCenter:NotificationCenter x:Name="NotificationCenter"
-                                               Background="{Binding DataContext.NotificationBackground.Content, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                                               VerticalAlignment="Stretch"
-                                               HorizontalAlignment="Stretch"
-                                               NewAlertColor="GoldenRod"
+        <!-- Notification Center wraps around main content. This is to allow the notifications to take up the entire application. This is not required. -->
+        <notificationCenter:NotificationCenter Grid.Row="0"
+                                               x:Name="NotificationCenter"
+                                               AlertMaxHeight="{Binding DataContext.AlertMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                                AlertMaxWidth="{Binding DataContext.AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                                               MaxNotifications="10"
-                                               NotificationSeconds="5"
+                                               Background="{Binding DataContext.NotificationBackground.Content, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                                BorderBrush="{DynamicResource SecondaryHueMidBrush}"
-                                               IsItemsAscending="False"
                                                ButtonHorizontalAlignment="{Binding DataContext.SelectedHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
                                                ButtonVerticalAlignment="{Binding DataContext.SelectedVerticalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                                               PopupPlacement="Bottom"
-                                               PopupStaysOpen="False"
+                                               ButtonZIndex="5000"
+                                               IsItemsAscending="False"
+                                               MaxNotifications="10"
+                                               NewAlertColor="GoldenRod"
+                                               NotificationSeconds="5"
                                                NewAlertIcon="BellAlert"
                                                NoAlertIcon="BellCancel"
-                                               AlertMaxHeight="{Binding DataContext.AlertMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+                                               PopupPlacement="Bottom"
+                                               PopupStaysOpen="False"
                                                ShowButtonInHeader="{Binding DataContext.ShowInHeader, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                                               ShowButtonInContent="{Binding DataContext.ShowInContent, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
-                                               ButtonZIndex="5000"
-                                               Grid.Row="0">
+                                               ShowButtonInContent="{Binding DataContext.ShowInContent, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}">
             <notificationCenter:NotificationCenter.Header>
-                <Grid>
-                    <Label FontWeight="Bold">Notification Center</Label>
-                </Grid>
+                <Label FontWeight="Bold">
+                    <Label.Style>
+                        <Style TargetType="Label" BasedOn="{StaticResource LabelStyle}">
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding DataContext.SelectedHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="Left">
+                                    <Setter Property="Margin" Value="55 0" />
+                                </DataTrigger>
+                                <DataTrigger Binding="{Binding DataContext.SelectedHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}" Value="Stretch">
+                                    <Setter Property="Margin" Value="0 0 0 55" />
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Label.Style>
+                    Notification Center
+                </Label>
             </notificationCenter:NotificationCenter.Header>
             <notificationCenter:NotificationCenter.Content>
                 <Grid>
