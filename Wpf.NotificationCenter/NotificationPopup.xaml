@@ -7,48 +7,67 @@
              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
              xmlns:componentModel="clr-namespace:System.ComponentModel;assembly=WindowsBase"
              xmlns:behaviors="clr-namespace:Wpf.NotificationCenter.Behaviors"
+             xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification"
+             xmlns:converters="clr-namespace:Wpf.NotificationCenter.Converters"
              d:DataContext="{d:DesignInstance Type=local:NotificationCenter}"
-       mc:Ignorable="d" AllowsTransparency="True" PopupAnimation="Slide"
+             mc:Ignorable="d"
+             AllowsTransparency="True"
+             PopupAnimation="Slide"
+             StaysOpen="{Binding PopupStaysOpen, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+             Placement="{Binding PopupPlacement, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+             Width="{Binding AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}, NotifyOnSourceUpdated=True}"
              d:DesignHeight="450" d:DesignWidth="800">
+    <Popup.HorizontalOffset>
+        <MultiBinding Converter="{StaticResource PopupHorizontalPlacementConverter}">
+            <Binding Path="ButtonHorizontalAlignment" UpdateSourceTrigger="PropertyChanged" RelativeSource="{RelativeSource AncestorType={x:Type local:NotificationCenter}}" />
+            <Binding RelativeSource="{RelativeSource Self}" />
+        </MultiBinding>
+    </Popup.HorizontalOffset>
+
     <Popup.Resources>
-        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
         <CollectionViewSource x:Key="DataSource"
                               Source="{Binding Notifications, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                              behaviors:CollectionViewSourceBehavior.IsAscending="{Binding IsItemsAscending, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}} }"
-        >
+                              behaviors:CollectionViewSourceBehavior.IsAscending="{Binding IsItemsAscending, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
             <CollectionViewSource.SortDescriptions>
                 <componentModel:SortDescription PropertyName="CreatedOn" Direction="Descending"/>
             </CollectionViewSource.SortDescriptions>
         </CollectionViewSource>
+        <converters:AlignmentToDirectionConverter x:Key="AlignmentToDirectionConverter" />
     </Popup.Resources>
-    <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" BorderThickness="1" Margin="4 0 0 4">
+    <Border BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+            BorderThickness="1"
+            Margin="4 0 4 4">
         <Border.Effect>
-            <DropShadowEffect BlurRadius="15" Opacity="0.8" ShadowDepth="10" Direction="-90" RenderingBias="Quality"></DropShadowEffect>
+            <DropShadowEffect BlurRadius="15" Opacity="0.8" ShadowDepth="10"
+                              Direction="{Binding ButtonHorizontalAlignment, UpdateSourceTrigger=PropertyChanged, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}, Converter={StaticResource AlignmentToDirectionConverter}}"
+                              RenderingBias="Quality"></DropShadowEffect>
         </Border.Effect>
-        <Grid
-            Visibility="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}, Converter={StaticResource BooleanToVisibilityConverter}}">
+        <Grid>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <Grid.Style>
                 <Style TargetType="Grid">
-                    <Setter Property="Background" Value="Wheat" />
+                    <Setter Property="Background" Value="{Binding Background, FallbackValue='Wheat', RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
                 </Style>
             </Grid.Style>
             <!-- No Notification Center Popup Text -->
             <Label Grid.Row="1" Content="No Notifications"
                Visibility="{Binding NoDataVisibility, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+
             <!-- Notification Center Popup Text -->
-            <ContentControl Grid.Row="1" Visibility="{Binding DataVisibility, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
+            <ContentControl Grid.Row="1"
+                            Visibility="{Binding DataVisibility, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
                 <Grid Margin="0">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
                         <RowDefinition Height="*" />
                     </Grid.RowDefinitions>
+
                     <!-- Notification Center Popup Header -->
                     <Border Grid.Row="0"
-                            BorderThickness="0 0 0 1"
+                            BorderThickness="0 0 0 0"
                             BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
                             Margin="0">
                         <Grid HorizontalAlignment="Stretch" Margin="2 0">
@@ -63,8 +82,21 @@
                             </Button>
                         </Grid>
                     </Border>
+
                     <!-- Notification Center Popup Items -->
-                    <ItemsControl Grid.Row="1" ItemsSource="{Binding Source={StaticResource DataSource}}" Margin="0" Foreground="Black" />
+                    <ItemsControl Grid.Row="1"
+                                  ItemsSource="{Binding Source={StaticResource DataSource}}"
+                                  Margin="0"
+                                  Foreground="Black">
+                        <ItemsControl.Resources>
+                            <!-- Only apply these extra styles to the popup so they do not apply to toast messages -->
+                            <Style TargetType="{x:Type notification:Notification}" BasedOn="{StaticResource NotificationStyle}">
+                                <Setter Property="BorderBrush" Value="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                                <Setter Property="BorderThickness" Value="0 1 0 0" />
+                            </Style>
+                        </ItemsControl.Resources>
+
+                    </ItemsControl>
                 </Grid>
             </ContentControl>
         </Grid>

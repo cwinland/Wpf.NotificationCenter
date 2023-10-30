@@ -5,7 +5,7 @@
                     xmlns:converters="clr-namespace:Wpf.NotificationCenter.Converters"
                     xmlns:enums="clr-namespace:Wpf.NotificationCenter.Enums"
                     xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification">
-<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
+    <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" />
     <Style x:Key="TextBlockStyle" TargetType="TextBlock">
         <Setter Property="Margin" Value="5" />
         <Setter Property="HorizontalAlignment" Value="Left" />
@@ -40,7 +40,7 @@
         <Setter Property="ScrollViewer.VerticalScrollBarVisibility" Value="Auto" />
         <Setter Property="HorizontalAlignment" Value="Left" />
         <Setter Property="HorizontalContentAlignment" Value="Left" />
-        <Setter Property="Margin" Value="0" />
+        <Setter Property="Margin" Value="2" />
         <Setter Property="Padding" Value="5" />
         <Setter Property="TextWrapping" Value="Wrap" />
         <Setter Property="IsHitTestVisible" Value="True" />
@@ -220,9 +220,10 @@
             </Style>
         </ControlTemplate.Resources>
         <Border Margin="1 1 1 0"
-                BorderBrush="{TemplateBinding BorderBrush}" 
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
                 Width="Auto"
-                BorderThickness="{TemplateBinding BorderThickness}">
+                >
             <VisualStateManager.VisualStateGroups>
                 <VisualStateGroup x:Name="ExpansionStates">
                     <VisualStateGroup.Transitions>
@@ -331,8 +332,6 @@
 
                 <Border Name="ContentSite"
                         Margin="2 0"
-                        BorderThickness="0 1 0 0"
-                        BorderBrush="{Binding BorderBrush, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
                         HorizontalAlignment="Stretch"
                         >
                     <Border.LayoutTransform>
@@ -393,6 +392,7 @@
         <Setter Property="materialDesign:ExpanderAssist.HeaderBackground" Value="Transparent" />
         <Setter Property="materialDesign:ExpanderAssist.HorizontalHeaderPadding" Value="10 2 0 2" />
     </Style>
+    <converters:PopupHorizontalPlacementConverter x:Key="PopupHorizontalPlacementConverter" LeftOffset="8" CenterOffset="4" />
 
     <Style TargetType="{x:Type local:NotificationCenter}">
         <Setter Property="Margin" Value="3" />
@@ -403,24 +403,28 @@
             <Setter.Value>
                 <DataTemplate>
                     <DataTemplate.Resources>
-                        <Style TargetType="TextBlock" BasedOn="{StaticResource BoldTextBlock}" />
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}" />
                     </DataTemplate.Resources>
                     <Grid Background="Transparent">
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="*" />
                         </Grid.ColumnDefinitions>
+                        <AdornedElementPlaceholder x:Name="PopupPlaceholder"
+                                                   HorizontalAlignment="{Binding ButtonHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                                                   VerticalAlignment="Bottom"
+                        />
                         <ContentControl Canvas.ZIndex="0" Content="{Binding }" FontWeight="Bold" FontSize="14" />
-                        <local:NotificationCenterButton HorizontalAlignment="{Binding ButtonHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                        <local:NotificationCenterButton x:Name="NotificationButton"
+                                                        HorizontalAlignment="{Binding ButtonHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
                                                         VerticalAlignment="{Binding ButtonVerticalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                                                        ToggleCommand="{Binding ToggleCommandHeader, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
                                                         Visibility="{Binding ShowButtonInHeader, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}, Converter={StaticResource BooleanToVisibilityConverter}}"
                                                         />
                         <!-- Alert Center Popup -->
-                        <local:NotificationPopup StaysOpen="{Binding PopupStaysOpen, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                                                 HorizontalOffset="{Binding PopupHorizontalPlacement, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                                                 VerticalOffset="{Binding PopupVerticalPlacement, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                                                 Placement="{Binding PopupPlacement, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                                                 Width="{Binding AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}, NotifyOnSourceUpdated=True}"
-                                                 IsOpen="{Binding NotificationsVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                        <local:NotificationPopup PlacementTarget="{Binding ElementName=PopupPlaceholder}"
+                                                 HorizontalAlignment="{Binding ButtonHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                                                 Visibility="{Binding ElementName=NotificationButton, Path=Visibility}"
+                                                 IsOpen="{Binding NotificationsHeaderVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
                     </Grid>
                 </DataTemplate>
             </Setter.Value>
@@ -429,19 +433,32 @@
             <Setter.Value>
                 <DataTemplate>
                     <DataTemplate.Resources>
-                        <Style TargetType="TextBlock" BasedOn="{StaticResource BoldTextBlock}" />
+                        <Style TargetType="TextBlock" BasedOn="{StaticResource TextBlockStyle}" />
                     </DataTemplate.Resources>
                     <Grid Background="Transparent">
-                        <ContentControl Canvas.ZIndex="0" Content="{Binding }" FontWeight="Bold" FontSize="14" />
-                        <local:NotificationCenterButton HorizontalAlignment="{Binding ButtonHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" 
+                        <AdornedElementPlaceholder x:Name="PopupPlaceholder"
+                                                   HorizontalAlignment="{Binding ButtonHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                                                   VerticalAlignment="Top"
+                                                   />
+                        <!-- Alert Center Popup -->
+                        <local:NotificationPopup PlacementTarget="{Binding ElementName=PopupPlaceholder}"
+                                                 HorizontalAlignment="{Binding ButtonHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                                                 Visibility="{Binding ElementName=NotificationButton, Path=Visibility}"
+                                                 IsOpen="{Binding NotificationsContentVisible, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
+                        <ContentControl Canvas.ZIndex="0"
+                                        Content="{Binding }"
+                                        FontWeight="Bold"
+                                        FontSize="14" />
+                        <local:NotificationCenterButton x:Name="NotificationButton"
+                                                        HorizontalAlignment="{Binding ButtonHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" 
                                                         VerticalAlignment="{Binding ButtonVerticalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
+                                                        ToggleCommand="{Binding ToggleCommandContent, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
                                                         Visibility="{Binding ShowButtonInContent, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}, Converter={StaticResource BooleanToVisibilityConverter}}"
                         />
-                        
+
                         <!-- Toast Container -->
                         <Border x:Name="ToastContainer" HorizontalAlignment="{Binding ButtonHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                                Margin="4 0 0 4"
-                        >
+                                Margin="4 0 0 4">
                             <Border.Style>
                                 <Style TargetType="Border" BasedOn="{StaticResource BorderDropShadowStyle}">
                                     <Style.Triggers>
@@ -451,12 +468,12 @@
                                     </Style.Triggers>
                                 </Style>
                             </Border.Style>
+
                             <!-- Toast Items -->
-                            <ItemsControl ItemsSource="{Binding DisplayNotes, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}"
-                                          >
+                            <ItemsControl ItemsSource="{Binding DisplayNotes, RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}">
                                 <ItemsControl.Resources>
                                     <Style TargetType="{x:Type notification:Notification}" BasedOn="{StaticResource NotificationStyle}">
-                                        <Setter Property="Background" Value="Wheat" />
+                                        <Setter Property="Background" Value="{Binding Background, FallbackValue='Wheat', RelativeSource={RelativeSource AncestorType={x:Type local:NotificationCenter}}}" />
                                     </Style>
                                 </ItemsControl.Resources>
                             </ItemsControl>

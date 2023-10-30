@@ -78,7 +78,6 @@ Choose one:
         VerticalAlignment="Stretch"
         HorizontalAlignment="Stretch"
         NewAlertColor="GoldenRod"
-        NoAlertColor="Gray"
         AlertMaxWidth="175"
         MaxNotifications="10"
         BorderBrush="Blue"
@@ -108,26 +107,24 @@ Alert center Notification with collapsed message. | Alert center Notification wi
 
 ### Notification Center Element Properties
 
-| Property                   | Value Type          | Default       | Description
-:----------------------------|:--------------------|:--------------|:-----------
-AlertMaxHeight               | Double              | 150           | The alert text content maximum height in the alert center.
-AlertMaxWidth                | Double              | Auto          | The alert maximum width property of the notification center popup.
-ButtonHorizontalAlignment    | HorizontalAlignment | Right         | Indicates the placement of the Alert Center.
-ButtonVerticalAlignment      | VerticalAlignment   | Top           | Indicates the placement of the Alert Center.
-ButtonZIndex                 | Integer             | 999           | Indicates the order in which the button is drawn over content.
-BorderBrush (Inherited)      | Brushes             | Transparent   | Used for line colors in notification center and / or headers.
-IsItemsAscending             | Boolean             | False         | Indicates the order of alerts in the notification center.
-MaxNotifications             | Byte                | 0 (Unlimited) | The upper limit of notifications allowed in the alert center. Oldest are removed when this number is exceeded.
-NewAlertColor                | Brushes             | Goldenrod     | Color of the icon when there is a new alert.
-NewAlertIcon                 | PackIconKind        | BellAlert     | The icon when there is a new alert.
-NoAlertColor                 | Brushes             | Black         | Color of the icon when there are no unread alerts.
-NoAlertIcon                  | PackIconKind        | Notifications | The icon when there are no unread alerts.
-PopupHorizontalPlacement     | Double              | 0             | Alert Center Popup Positioning.
-PopupPlacement               | PlacementMode       | Bottom        | Alert Center Popup Positioning.
-PopupStaysOpen               | Boolean             | False         | Indicates if the popup should stay open or automatically close when clicking away.
-PopupVerticalPlacement       | Double              | 0             | Alert Center Popup Positioning.
-ShowButtonInHeader           | Boolean             | True          | Sets whether the notification center button is visibile. Set to 'False' to hide the button.
-ShowButtonInContent          | Boolean             | False         | Sets whether the notification center button is visibile. Set to 'False' to hide the button.
+| Property                   | Category  | Value Type          | Default       | Description
+:----------------------------|:----------|:--------------------|:--------------|:-----------
+AlertMaxHeight               | Size      | Double              | 200           | The alert text content maximum height in the alert center.
+AlertMaxWidth                | Size      | Double              | Auto          | The alert maximum width property of the notification center popup.
+ButtonHorizontalAlignment    | Alignment | HorizontalAlignment | Right         | Indicates the placement of the Alert Center.
+ButtonVerticalAlignment      | Alignment | VerticalAlignment   | Top           | Indicates the placement of the Alert Center.
+ButtonZIndex                 | Visual    | Integer             | 999           | Indicates the order in which the button is drawn over content.
+BorderBrush (Inherited)      | Color     | Brushes             | Transparent   | Used for line colors in notification center and / or headers.
+IsItemsAscending             | Sorting   | Boolean             | False         | Indicates the order of alerts in the notification center.
+MaxNotifications             | Behavior  | Byte                | 0 (Unlimited) | The upper limit of notifications allowed in the alert center. Oldest are removed when this number is exceeded.
+NewAlertColor                | Color     | Brushes             | Goldenrod     | Color of the icon when there is a new alert.
+NewAlertIcon                 | Icon      | PackIconKind        | BellAlert     | The icon when there is a new alert.
+NotificationSeconds          | Behavior  | Integer             | 5             | Indicates how long the temporary toast message is displayed.
+NoAlertIcon                  | Icon      | PackIconKind        | Notifications | The icon when there are no unread alerts.
+PopupPlacement               | Visual    | PlacementMode       | Bottom        | Alert Center Popup Positioning.
+PopupStaysOpen               | Behavior  | Boolean             | False         | Indicates if the popup should stay open or automatically close when clicking away.
+ShowButtonInHeader           | Behavior  | Boolean             | True          | Sets whether the notification center button is visibile. Set to 'False' to hide the button.
+ShowButtonInContent          | Behavior  | Boolean             | False         | Sets whether the notification center button is visibile. Set to 'False' to hide the button.
 
 #### Example
 
@@ -148,3 +145,4 @@ Most of the look / feel is defined in the generic.xaml file. Primary theme style
 - Initial Release - v1.0.0.
 - Add UI fixes, more customization, fix bugs - v1.1.0.
 - Add Notification Options, Customization Options - v1.1.1.
+- Add more customization and adjust behaviors - v1.1.5.

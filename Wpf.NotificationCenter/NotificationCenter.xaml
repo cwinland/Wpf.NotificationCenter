@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Wpf.NotificationCenter"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
+             Background="Wheat"
              d:DataContext="{d:DesignInstance Type=local:NotificationCenter}"
              >
 </HeaderedContentControl>

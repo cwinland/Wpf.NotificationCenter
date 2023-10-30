@@ -14,9 +14,8 @@
                 Margin="0"
                 VerticalAlignment="Stretch"
                 HorizontalAlignment="Stretch"
-                Padding="5 0"
                 MaxHeight="{x:Static sys:Double.PositiveInfinity}"
-                Command="{Binding ToggleCommand, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}">
+                Command="{Binding ToggleCommand, RelativeSource={RelativeSource AncestorType={x:Type ContentControl}}}">
             <StackPanel Orientation="Horizontal">
                 <materialDesign:PackIcon VerticalAlignment="Center">
                     <materialDesign:PackIcon.Style>
@@ -25,18 +24,20 @@
                                 <DataTrigger Binding="{Binding NewAlert, NotifyOnSourceUpdated=True, NotifyOnTargetUpdated=True, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}"
                                              Value="True">
                                     <Setter Property="Foreground" Value="{Binding NewAlertColor, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
-                                    <Setter Property="Kind" Value="{Binding NewAlertIcon, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
+                                    <Setter Property="Kind" Value="{Binding NewAlertIcon, FallbackValue='BellAlert', RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
                                 </DataTrigger>
                                 <DataTrigger Binding="{Binding NewAlert, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}"
                                              Value="False">
-                                    <Setter Property="Foreground" Value="{Binding NoAlertColor, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
-                                    <Setter Property="Kind" Value="{Binding NoAlertIcon, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
+                                    <Setter Property="Foreground" Value="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}" />
+                                    <Setter Property="Kind" Value="{Binding NoAlertIcon, FallbackValue='Notifications', RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
                                 </DataTrigger>
                             </Style.Triggers>
                         </Style>
                     </materialDesign:PackIcon.Style>
                 </materialDesign:PackIcon>
-                <Label Content="{Binding NewNotificationCount, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
+                <Label Foreground="{Binding Foreground, RelativeSource={RelativeSource AncestorType={x:Type Button}}}"
+                       Padding="0"
+                    Content="{Binding NewNotificationCount, RelativeSource={RelativeSource AncestorType={x:Type nc:NotificationCenter}}}" />
             </StackPanel>
         </Button>
     </Grid>

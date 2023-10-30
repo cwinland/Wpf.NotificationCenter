@@ -5,7 +5,7 @@
           xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
           xmlns:notification="clr-namespace:Wpf.NotificationCenter.Notification"
           mc:Ignorable="d"
-           d:DataContext="{d:DesignInstance Type=notification:Notification}"
+          d:DataContext="{d:DesignInstance Type=notification:Notification}"
           d:DesignHeight="450" d:DesignWidth="800">
     <Expander.Header>
         <notification:NotificationHeader />
