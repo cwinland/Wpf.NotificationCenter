@@ -19,6 +19,41 @@ namespace Wpf.NotificationCenter
     /// </summary>
     /// <inheritdoc cref="HeaderedContentControl" />
     /// <inheritdoc cref="INotifyPropertyChanged" />
+    /// <example>
+    /// An example how to include in the Xaml file.
+    /// <code lang="XAML">
+    /// <![CDATA[
+    /// <notificationCenter:NotificationCenter Grid.Row="0"
+    ///    x:Name="NotificationCenter"
+    /// 
+    ///    AlertMaxHeight="{Binding DataContext.AlertMaxHeight, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+    /// 
+    ///    AlertMaxWidth="{Binding DataContext.AlertMaxWidth, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+    /// 
+    ///    Background="{Binding DataContext.NotificationBackground.Content, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+    ///    BorderBrush="{DynamicResource SecondaryHueMidBrush}"
+    ///    ButtonHorizontalAlignment="{Binding DataContext.SelectedHorizontalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+    ///    ButtonVerticalAlignment="{Binding DataContext.SelectedVerticalAlignment, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+    ///    ButtonZIndex="5000"
+    ///    IsItemsAscending="False"
+    ///    MaxNotifications="10"
+    ///    NewAlertColor="GoldenRod"
+    ///    NotificationSeconds="5"
+    ///    NewAlertIcon="BellAlert"
+    ///    NoAlertIcon="BellCancel"
+    ///    PopupPlacement="Bottom"
+    ///    PopupStaysOpen="False"
+    ///    ShowButtonInHeader="{Binding DataContext.ShowInHeader, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}"
+    ///    ShowButtonInContent="{Binding DataContext.ShowInContent, RelativeSource={RelativeSource AncestorType={x:Type local:MainWindow}}}">
+    ///<notificationCenter:NotificationCenter.Header>
+    /// ...
+    ///</notificationCenter:NotificationCenter.Header>
+    ///<notificationCenter:NotificationCenter.Content>
+    /// ...
+    ///</notificationCenter:NotificationCenter.Content>
+    /// ]]>
+    /// </code>
+    /// </example>
     [TemplatePart(Name = "PART_ContentPresenter", Type = typeof(ContentPresenter))]
     public partial class NotificationCenter : INotifyPropertyChanged
     {

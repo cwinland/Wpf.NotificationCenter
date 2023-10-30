@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <HelpTOC>
 
-  <HelpTOCNode Id="f879bcd2-ef03-4e9a-848c-2e6d2daa0d5a" Title="Wpf.NotificationCenter Namespace" Url="html/N-Wpf.NotificationCenter.htm">
-    <HelpTOCNode Id="388d0d3f-6c8e-488f-a997-75cf016c0d68" Title="NotificationCenter Class" Url="html/T-Wpf.NotificationCenter.NotificationCenter.htm">
+  <HelpTOCNode Id="ca0b835d-87a0-45ad-b68c-190fa402722d" Title="Wpf.NotificationCenter Namespace" Url="html/N-Wpf.NotificationCenter.htm">
+    <HelpTOCNode Id="9b4bc74e-e68e-422c-a343-da9ccd710f61" Title="NotificationCenter Class" Url="html/T-Wpf.NotificationCenter.NotificationCenter.htm">
       <HelpTOCNode Title="NotificationCenter Members" Url="html/AllMembers.T-Wpf.NotificationCenter.NotificationCenter.htm" />
       <HelpTOCNode Title="NotificationCenter Constructor " Url="html/M-Wpf.NotificationCenter.NotificationCenter.-ctor.htm" />
-      <HelpTOCNode Id="0a3de166-cb3c-4307-8433-3a45d6a92fdc" Title="NotificationCenter Fields" Url="html/Fields.T-Wpf.NotificationCenter.NotificationCenter.htm">
+      <HelpTOCNode Id="a43c7ea5-7be1-4f34-be76-ecaed1abf33c" Title="NotificationCenter Fields" Url="html/Fields.T-Wpf.NotificationCenter.NotificationCenter.htm">
         <HelpTOCNode Title="AlertMaxHeightProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.AlertMaxHeightProperty.htm" />
         <HelpTOCNode Title="AlertMaxWidthProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.AlertMaxWidthProperty.htm" />
         <HelpTOCNode Title="ButtonHorizontalAlignmentProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ButtonHorizontalAlignmentProperty.htm" />
@@ -15,16 +15,14 @@
         <HelpTOCNode Title="MaxNotificationsProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.MaxNotificationsProperty.htm" />
         <HelpTOCNode Title="NewAlertColorProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.NewAlertColorProperty.htm" />
         <HelpTOCNode Title="NewAlertIconProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.NewAlertIconProperty.htm" />
-        <HelpTOCNode Title="NoAlertColorProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.NoAlertColorProperty.htm" />
         <HelpTOCNode Title="NoAlertIconProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.NoAlertIconProperty.htm" />
-        <HelpTOCNode Title="PopupHorizontalPlacementProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.PopupHorizontalPlacementProperty.htm" />
+        <HelpTOCNode Title="NotificationSecondsProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.NotificationSecondsProperty.htm" />
         <HelpTOCNode Title="PopupPlacementProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.PopupPlacementProperty.htm" />
         <HelpTOCNode Title="PopupStaysOpenProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.PopupStaysOpenProperty.htm" />
-        <HelpTOCNode Title="PopupVerticalPlacementProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.PopupVerticalPlacementProperty.htm" />
         <HelpTOCNode Title="ShowButtonInContentProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ShowButtonInContentProperty.htm" />
         <HelpTOCNode Title="ShowButtonInHeaderProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenter.ShowButtonInHeaderProperty.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="98764588-7d2c-4592-9b88-4eeb022e3a8c" Title="NotificationCenter Properties" Url="html/Properties.T-Wpf.NotificationCenter.NotificationCenter.htm">
+      <HelpTOCNode Id="66566ef4-6b06-4fd3-b6cb-6737fd57d37a" Title="NotificationCenter Properties" Url="html/Properties.T-Wpf.NotificationCenter.NotificationCenter.htm">
         <HelpTOCNode Title="AlertMaxHeight Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.AlertMaxHeight.htm" />
         <HelpTOCNode Title="AlertMaxWidth Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.AlertMaxWidth.htm" />
         <HelpTOCNode Title="ButtonHorizontalAlignment Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.ButtonHorizontalAlignment.htm" />
@@ -36,84 +34,81 @@
         <HelpTOCNode Title="NewAlertColor Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.NewAlertColor.htm" />
         <HelpTOCNode Title="NewAlertIcon Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.NewAlertIcon.htm" />
         <HelpTOCNode Title="NewNotificationCount Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.NewNotificationCount.htm" />
-        <HelpTOCNode Title="NoAlertColor Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.NoAlertColor.htm" />
         <HelpTOCNode Title="NoAlertIcon Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.NoAlertIcon.htm" />
         <HelpTOCNode Title="Notifications Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.Notifications.htm" />
-        <HelpTOCNode Title="NotificationsVisible Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.NotificationsVisible.htm" />
-        <HelpTOCNode Title="PopupHorizontalPlacement Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.PopupHorizontalPlacement.htm" />
+        <HelpTOCNode Title="NotificationsContentVisible Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.NotificationsContentVisible.htm" />
+        <HelpTOCNode Title="NotificationSeconds Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.NotificationSeconds.htm" />
+        <HelpTOCNode Title="NotificationsHeaderVisible Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.NotificationsHeaderVisible.htm" />
         <HelpTOCNode Title="PopupPlacement Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.PopupPlacement.htm" />
         <HelpTOCNode Title="PopupStaysOpen Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.PopupStaysOpen.htm" />
-        <HelpTOCNode Title="PopupVerticalPlacement Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.PopupVerticalPlacement.htm" />
         <HelpTOCNode Title="ShowButtonInContent Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.ShowButtonInContent.htm" />
         <HelpTOCNode Title="ShowButtonInHeader Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.ShowButtonInHeader.htm" />
-        <HelpTOCNode Title="ToggleCommand Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.ToggleCommand.htm" />
+        <HelpTOCNode Title="ToggleCommandContent Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.ToggleCommandContent.htm" />
+        <HelpTOCNode Title="ToggleCommandHeader Property " Url="html/P-Wpf.NotificationCenter.NotificationCenter.ToggleCommandHeader.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="addbc2fb-52ce-4673-816a-d0073b51e5e5" Title="NotificationCenter Events" Url="html/Events.T-Wpf.NotificationCenter.NotificationCenter.htm">
+      <HelpTOCNode Id="412416fe-9422-4adc-8533-7d3b695b0c3a" Title="NotificationCenter Events" Url="html/Events.T-Wpf.NotificationCenter.NotificationCenter.htm">
         <HelpTOCNode Title="PropertyChanged Event" Url="html/E-Wpf.NotificationCenter.NotificationCenter.PropertyChanged.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="a39dafdc-ba2d-4013-a868-78d0d69c1111" Title="NotificationCenterButton Class" Url="html/T-Wpf.NotificationCenter.NotificationCenterButton.htm">
+    <HelpTOCNode Id="fc6f633e-f84e-4e1b-b771-eb0f0b2ca93e" Title="NotificationCenterButton Class" Url="html/T-Wpf.NotificationCenter.NotificationCenterButton.htm">
       <HelpTOCNode Title="NotificationCenterButton Members" Url="html/AllMembers.T-Wpf.NotificationCenter.NotificationCenterButton.htm" />
       <HelpTOCNode Title="NotificationCenterButton Constructor " Url="html/M-Wpf.NotificationCenter.NotificationCenterButton.-ctor.htm" />
+      <HelpTOCNode Id="c5acf409-2d1e-44d9-90a8-1bba7bcd2ee0" Title="NotificationCenterButton Fields" Url="html/Fields.T-Wpf.NotificationCenter.NotificationCenterButton.htm">
+        <HelpTOCNode Title="ToggleCommandProperty Field" Url="html/F-Wpf.NotificationCenter.NotificationCenterButton.ToggleCommandProperty.htm" />
+      </HelpTOCNode>
+      <HelpTOCNode Id="d3bf2e92-8bcc-49de-88c1-f071f817d7e1" Title="NotificationCenterButton Properties" Url="html/Properties.T-Wpf.NotificationCenter.NotificationCenterButton.htm">
+        <HelpTOCNode Title="ToggleCommand Property " Url="html/P-Wpf.NotificationCenter.NotificationCenterButton.ToggleCommand.htm" />
+      </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="bd9aa197-d4c8-4205-b89a-d487101eaabf" Title="NotificationPopup Class" Url="html/T-Wpf.NotificationCenter.NotificationPopup.htm">
+    <HelpTOCNode Id="7f588699-e70f-40f3-ab35-8a4c31fe2e3c" Title="NotificationPopup Class" Url="html/T-Wpf.NotificationCenter.NotificationPopup.htm">
       <HelpTOCNode Title="NotificationPopup Members" Url="html/AllMembers.T-Wpf.NotificationCenter.NotificationPopup.htm" />
       <HelpTOCNode Title="NotificationPopup Constructor " Url="html/M-Wpf.NotificationCenter.NotificationPopup.-ctor.htm" />
-      <HelpTOCNode Id="5452ec3a-94e7-446a-b585-64aa41afaf35" Title="NotificationPopup Events" Url="html/Events.T-Wpf.NotificationCenter.NotificationPopup.htm">
+      <HelpTOCNode Id="5e340bf1-1070-49d9-84f7-216cd147ce69" Title="NotificationPopup Events" Url="html/Events.T-Wpf.NotificationCenter.NotificationPopup.htm">
         <HelpTOCNode Title="PropertyChanged Event" Url="html/E-Wpf.NotificationCenter.NotificationPopup.PropertyChanged.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
   </HelpTOCNode>
-  <HelpTOCNode Id="35c0fa77-3703-4373-b236-875bbc786b5a" Title="Wpf.NotificationCenter.Behaviors Namespace" Url="html/N-Wpf.NotificationCenter.Behaviors.htm">
-    <HelpTOCNode Id="cf06fd4e-3b3a-4c73-9052-449c7dc80f92" Title="CollectionViewSourceBehavior Class" Url="html/T-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.htm">
+  <HelpTOCNode Id="8e65096e-52fc-42ab-97a2-d38f7530658b" Title="Wpf.NotificationCenter.Behaviors Namespace" Url="html/N-Wpf.NotificationCenter.Behaviors.htm">
+    <HelpTOCNode Id="d4d02ef4-0b9d-4b2f-a5b5-8b7989399b28" Title="CollectionViewSourceBehavior Class" Url="html/T-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.htm">
       <HelpTOCNode Title="CollectionViewSourceBehavior Members" Url="html/AllMembers.T-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.htm" />
-      <HelpTOCNode Id="3ad135e0-aa79-48a4-9788-702e16356ae9" Title="CollectionViewSourceBehavior Fields" Url="html/Fields.T-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.htm">
+      <HelpTOCNode Id="08bdc51d-134b-4d93-b52e-6543461283e4" Title="CollectionViewSourceBehavior Fields" Url="html/Fields.T-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.htm">
         <HelpTOCNode Title="IsAscendingProperty Field" Url="html/F-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.IsAscendingProperty.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="de101f77-969d-42fe-b103-f9d3db346e63" Title="CollectionViewSourceBehavior Methods" Url="html/Methods.T-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.htm">
+      <HelpTOCNode Id="deae29d4-b17f-486e-9775-7cf12e79397d" Title="CollectionViewSourceBehavior Methods" Url="html/Methods.T-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.htm">
         <HelpTOCNode Title="GetIsAscending Method " Url="html/M-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.GetIsAscending.htm" />
         <HelpTOCNode Title="OnIsAscendingChanged Method " Url="html/M-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.OnIsAscendingChanged.htm" />
         <HelpTOCNode Title="SetIsAscending Method " Url="html/M-Wpf.NotificationCenter.Behaviors.CollectionViewSourceBehavior.SetIsAscending.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
   </HelpTOCNode>
-  <HelpTOCNode Id="0cd13212-410f-4f68-944a-3d5c954f4750" Title="Wpf.NotificationCenter.Converters Namespace" Url="html/N-Wpf.NotificationCenter.Converters.htm">
-    <HelpTOCNode Id="655cbe0f-83dd-4395-9231-05db37ad4197" Title="ExpanderRotateAngleConverter Class" Url="html/T-Wpf.NotificationCenter.Converters.ExpanderRotateAngleConverter.htm">
-      <HelpTOCNode Title="ExpanderRotateAngleConverter Members" Url="html/AllMembers.T-Wpf.NotificationCenter.Converters.ExpanderRotateAngleConverter.htm" />
-      <HelpTOCNode Id="b4f20177-fe2a-4bf7-9e4d-77fcd66bdba5" Title="ExpanderRotateAngleConverter Methods" Url="html/Methods.T-Wpf.NotificationCenter.Converters.ExpanderRotateAngleConverter.htm">
-        <HelpTOCNode Title="Convert Method " Url="html/M-Wpf.NotificationCenter.Converters.ExpanderRotateAngleConverter.Convert.htm" />
-        <HelpTOCNode Title="ConvertBack Method " Url="html/M-Wpf.NotificationCenter.Converters.ExpanderRotateAngleConverter.ConvertBack.htm" />
-      </HelpTOCNode>
-    </HelpTOCNode>
-  </HelpTOCNode>
-  <HelpTOCNode Id="464989f4-2ff9-4a84-b49a-c06f8a04089b" Title="Wpf.NotificationCenter.Enums Namespace" Url="html/N-Wpf.NotificationCenter.Enums.htm">
+  <HelpTOCNode Id="192dbeb5-6910-4b31-bc57-03281cdf03e7" Title="Wpf.NotificationCenter.Enums Namespace" Url="html/N-Wpf.NotificationCenter.Enums.htm">
     <HelpTOCNode Title="AlertType Enumeration" Url="html/T-Wpf.NotificationCenter.Enums.AlertType.htm" />
     <HelpTOCNode Title="NotificationType Enumeration" Url="html/T-Wpf.NotificationCenter.Enums.NotificationType.htm" />
   </HelpTOCNode>
-  <HelpTOCNode Id="d8e2a8db-ff45-44fc-b724-68d42d87c252" Title="Wpf.NotificationCenter.Extensions Namespace" Url="html/N-Wpf.NotificationCenter.Extensions.htm">
-    <HelpTOCNode Id="963613ed-475c-4583-8cd9-bf507beddf55" Title="WpfExtensions Class" Url="html/T-Wpf.NotificationCenter.Extensions.WpfExtensions.htm">
+  <HelpTOCNode Id="1f94778b-6ae9-414c-9ac5-7b7b259984c9" Title="Wpf.NotificationCenter.Extensions Namespace" Url="html/N-Wpf.NotificationCenter.Extensions.htm">
+    <HelpTOCNode Id="7e26ed56-aa34-493b-a830-dd4239c77930" Title="WpfExtensions Class" Url="html/T-Wpf.NotificationCenter.Extensions.WpfExtensions.htm">
       <HelpTOCNode Title="WpfExtensions Members" Url="html/AllMembers.T-Wpf.NotificationCenter.Extensions.WpfExtensions.htm" />
-      <HelpTOCNode Id="895ab5d5-2acf-4aff-a8f5-d3d786f0c052" Title="WpfExtensions Methods" Url="html/Methods.T-Wpf.NotificationCenter.Extensions.WpfExtensions.htm">
+      <HelpTOCNode Id="5bbc204f-1e7b-4bc0-af07-eac72b2a1cac" Title="WpfExtensions Methods" Url="html/Methods.T-Wpf.NotificationCenter.Extensions.WpfExtensions.htm">
         <HelpTOCNode Title="UseWpfNotificationCenter Method " Url="html/M-Wpf.NotificationCenter.Extensions.WpfExtensions.UseWpfNotificationCenter.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
   </HelpTOCNode>
-  <HelpTOCNode Id="476d9bf3-878e-4181-8e39-6c32668c9aba" Title="Wpf.NotificationCenter.Models Namespace" Url="html/N-Wpf.NotificationCenter.Models.htm">
-    <HelpTOCNode Id="574e87a3-7168-41f7-85f9-14a9606af2af" Title="ObservableObjectBase Class" Url="html/T-Wpf.NotificationCenter.Models.ObservableObjectBase.htm">
+  <HelpTOCNode Id="1bc73f23-3aa9-49f1-8557-e3d6e6babf41" Title="Wpf.NotificationCenter.Models Namespace" Url="html/N-Wpf.NotificationCenter.Models.htm">
+    <HelpTOCNode Id="169a280c-86d6-4d1d-bce8-3285fbad8831" Title="ObservableObjectBase Class" Url="html/T-Wpf.NotificationCenter.Models.ObservableObjectBase.htm">
       <HelpTOCNode Title="ObservableObjectBase Members" Url="html/AllMembers.T-Wpf.NotificationCenter.Models.ObservableObjectBase.htm" />
-      <HelpTOCNode Id="aee1de2c-ab39-4bc5-b357-65da12c3771e" Title="ObservableObjectBase Methods" Url="html/Methods.T-Wpf.NotificationCenter.Models.ObservableObjectBase.htm">
+      <HelpTOCNode Id="7268995b-4fb7-4447-a65a-c36d50495509" Title="ObservableObjectBase Methods" Url="html/Methods.T-Wpf.NotificationCenter.Models.ObservableObjectBase.htm">
         <HelpTOCNode Title="Dispose Method " Url="html/M-Wpf.NotificationCenter.Models.ObservableObjectBase.Dispose.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
   </HelpTOCNode>
-  <HelpTOCNode Id="df16a546-7964-47a2-93a3-b109a5440388" Title="Wpf.NotificationCenter.Notification Namespace" Url="html/N-Wpf.NotificationCenter.Notification.htm">
-    <HelpTOCNode Id="b1f92b01-6338-4e61-8583-9760d751462e" Title="Notification Class" Url="html/T-Wpf.NotificationCenter.Notification.Notification.htm">
+  <HelpTOCNode Id="90fa1b67-5a43-4dc6-91a1-10a6770a97e7" Title="Wpf.NotificationCenter.Notification Namespace" Url="html/N-Wpf.NotificationCenter.Notification.htm">
+    <HelpTOCNode Id="2013f9ab-8dab-450b-86b6-d765b7c9fa7c" Title="Notification Class" Url="html/T-Wpf.NotificationCenter.Notification.Notification.htm">
       <HelpTOCNode Title="Notification Members" Url="html/AllMembers.T-Wpf.NotificationCenter.Notification.Notification.htm" />
-      <HelpTOCNode Id="e53eac90-187f-493a-81f0-7a55d458225a" Title="Notification Constructor " Url="html/Overload-Wpf.NotificationCenter.Notification.Notification.-ctor.htm">
+      <HelpTOCNode Id="dd95a6f8-1855-41f5-ba0b-1bc99d26431d" Title="Notification Constructor " Url="html/Overload-Wpf.NotificationCenter.Notification.Notification.-ctor.htm">
         <HelpTOCNode Title="Notification Constructor " Url="html/M-Wpf.NotificationCenter.Notification.Notification.-ctor.htm" />
         <HelpTOCNode Title="Notification Constructor (Notification)" Url="html/M-Wpf.NotificationCenter.Notification.Notification.-ctor_1.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="967bc277-a442-42ce-8d99-73593d7371d9" Title="Notification Fields" Url="html/Fields.T-Wpf.NotificationCenter.Notification.Notification.htm">
+      <HelpTOCNode Id="751b1fa5-b5b9-4c2f-a87d-29bebb5adfde" Title="Notification Fields" Url="html/Fields.T-Wpf.NotificationCenter.Notification.Notification.htm">
         <HelpTOCNode Title="AlertMaxHeightProperty Field" Url="html/F-Wpf.NotificationCenter.Notification.Notification.AlertMaxHeightProperty.htm" />
         <HelpTOCNode Title="AlertTypeProperty Field" Url="html/F-Wpf.NotificationCenter.Notification.Notification.AlertTypeProperty.htm" />
         <HelpTOCNode Title="CreatedOnVisibilityProperty Field" Url="html/F-Wpf.NotificationCenter.Notification.Notification.CreatedOnVisibilityProperty.htm" />
@@ -124,13 +119,11 @@
         <HelpTOCNode Title="TitleProperty Field" Url="html/F-Wpf.NotificationCenter.Notification.Notification.TitleProperty.htm" />
         <HelpTOCNode Title="UnreadProperty Field" Url="html/F-Wpf.NotificationCenter.Notification.Notification.UnreadProperty.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="ca727bda-0e9c-4979-9f2b-26237966302d" Title="Notification Properties" Url="html/Properties.T-Wpf.NotificationCenter.Notification.Notification.htm">
+      <HelpTOCNode Id="4a65a4bb-b255-47a2-90e4-197966cc6f49" Title="Notification Properties" Url="html/Properties.T-Wpf.NotificationCenter.Notification.Notification.htm">
         <HelpTOCNode Title="AlertMaxHeight Property " Url="html/P-Wpf.NotificationCenter.Notification.Notification.AlertMaxHeight.htm" />
         <HelpTOCNode Title="AlertType Property " Url="html/P-Wpf.NotificationCenter.Notification.Notification.AlertType.htm" />
         <HelpTOCNode Title="CreatedOn Property " Url="html/P-Wpf.NotificationCenter.Notification.Notification.CreatedOn.htm" />
         <HelpTOCNode Title="CreatedOnVisibility Property " Url="html/P-Wpf.NotificationCenter.Notification.Notification.CreatedOnVisibility.htm" />
-        <HelpTOCNode Title="DisplayTime Property " Url="html/P-Wpf.NotificationCenter.Notification.Notification.DisplayTime.htm" />
-        <HelpTOCNode Title="IsClickable Property " Url="html/P-Wpf.NotificationCenter.Notification.Notification.IsClickable.htm" />
         <HelpTOCNode Title="NotificationType Property " Url="html/P-Wpf.NotificationCenter.Notification.Notification.NotificationType.htm" />
         <HelpTOCNode Title="RemoveNotificationCommand Property " Url="html/P-Wpf.NotificationCenter.Notification.Notification.RemoveNotificationCommand.htm" />
         <HelpTOCNode Title="ShowExpander Property " Url="html/P-Wpf.NotificationCenter.Notification.Notification.ShowExpander.htm" />
@@ -138,69 +131,68 @@
         <HelpTOCNode Title="Title Property " Url="html/P-Wpf.NotificationCenter.Notification.Notification.Title.htm" />
         <HelpTOCNode Title="Unread Property " Url="html/P-Wpf.NotificationCenter.Notification.Notification.Unread.htm" />
       </HelpTOCNode>
-      <HelpTOCNode Id="0611e59c-d90e-4e98-95b6-cc66b2ec1a44" Title="Notification Events" Url="html/Events.T-Wpf.NotificationCenter.Notification.Notification.htm">
-        <HelpTOCNode Title="OnClicked Event" Url="html/E-Wpf.NotificationCenter.Notification.Notification.OnClicked.htm" />
+      <HelpTOCNode Id="093e4f38-dd39-4766-9cfc-30cc0bbd9cbf" Title="Notification Events" Url="html/Events.T-Wpf.NotificationCenter.Notification.Notification.htm">
         <HelpTOCNode Title="PropertyChanged Event" Url="html/E-Wpf.NotificationCenter.Notification.Notification.PropertyChanged.htm" />
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="1bff7827-6df1-47b2-ade8-b123da8213f3" Title="NotificationHeader Class" Url="html/T-Wpf.NotificationCenter.Notification.NotificationHeader.htm">
+    <HelpTOCNode Id="a2c22900-696d-413c-aadb-e10d4946ae63" Title="NotificationHeader Class" Url="html/T-Wpf.NotificationCenter.Notification.NotificationHeader.htm">
       <HelpTOCNode Title="NotificationHeader Members" Url="html/AllMembers.T-Wpf.NotificationCenter.Notification.NotificationHeader.htm" />
       <HelpTOCNode Title="NotificationHeader Constructor " Url="html/M-Wpf.NotificationCenter.Notification.NotificationHeader.-ctor.htm" />
     </HelpTOCNode>
   </HelpTOCNode>
-  <HelpTOCNode Id="594e45a8-5cc1-410b-a2b2-437537fdda9c" Title="Wpf.NotificationCenter.Services Namespace" Url="html/N-Wpf.NotificationCenter.Services.htm">
-    <HelpTOCNode Id="a7a2bbc8-ecd8-4af1-85f5-2937e013743c" Title="IWpfNotificationService Interface" Url="html/T-Wpf.NotificationCenter.Services.IWpfNotificationService.htm">
+  <HelpTOCNode Id="9a215a18-082e-407d-846e-b860c3e23e2a" Title="Wpf.NotificationCenter.Services Namespace" Url="html/N-Wpf.NotificationCenter.Services.htm">
+    <HelpTOCNode Id="b2d0dc45-c262-4bfe-b56e-2aebd4479a89" Title="IWpfNotificationService Interface" Url="html/T-Wpf.NotificationCenter.Services.IWpfNotificationService.htm">
       <HelpTOCNode Title="IWpfNotificationService Members" Url="html/AllMembers.T-Wpf.NotificationCenter.Services.IWpfNotificationService.htm" />
-      <HelpTOCNode Id="516919cd-0926-4cb5-9318-23af4347af20" Title="IWpfNotificationService Methods" Url="html/Methods.T-Wpf.NotificationCenter.Services.IWpfNotificationService.htm">
+      <HelpTOCNode Id="1b178222-6ee3-46db-aeb0-514d28d8bfea" Title="IWpfNotificationService Methods" Url="html/Methods.T-Wpf.NotificationCenter.Services.IWpfNotificationService.htm">
         <HelpTOCNode Title="Close Method " Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Close.htm" />
         <HelpTOCNode Title="Create Method " Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Create.htm" />
         <HelpTOCNode Title="CreateAlertNotification Method " Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.CreateAlertNotification.htm" />
         <HelpTOCNode Title="CreateToastNotification Method " Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.CreateToastNotification.htm" />
-        <HelpTOCNode Id="9c44c382-17a9-44a5-8633-5661976745d0" Title="Error Method " Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Error.htm">
+        <HelpTOCNode Id="2173172f-ea7b-4422-8699-9465768ba3e7" Title="Error Method " Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Error.htm">
           <HelpTOCNode Title="Error Method (String, String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Error.htm" />
-          <HelpTOCNode Title="Error Method (String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Error_1.htm" />
+          <HelpTOCNode Title="Error Method (String, AlertType)" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Error_1.htm" />
         </HelpTOCNode>
         <HelpTOCNode Title="GetLastAlertCenterNotification Method " Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.GetLastAlertCenterNotification.htm" />
         <HelpTOCNode Title="GetLastToastNotification Method " Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.GetLastToastNotification.htm" />
-        <HelpTOCNode Id="cb2efc22-6194-425a-b2f6-56719ece69eb" Title="Information Method " Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Information.htm">
+        <HelpTOCNode Id="e5c91184-609f-43d7-9ea1-5ae65aea500b" Title="Information Method " Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Information.htm">
           <HelpTOCNode Title="Information Method (String, String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Information.htm" />
-          <HelpTOCNode Title="Information Method (String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Information_1.htm" />
+          <HelpTOCNode Title="Information Method (String, AlertType)" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Information_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="d5718b8b-77d2-44d8-9211-a1ebb6af780a" Title="Success Method " Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Success.htm">
+        <HelpTOCNode Id="1fa6d5af-d86c-4592-b0f0-07e844324b1e" Title="Success Method " Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Success.htm">
           <HelpTOCNode Title="Success Method (String, String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Success.htm" />
-          <HelpTOCNode Title="Success Method (String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Success_1.htm" />
+          <HelpTOCNode Title="Success Method (String, AlertType)" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Success_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="2ef7e857-c111-4807-85d3-4e9c63631ab0" Title="Warning Method " Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Warning.htm">
+        <HelpTOCNode Id="b3ba341c-20a2-4f60-8a18-f02d11b8ee31" Title="Warning Method " Url="html/Overload-Wpf.NotificationCenter.Services.IWpfNotificationService.Warning.htm">
           <HelpTOCNode Title="Warning Method (String, String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Warning.htm" />
-          <HelpTOCNode Title="Warning Method (String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Warning_1.htm" />
+          <HelpTOCNode Title="Warning Method (String, AlertType)" Url="html/M-Wpf.NotificationCenter.Services.IWpfNotificationService.Warning_1.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
     </HelpTOCNode>
-    <HelpTOCNode Id="4a935713-5cdb-4bfb-a14c-812cde8dabda" Title="WpfNotificationService Class" Url="html/T-Wpf.NotificationCenter.Services.WpfNotificationService.htm">
+    <HelpTOCNode Id="79de7713-9de7-4ac6-bbe2-4e45c62ba7be" Title="WpfNotificationService Class" Url="html/T-Wpf.NotificationCenter.Services.WpfNotificationService.htm">
       <HelpTOCNode Title="WpfNotificationService Members" Url="html/AllMembers.T-Wpf.NotificationCenter.Services.WpfNotificationService.htm" />
       <HelpTOCNode Title="WpfNotificationService Constructor " Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.-ctor.htm" />
-      <HelpTOCNode Id="7861aaac-78cb-45fb-a369-74eeb8198711" Title="WpfNotificationService Methods" Url="html/Methods.T-Wpf.NotificationCenter.Services.WpfNotificationService.htm">
+      <HelpTOCNode Id="fc358b53-771b-4c9c-b948-139bc4479d86" Title="WpfNotificationService Methods" Url="html/Methods.T-Wpf.NotificationCenter.Services.WpfNotificationService.htm">
         <HelpTOCNode Title="Close Method " Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Close.htm" />
         <HelpTOCNode Title="Create Method " Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Create.htm" />
         <HelpTOCNode Title="CreateAlertNotification Method " Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.CreateAlertNotification.htm" />
         <HelpTOCNode Title="CreateToastNotification Method " Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.CreateToastNotification.htm" />
-        <HelpTOCNode Id="a5577bcb-b69b-4d3d-952a-a0f743b0cf06" Title="Error Method " Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Error.htm">
+        <HelpTOCNode Id="6bec5678-840e-48ac-a164-a138487499c2" Title="Error Method " Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Error.htm">
           <HelpTOCNode Title="Error Method (String, String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Error.htm" />
-          <HelpTOCNode Title="Error Method (String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Error_1.htm" />
+          <HelpTOCNode Title="Error Method (String, AlertType)" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Error_1.htm" />
         </HelpTOCNode>
         <HelpTOCNode Title="GetLastAlertCenterNotification Method " Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.GetLastAlertCenterNotification.htm" />
         <HelpTOCNode Title="GetLastToastNotification Method " Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.GetLastToastNotification.htm" />
-        <HelpTOCNode Id="ac1cf8d9-1d43-47f8-b449-56ff01c26a7a" Title="Information Method " Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Information.htm">
+        <HelpTOCNode Id="751abc0a-28ef-4994-8bc1-d80f06c2dda6" Title="Information Method " Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Information.htm">
           <HelpTOCNode Title="Information Method (String, String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Information.htm" />
-          <HelpTOCNode Title="Information Method (String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Information_1.htm" />
+          <HelpTOCNode Title="Information Method (String, AlertType)" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Information_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="3d1a91d2-9d00-4389-b3a6-b1c04a9c73d0" Title="Success Method " Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Success.htm">
+        <HelpTOCNode Id="dd5bdf30-621e-4461-b091-2ec9727cd1d4" Title="Success Method " Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Success.htm">
           <HelpTOCNode Title="Success Method (String, String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Success.htm" />
-          <HelpTOCNode Title="Success Method (String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Success_1.htm" />
+          <HelpTOCNode Title="Success Method (String, AlertType)" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Success_1.htm" />
         </HelpTOCNode>
-        <HelpTOCNode Id="e1d89b8a-46e0-4e56-87a3-96ca39b704a9" Title="Warning Method " Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Warning.htm">
+        <HelpTOCNode Id="abf7c81f-2ca8-45da-9cfd-a4b283a5c11c" Title="Warning Method " Url="html/Overload-Wpf.NotificationCenter.Services.WpfNotificationService.Warning.htm">
           <HelpTOCNode Title="Warning Method (String, String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Warning.htm" />
-          <HelpTOCNode Title="Warning Method (String, Nullable(String), AlertType)" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Warning_1.htm" />
+          <HelpTOCNode Title="Warning Method (String, AlertType)" Url="html/M-Wpf.NotificationCenter.Services.WpfNotificationService.Warning_1.htm" />
         </HelpTOCNode>
       </HelpTOCNode>
     </HelpTOCNode>
